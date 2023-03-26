@@ -1,4 +1,5 @@
 <?php 
+
     function db_connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
@@ -15,50 +16,68 @@
                 echo 'N° : '.$e-> getCode();
             }
     }
-// code journal
+
+// plan comptable général
 
     function find_all() {
         $connexion = db_connect();
-        $sql = "SELECT * FROM code_journal";
+        $sql = "SELECT * FROM pcg2005";
         $stmt = $connexion->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    function save($id, $designation) {
+    function save($numero, $designation) {
         $connexion = db_connect();
-        $sql = "INSERT INTO code_journal(id, designation) VALUES (:id, :designation)";
+        $sql = "INSERT INTO pcg2005 (numero, designation) VALUES (:numero, :designation)";
         $stmt = $connexion->prepare($sql);
-        $stmt->bindParam(':id', $numero);
+        $stmt->bindParam(':numero', $numero);
         $stmt->bindParam(':designation', $designation);
         $stmt->execute();
     }
 
-    function update($id, $code, $designation) {
+
+    function update($id, $numero, $designation) {
         $connexion = db_connect();
-        $sql = "UPDATE pcg2005 SET id = :code, designation = :designation WHERE id = :id";
-        $stmt->bindParam(':code', $code);
+        $sql = "UPDATE pcg2005 SET numero = :numero, designation = :designation WHERE id = :id";
+        $stmt->bindParam(':numero', $numero);
         $stmt->bindParam(':designation', $designation);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
 
-    function delete($id) {
+    function delete($numero) {
         $connexion = db_connect();
-        $sql = "DELETE FROM code_journal WHERE id = :id";
-        $stmt->bindParam(':id', $id);
+        $sql = "DELETE FROM pcg2005 WHERE numero = :numero";
+        $stmt->bindParam(':numero', $numero);
         $stmt->execute();
     }
 
-    function find_by_code($id) {
+    function find_by_compte($compte) {
         $connexion = db_connect();
-        $sql = "SELECT * FROM code_journal WHERE id=:id";
+        $sql = "SELECT * FROM pcg2005 WHERE numero=:compte";
         $stmt = $connexion->prepare($sql);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':compte', $compte);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
-    }    
+    }   
+    
+    function get_all_types() {
+        $type[0]['type'] = 'csv';
+        $type[0]['libelle'] = 'CSV';
+
+        $type[1]['type'] = 'xlsx';
+        $type[1]['libelle'] = 'Excel (XLSX)';
+
+        $type[2]['type'] = 'xls';
+        $type[2]['libelle'] = 'Excel (XLS)';
+
+        $type[3]['type'] = 'ods';
+        $type[3]['libelle'] = 'Open Document (ODS)';
+
+        return $type;
+    }
 
 ?>
