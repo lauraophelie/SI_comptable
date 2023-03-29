@@ -21,7 +21,7 @@
 
     function find_all() {
         $connexion = db_connect();
-        $sql = "SELECT * FROM pcg2005";
+        $sql = "SELECT * FROM pcg2005 ORDER BY numero ASC";
         $stmt = $connexion->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -29,29 +29,48 @@
     }
 
     function save($numero, $designation) {
-        $connexion = db_connect();
-        $sql = "INSERT INTO pcg2005 (numero, designation) VALUES (:numero, :designation)";
-        $stmt = $connexion->prepare($sql);
-        $stmt->bindParam(':numero', $numero);
-        $stmt->bindParam(':designation', $designation);
-        $stmt->execute();
+        try {
+            $connexion = db_connect();
+            $sql = "INSERT INTO pcg2005 (numero, designation) VALUES (:numero, :designation)";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':numero', $numero);
+            $stmt->bindParam(':designation', $designation);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'insertion : " . $e->getMessage();
+            return false;
+        }
     }
 
-
     function update($id, $numero, $designation) {
-        $connexion = db_connect();
-        $sql = "UPDATE pcg2005 SET numero = :numero, designation = :designation WHERE id = :id";
-        $stmt->bindParam(':numero', $numero);
-        $stmt->bindParam(':designation', $designation);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
+        try {
+            $connexion = db_connect();
+            $sql = "UPDATE pcg2005 SET numero = :numero, designation = :designation WHERE id = :id";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':numero', $numero);
+            $stmt->bindParam(':designation', $designation);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Une erreur s'est produite lors de la modification : " . $e->getMessage();
+            return false;
+        }
     }
 
     function delete($numero) {
-        $connexion = db_connect();
-        $sql = "DELETE FROM pcg2005 WHERE numero = :numero";
-        $stmt->bindParam(':numero', $numero);
-        $stmt->execute();
+        try {
+            $connexion = db_connect();
+            $sql = "DELETE FROM pcg2005 WHERE numero = :numero";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':numero', $numero);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error : ". $e->getMesssage();
+            return false;
+        }
     }
 
     function find_by_compte($compte) {
@@ -65,6 +84,7 @@
     }   
     
     function get_all_types() {
+        
         $type[0]['type'] = 'csv';
         $type[0]['libelle'] = 'CSV';
 

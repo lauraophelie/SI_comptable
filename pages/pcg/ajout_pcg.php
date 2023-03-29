@@ -36,7 +36,7 @@
             <button type="submit"> Ajouter </button>
     </form>
 
-    <h1> Importer un fichier excel : </h1>
+    <h1> Importer un fichier : </h1>
     <?php
         if(isset($_GET['upload_error'])) {
             echo '<p style="color: red">'.$_GET['upload_error'].'</p>';
@@ -47,7 +47,7 @@
     ?>
     <form action="../../inc/pcg/traitement_upload.php" method="post" enctype="multipart/form-data">
         <p>
-            <label for="excel"> Fichier excel : </label>
+            <label for="excel"> Fichier : </label>
             <input type="file" name="excel"/>
         </p>
         <button type="submit"> Importer </button>

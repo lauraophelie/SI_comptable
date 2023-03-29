@@ -18,6 +18,12 @@
         header('Location: ../../pages/pcg/ajout_pcg.php?error=Le nombre caractères ne doit pas dépasser 5');
         exit();
     }
-    save($numero, $designation);
-    header('Location: ../../pages/pcg/ajout_pcg.php?message=Insertion terminée avec succès !');
+    $insert = save($numero, $designation);
+    if($insert == true) {
+        header('Location: ../../pages/pcg/ajout_pcg.php?message=Insertion terminée avec succès !');
+        exit();
+    } else {
+        header('Location: ../../pages/pcg/ajout_pcg.php?error=Une erreur s\'est produite lors de l\'insertion !');
+        exit();
+    }
 ?>
