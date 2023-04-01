@@ -29,6 +29,7 @@
             $stmt = $connexion->prepare($sql);
             $stmt->bindParam(':journal', $journal);
             $stmt->bindParam(':societe', $societe);
+            $stmt->bindParam(':date_ecriture', $date_ecriture);
             $stmt->bindParam(':numero_piece', $numero_piece);
             $stmt->bindParam(':compte_general', $cg);
             $stmt->bindParam(':compte_tiers', $ct);

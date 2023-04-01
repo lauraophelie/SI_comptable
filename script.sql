@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS societe(
      mot_de_passe VARCHAR(10) NOT NULL
 );
 
-ALTER TABLE societe ADD CONSTRAINT check_min_length CHECK (length(nom) >= 5)
+ALTER TABLE societe ADD CONSTRAINT check_min_length CHECK (length(nom) >= 5);
 
 CREATE TABLE IF NOT EXISTS adresses_societe(
      societe INTEGER REFERENCES societe(id),
