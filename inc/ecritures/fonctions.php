@@ -61,6 +61,16 @@
         return $result;
     }
 
+    function find_societe($societe) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM societe WHERE nom = :nom";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':nom', $societe);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }    
+
     function get_all_by_journal($code, $societe) {
         $connexion = dbconnect();
         $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe)";

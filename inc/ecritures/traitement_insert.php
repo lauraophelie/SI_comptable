@@ -5,6 +5,8 @@
     $code_journal = $_GET['code_journal'];
     $ecritures = $_GET['ecritures'];	
 
+    $id_societe = find_societe($societe_nom);
+
     foreach ($ecritures as $ecriture) {
 
         $date = $ecriture['date'];
@@ -18,7 +20,7 @@
         $montant_devise = $ecriture['montant_devise'];
         $taux = $ecriture['taux'];
 
-        $insert = save_ecriture($code_journal, $societe_nom, $date, $numero_piece, $cg, $ct, $libelle, $debit, $credit, $devise, $montant_devise, $taux);
+        $insert = save_ecriture($code_journal, $id_societe['id'], $date, $numero_piece, $cg, $ct, $libelle, $debit, $credit, $devise, $montant_devise, $taux);
         if($insert == true) {
             echo "Les écritures ont été insérées avec succès dans la base de données.";
             exit();
