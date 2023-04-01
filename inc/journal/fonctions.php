@@ -15,8 +15,8 @@
                 echo 'N° : '.$e-> getCode();
             }
     }
-    
-// code journal
+
+/// code journal
 
     function find_all() {
         $connexion = db_connect();
