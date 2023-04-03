@@ -1,52 +1,60 @@
 <?php
-    require("../../inc/journal/fonctions.php");
-    require("../../inc/ecritures/fonctions.php");
+    require("../inc/journal/fonctions.php");
+    require("../inc/ecritures/fonctions.php");
 
     $journaux = find_all();
-    $societe = $_GET['societe'];
+    $societe = $_SESSION['nom'];
     $id_societe = find_societe($societe);
+    $compta = find_societe_comptabilite($id_societe['id']);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Ecritures </title>
-</head>
-<body>
-    <h1> Ecritures </h1>
+    <h1 id="main-title"> Ecritures </h1>
+
+    <div style="height:85px"> </div>
+
     <?php foreach($journaux as $journal) { ?>
-        <h2> 
+        <h2 id="journal-title"> 
             <?php echo $journal['designation']; ?>
         </h2>
-        <table border="1">
-            <tr>
-                <th> Date </th>
-                <th> N° de pièce </th>
-                <th> Compte général </th>
-                <th> Compte tiers </th>
-                <th> Libelle </th>
-                <th> Débit </th>
-                <th> Crédit </th>
+        <?php 
+            $ecritures = get_recent_ecritures($journal['id'], $id_societe['id'], $compta['date_debut_exercice'], $compta['date_fin_exercice'], null);
+            if(empty($ecritures)) { ?>
+                <p class="empty-pan"> Aucune disponible écriture pour le moment </p>
+        <?php } else { ?>
+        <table class="ecriture_table">
+            <tr id="ecriture-title">
+                <th class="titre"> Date </th>
+                <th class="titre"> N° de pièce </th>
+                <th class="titre"> Compte général </th>
+                <th class="titre"> Compte tiers </th>
+                <th class="libelle"> Libellé </th>
+                <th class="titre-montant"> Débit </th>
+                <th class="titre-montant"> Crédit </th>
             </tr>
             <?php 
-                $ecritures = get_all_by_journal($journal['id'], $id_societe['id']);
                 foreach($ecritures as $ecriture) { ?>
-                    <tr>
-                        <td> <?php echo $ecriture['date_ecriture']; ?> </td>
-                        <td> <?php echo $ecriture['numero_piece']; ?> </td>
-                        <td> <?php echo $ecriture['compte_general']; ?> </td>
-                        <td> <?php echo $ecriture['compte_tiers']; ?> </td>
-                        <td> <?php echo $ecriture['libelle']; ?> </td>
-                        <td> <?php echo $ecriture['debit']; ?> </td>
-                        <td> <?php echo $ecriture['credit']; ?> </td>
+                    <tr id="ecriture_line">
+                        <td class="case-date"> <?php echo $ecriture['date_ecriture']; ?> </td>
+                        <td class="case-num"> <?php echo $ecriture['numero_piece']; ?> </td>
+                        <td class="case-compte"> <?php echo $ecriture['compte_general']; ?> </td>
+                        <td class="case-compte"> <?php echo $ecriture['compte_tiers']; ?> </td>
+                        <td class="libelle"> <?php echo $ecriture['libelle']; ?> </td>
+                        <td class="case-montant"> <?php echo number_format($ecriture['debit'], 0, ' ', ' '); ?> </td>
+                        <td class="case-montant"> <?php echo number_format($ecriture['credit'], 0, ' ', ' '); ?> </td>
                     </tr>
-            <?php } ?>
+            <?php } 
+                $sum_debit = get_sum_debit_journal($journal['id'], $id_societe['id'], $compta['date_debut_exercice'], $compta['date_fin_exercice']);
+                $sum_credit = get_sum_credit_journal($journal['id'], $id_societe['id'], $compta['date_debut_exercice'], $compta['date_fin_exercice']);
+            ?>
         </table>
-        <p>
-            <a href="./ecriture.php?societe=<?php echo $societe; ?>&id_societe=<?php echo $id_societe['id']; ?>&journal=<?php echo $journal['id']; ?>&designation=<?php echo $journal['designation']; ?>"> Nouvelle écriture </a>
+        <p id="button-range">
+            <a href="./page.php?page=ecritures/ecriture&societe=<?php echo $societe; ?>&id_societe=<?php echo $id_societe['id']; ?>&journal=<?php echo $journal['id']; ?>&designation=<?php echo $journal['designation']; ?>"> 
+                <button id="new-ecriture"> Nouvelle écriture </button>
+            </a>
+            <a href="">
+                <button id="see-ecritures"> 
+                    Voir toutes les écritures 
+                    <i class="fas fa-arrow-right"> </i>
+                </button>
+            </a>
         </p>
-    <?php } ?>
-</body>
-</html>
+    <?php } } ?>

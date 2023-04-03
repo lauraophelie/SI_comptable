@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS societe(
      mot_de_passe VARCHAR(10) NOT NULL
 );
 
-ALTER TABLE societe ADD CONSTRAINT check_min_length CHECK (length(nom) >= 5);
+ALTER TABLE societe ADD CONSTRAINT check_min_length CHECK (length(nom) >= 5)
 
 CREATE TABLE IF NOT EXISTS adresses_societe(
      societe INTEGER REFERENCES societe(id),
@@ -103,19 +103,6 @@ INSERT INTO pcg2005(numero,designation) VALUES('10100', 'CAPITAL'),
                                             ('28183', 'AMORT MATER & MOB LOGT'),
                                             ('32110', 'STOCK MATIERES PREMIERES'),
                                             ('32120', 'PETITRES FOURNITURES');
-
-
-INSERT INTO pcg2005(numero, designation) VALUES('40100', 'Fournisseurs des biens et services'),
-                                                ('41100', 'Clients'),
-                                                ('42000', 'Personnels de l"entreprise'),
-                                                ('43000', 'Organismes sociaux'),
-                                                ('44000', 'Etat'),
-                                                ('45000', 'Compte des associés'),
-                                                ('46000', 'Débiteurs et créditeurs divers'),
-                                                ('51200', 'Banque'),
-                                                ('51400', 'CCP'),
-                                                ('53000', 'Caisse'),
-                                                ('60000', 'Achat des biens consommables');
                                         
                                         
 CREATE TABLE IF NOT EXISTS code_journal(
@@ -147,16 +134,15 @@ CREATE TABLE IF NOT EXISTS ecriture_journal(
     credit DECIMAL
 );
 
+INSERT INTO societe(nom, objet, date_creation, mot_de_passe) VALUES('DIMPEX', 1, '2022-01-25', '01234');
+
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, debit) VALUES('AC', 1, '2023-04-01', 'AC0001', '60100', 'Achat 1', 560000);
 
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, credit) VALUES('BN', 1, '2023-04-01', 'CQ0015', '53100', 'Sortie Banque', 500000);
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, debit) VALUES('CA', 1, '2023-04-01', 'PC0001', '53100', 'Entrée Caisse', 500000);
 
-CREATE OR REPLACE VIEW compte_tiers AS
-SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
-     
-CREATE TABLE tiers(
-     id SERIAL primary key,
-     numero VARCHAR(13),
-     designation VARCHAR(40)
-);
+INSERT INTO comptabilite(societe, capital, devise, date_debut_exercice, date_fin_exercice, devise_equivalence) VALUES(1, 850000, 1, '2023-01-15', '2023-12-31', 2);
+
+INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, debit) VALUES('CA', 1, '2023-04-03', 'PC0002', '53100', 'Entrée Caisse', 5000000);
+
+INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, credit) VALUES('CA', 1, '2023-04-03', 'PC0003', '53100', 'Sortie Caisse', 250000);

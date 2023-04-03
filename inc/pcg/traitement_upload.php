@@ -11,7 +11,7 @@
         $allowed_extensions = array('xlsx', 'csv', 'ods', 'xls');
 
         if(!in_array(strtolower($file_extension), $allowed_extensions)) {
-            header('Location: ../../pages/pcg/ajout_pcg.php?upload_error=Fichier non pris en charge');
+            header('Location: ../../pages/page.php?page=pcg/ajout_pcg&upload_error=Fichier non pris en charge');
             exit();
         }
 
@@ -33,9 +33,9 @@
             }
             save($values[0], $values[1]);
         }
-        header('Location: ../../pages/pcg/ajout_pcg.php?upload_message=Import terminée avec succès !');
+        header('Location: ../../pages/page.php?page=pcg/ajout_pcg&upload_message=Import terminée avec succès !');
     } else {
-        header('Location: ../../pages/pcg/ajout_pcg.php?upload_error=Une erreur s\'est produite');
+        header('Location: ../../pages/page.php?page=pcg/ajout_pcg&upload_error=Veuillez choisire un fichier');
         exit();
     }
 ?>

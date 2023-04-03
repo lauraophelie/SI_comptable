@@ -1,0 +1,118 @@
+.ecriture_table {
+    width: 97%;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+.ecriture_table td, .ecriture_table th {
+    border: 1px solid white;
+}
+
+.case-montant {
+    width: 125px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.titre-montant {
+    text-align: right;
+    padding-right: 20px;
+}
+
+#ecriture_line {
+    height: 45px;
+    text-align: left;
+    background-color: white;
+    border-bottom: 1px solid #1C2541;
+    transition: 0.5s;
+}
+
+#ecriture_line:hover {
+    transform: scale(1.05);
+}
+
+#ecriture_line:nth-child(odd) {
+    background-color: rgb(232, 232, 232);
+}
+
+#ecriture_line:nth-child(odd) td {
+    border: 1px solid rgb(232, 232, 232);;
+}
+
+#ecriture-title {
+    height: 35px;
+    text-align: left;
+    font-size: 14px;
+    background-color: #1C2541;
+    color: white;
+}
+
+#ecriture-title th {
+    border: 1px solid #1C2541;
+}
+
+#journal-title:first-child {
+    margin-top: 25px;
+}
+
+#journal-title {
+    padding-top: 25px;
+}
+
+.libelle {
+    width: 200px;
+    padding-left: 20px;
+}
+
+.case-compte {
+    width: 150px;
+}
+
+.case-date, .case-num, .case-compte, .titre {
+    text-align: center;
+}
+
+.empty-pan {
+    text-align: center;
+}
+
+#button-range button {
+    height: 35px;
+    width: 225px;
+    margin-top: 15px;
+    border: 1px solid transparent;
+    transition: 0.5s;
+}
+
+#button-range button:hover {
+    transform: scale(1.05);
+}
+
+.total-case {
+    height: 45px;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.case-somme {
+    text-align: right;
+    padding-right: 20px;
+    color: #1C2541;
+}
+
+#new-ecriture {
+    background-color: #1C2541;
+    color: white;
+    font-weight: bold;
+}
+
+#see-ecritures {
+    margin-left: 56%;
+    font-weight: bold;
+    margin-top: 5px;
+    background-color: #CCA438;
+}
+
+#see-ecritures i {
+    padding-left: 15px;
+}
