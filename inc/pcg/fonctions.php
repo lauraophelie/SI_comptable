@@ -1,5 +1,4 @@
 <?php 
-
     function db_connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
@@ -68,7 +67,7 @@
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
-            echo "Error : ". $e->getMesssage();
+            echo "Error : ". $e->getMessage();
             return false;
         }
     }
