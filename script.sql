@@ -151,3 +151,12 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
 
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, credit) VALUES('BN', 1, '2023-04-01', 'CQ0015', '53100', 'Sortie Banque', 500000);
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, debit) VALUES('CA', 1, '2023-04-01', 'PC0001', '53100', 'Entrée Caisse', 500000);
+
+CREATE OR REPLACE VIEW compte_tiers AS
+SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
+     
+CREATE TABLE tiers(
+     id SERIAL primary key,
+     numero VARCHAR(13),
+     designation VARCHAR(40)
+);
