@@ -50,7 +50,7 @@
             <a href="./page.php?page=ecritures/ecriture&societe=<?php echo $societe; ?>&id_societe=<?php echo $id_societe['id']; ?>&journal=<?php echo $journal['id']; ?>&designation=<?php echo $journal['designation']; ?>"> 
                 <button id="new-ecriture"> Nouvelle écriture </button>
             </a>
-            <a href="">
+            <a href="./page.php?page=ecritures/liste_ecritures_journal&journal=<?php echo $journal['id']; ?>&designation=<?php echo $journal['designation']; ?>">
                 <button id="see-ecritures"> 
                     Voir toutes les écritures 
                     <i class="fas fa-arrow-right"> </i>
