@@ -4,7 +4,7 @@
     require("../../inc/pcg/fonctions.php");
     require("../../inc/grand_livre/fonctions.php");
     
-    $societe = $_SESSION['societe'];
+    $societe = $_SESSION['id_societe'];
     $debut = getDebutCompta($societe);
     $compte = $_GET['num_compte'];
 

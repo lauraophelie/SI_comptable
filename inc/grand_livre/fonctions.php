@@ -38,7 +38,17 @@
         }
     }
 
-    function getDebutCompta($societe){
-        
+    function getDebutCompta($id_societe){
+        try {
+            $connexion = dbconnect();
+            $sql = "select date_debut_exercice from comptabilite where societe = :societe order by date_debut_exercice desc limit 1";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':societe', $id_societe);
+            $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $resultat['date_debut'];
+        } catch (PDOException $e){
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
     }
 ?>
