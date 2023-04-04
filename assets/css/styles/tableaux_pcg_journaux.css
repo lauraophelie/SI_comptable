@@ -1,0 +1,108 @@
+#pcg_table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    width: 90%;
+    box-sizing: border-box;
+    margin-left: 5%;
+}
+
+#data-line, #data-title {
+    height: 65px;
+}
+
+#data-line {
+    margin-top: 25px;
+    background-color: white;
+    transition: 0.5s;
+}
+
+#data-line:hover {
+    transform: scale(1.05);
+    background-color: #1C2541;
+    color: white;
+    border-collapse: collapse;
+}
+
+#data-line:hover i {
+    color: white;
+}
+
+#data-line td {
+    width: 250px;
+}
+
+#data-line td i {
+    margin-left: 35%;
+}
+
+#data-line td:first-child {
+    text-align: center;
+}
+
+#data-line td:nth-child(2) {
+    padding-left: 25px;
+    width: 450px;
+}
+
+#data-line td:last-child {
+    padding-left: 30px;
+}
+
+#main-title {
+    padding-top: 25px;
+    padding-left: 55px;
+    float: left;
+}
+
+#button-add {
+    margin-left: 25%;
+    margin-top: 60px;
+    background-color: #CCA43B;
+    transition: 0.5s;
+}    
+
+#button-export {
+    margin-left: 25px;
+    background-color: #1C2541;
+    transition: 0.5s;
+    color: white;
+}
+
+#button-add:hover, #button-export:hover {
+    transform: scale(1.05);
+}   
+
+#button-add, #button-export {
+    border: 1px solid transparent;
+    height: 45px;
+    width: 150px;
+    font-weight: bold;
+}
+
+.pagination {
+    display: inline-block;
+    height: 40px;
+    margin-top: 25px;
+    margin-left: 20%;
+}
+  
+.pagination a {
+    color: black;
+    padding: 8px 15px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+  
+.pagination a.active {
+    background-color: #242F40;
+    color: white;
+}
+  
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
+
+.button-line {
+    height: 75px;
+}

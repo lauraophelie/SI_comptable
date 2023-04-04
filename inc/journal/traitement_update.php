@@ -5,20 +5,20 @@
     $designation = $_POST['designation'];
 
     if(!isset($code) && !isset($designation) || empty($code) && empty($designation)) {
-        header("Location: ../../pages/pcg/modif_pcg.php?error=Les champs ne peuvent pas être vides !&compte=".$id);
+        header("Location: ../../pages/page.php?page=journal/modif_journal&error=Les champs ne peuvent pas être vides !&code=".$id);
         exit();
     }
     if(!isset($code) || empty($code) || empty($designation) || !isset($designation)) {
-        header("Location: ../../pages/pcg/modif_pcg.php?error=Veuillez remplir ce champs&compte=".$id);
+        header("Location: ../../pages/page.php?page=journal/modif_journal&error=Veuillez remplir ce champs&code=".$id);
         exit();
     }
     $modification = update($id, $code, $designation);
     
     if($modification == true) {
-        header("Location: ../../pages/journal/affichage_journaux.php?message=Modification terminée avec succès !");
+        header("Location: ../../pages/page.php?page=journal/affichage_journaux&message=Modification terminée avec succès !");
         exit();
     } else {
-        header("Location: ../../pages/journal/affichage_journaux.php?error=Une erreur s'est produite lors de la modification, veuillez réessayer !");
+        header("Location: ../../pages/page.php?page=journal/affichage_journaux&error=Une erreur s'est produite lors de la modification, veuillez réessayer !");
         exit();
     }
 ?>

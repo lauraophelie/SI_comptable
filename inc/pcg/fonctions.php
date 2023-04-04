@@ -27,6 +27,17 @@
         return $result;
     }
 
+    function find_all_pagination($debut, $total) {
+        $connexion = db_connect();
+        $sql = "SELECT * FROM pcg2005 ORDER BY numero ASC LIMIT :total OFFSET :debut";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':debut', $debut);
+        $stmt->bindParam(':total', $total);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     function save($numero, $designation) {
         try {
             $connexion = db_connect();
@@ -94,7 +105,7 @@
         $type[2]['libelle'] = 'Excel (XLS)';
 
         $type[3]['type'] = 'ods';
-        $type[3]['libelle'] = 'Open Document (ODS)';
+        $type[3]['libelle'] = 'ODS';
 
         return $type;
     }

@@ -70,16 +70,68 @@
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
-    }    
+    }
 
-    function get_all_by_journal($code, $societe) {
+    function find_societe_comptabilite($id) {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe)";
+        $sql = "SELECT * FROM comptabilite WHERE societe = :societe ORDER BY date_debut_exercice DESC";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':societe', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function get_all_by_journal($code, $societe, $date_exercice, $date_fin) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin) ORDER BY date_ecriture DESC";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':journal', $code);
         $stmt->bindParam(':societe', $societe);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }  
+
+    function get_recent_ecritures($code, $societe, $date_exercice, $date_fin, $limite = 5) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin) ORDER BY date_ecriture DESC LIMIT :limite";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':journal', $code);
+        $stmt->bindParam(':societe', $societe);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->bindParam(':limite', $limite);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function get_sum_debit_journal($journal, $societe, $date_exercice, $date_fin) {
+        $connexion = dbconnect();
+        $sql = "SELECT SUM(debit) FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':journal', $journal);
+        $stmt->bindParam(':societe', $societe);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetchColumn();
+        return $result;
+    }
+    
+    function get_sum_credit_journal($journal, $societe, $date_exercice, $date_fin) {
+        $connexion = dbconnect();
+        $sql = "SELECT SUM(credit) FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':journal', $journal);
+        $stmt->bindParam(':societe', $societe);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetchColumn();
+        return $result;
+    }
 ?>

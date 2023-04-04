@@ -8,15 +8,15 @@
         exit();
     }
     if(empty($code) || !isset($code) || empty($designation) || !isset($designation)) {
-        header('Location: ../../pages/journal/ajout_journal.php?error=Veuillez remplir ce champs');
+        header('Location: ../../pages/page.php?page=journal/ajout_journal&error=Veuillez remplir ce champs');
         exit();
     }
     $insert = save($code, $designation);
     if($insert == true) {
-        header('Location: ../../pages/journal/ajout_journal.php?message=Insertion terminée avec succès !');
+        header('Location: ../../pages/page.php?page=journal/ajout_journal&message=Insertion terminée avec succès !');
         exit();
     } else {
-        header('Location: ../../pages/journal/ajout_journal.php?error=Une erreur s\' est produite, veuillez réessayer !');
+        header('Location: ../../pages/page.php?page=journal/ajout_journal&error=Une erreur s\' est produite, veuillez réessayer !');
         exit();
     }
 ?>

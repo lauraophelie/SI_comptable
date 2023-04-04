@@ -1,0 +1,110 @@
+body {
+    background-color: whitesmoke;
+}
+
+.page-menu {
+    width: 20%;
+    height: fit-content;
+    float: left;
+}
+
+.page-menu #societe {
+    height: 125px;
+    width: 100%;
+}
+
+.page-menu #societe h1 {
+    padding-left: 45px;
+    padding-top: 25px;
+}
+
+.page-menu #liste-liens .liste-element {
+    line-height: 50px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.page-menu #liste-liens .liste-element:hover {
+    transform: scale(1.05);
+    background-color: #1C2541;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: white;
+    font-weight: bold;
+}
+
+.active {
+    color: white;
+    height: 75%;
+    font-weight: bold; 
+    width: 75px;
+}
+
+.page-menu #liste-liens .liste-element p {
+    text-align: left;
+    padding-left: 45px;
+}
+
+.page-content {
+    width: 80%;
+    height: fit-content;
+    margin-left: 20%;
+}
+
+#ligne-vide {
+    height: 100px;
+}
+
+/*------------- barre de recherche ----------------------*/
+
+.search_section {
+    width: 100%;
+    height: 100px;
+}
+
+.search_section input[type=text] {
+    width: 475px;
+    margin-top: 65px;
+    margin-left: -26%;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    background-color: white;
+}
+.search_section ::placeholder {
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+.search_section button[type=submit] {
+    height: 40px;
+    width: 85px;
+    border: 1px solid transparent;
+    background-color: white;
+    background-color: #1C2541;
+    transition: 0.5s;
+}
+
+.search_section button[type=submit]:hover {
+    transform: scale(1.05);
+}
+
+.search_section button[type=submit] i {
+    color: white;
+}
+
+.phrase {
+    padding-top: 20px; 
+    padding-left: 60px;
+}

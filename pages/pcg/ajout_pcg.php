@@ -3,17 +3,7 @@
     $min_length = "Le nombre de caractères doit être égal à 5";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/parsley.css">
-    <title> PCG - Ajout de compte </title>
-</head>
-<body>
-    <form action="../../inc/pcg/traitement_insert.php" method="post" data-parsley-validate="">
+    <form action="../inc/pcg/traitement_insert.php" method="post" id="form1">
         <h1> Ajouter un compte </h1>
         <?php 
             if(isset($_GET['error'])) {
@@ -23,37 +13,34 @@
                 echo '<p style="color: green">'.$_GET['message'].'</p>';
             }
         ?>
-            <p>
-                <label for="numero"> N° de compte : </label>
-                <input type="text" name="numero" required="" 
-                    data-parsley-maxlength="5" data-parsley-maxlength-message="<?php echo $max_length; ?>"
-                    data-parsley-minlength="5" data-parsley-minlength-message="<?php echo $min_length; ?>"/>
-            </p>
-            <p>
-                <label for="designation"> Désignation : </label>
-                <input type="text" name="designation" required=""/>
-            </p>
-            <button type="submit"> Ajouter </button>
+            <label for="numero"> N° de compte : </label>
+            <input type="text" name="numero" required="" placeholder="Ecrirez ici"
+                data-parsley-maxlength="5" data-parsley-maxlength-message="<?php echo $max_length; ?>"
+                data-parsley-minlength="5" data-parsley-minlength-message="<?php echo $min_length; ?>"/>
+
+            <label for="designation"> Désignation : </label>
+            <input type="text" name="designation" required="" placeholder="Ecrivez ici"/>
+
+            <button type="submit" id="add-button"> Ajouter </button>
     </form>
 
-    <h1> Importer un fichier : </h1>
-    <?php
-        if(isset($_GET['upload_error'])) {
-            echo '<p style="color: red">'.$_GET['upload_error'].'</p>';
-        }
-        if(isset($_GET['upload_message'])) {
-            echo '<p style="color: green">'.$_GET['upload_message'].'</p>';
-        }
-    ?>
-    <form action="../../inc/pcg/traitement_upload.php" method="post" enctype="multipart/form-data">
-        <p>
-            <label for="excel"> Fichier : </label>
-            <input type="file" name="excel"/>
-        </p>
-        <button type="submit"> Importer </button>
+    <form action="../inc/pcg/traitement_upload.php" method="post" enctype="multipart/form-data" id="form2">
+        <h1> Importer un fichier : </h1>
+        <?php
+            if(isset($_GET['upload_error'])) {
+                echo '<p style="color: red">'.$_GET['upload_error'].'</p>';
+            }
+            if(isset($_GET['upload_message'])) {
+                echo '<p style="color: green">'.$_GET['upload_message'].'</p>';
+            }
+        ?>
+        <input type="file" name="excel" id="file-input"/>
+        <label for="file-input"> 
+            <i class="fas fa-upload"> </i> Fichier 
+        </label> 
+
+        <button type="submit" id="import-button"> Importer </button>
     </form>
 
     <script src="../../assets/js/jquery.js"> </script>
     <script src="../../assets/js/parsley.js"> </script>
-</body>
-</html>
