@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS societe(
      mot_de_passe VARCHAR(10) NOT NULL
 );
 
-ALTER TABLE societe ADD CONSTRAINT check_min_length CHECK (length(nom) >= 5)
+ALTER TABLE societe ADD CONSTRAINT check_min_length CHECK (length(nom) >= 5);
 
 CREATE TABLE IF NOT EXISTS adresses_societe(
      societe INTEGER REFERENCES societe(id),
@@ -133,8 +133,6 @@ CREATE TABLE IF NOT EXISTS ecriture_journal(
     debit DECIMAL,
     credit DECIMAL
 );
-
-INSERT INTO societe(nom, objet, date_creation, mot_de_passe) VALUES('DIMPEX', 1, '2022-01-25', '01234');
 
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, debit) VALUES('AC', 1, '2023-04-01', 'AC0001', '60100', 'Achat 1', 560000);
 
