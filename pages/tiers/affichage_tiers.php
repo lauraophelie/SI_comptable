@@ -1,5 +1,5 @@
 <?php
-    require("../../inc/tiers/fonction.php");
+    require("../../inc/tiers/fonctions.php");
     $tiers = find_all();
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> tiers </title>
+    <title> Tiers - Liste </title>
 </head>
 <body>
     <?php 
@@ -19,7 +19,7 @@
             echo '<p style="color: red">'.$_GET['erreur'].'</p>';
         }
         if(isset($_GET['message'])) {
-            echo '<p style="color: red">'.$_GET['message'].'</p>';
+            echo '<p style="color: green">'.$_GET['message'].'</p>';
         }
     ?>
     <table>
@@ -29,15 +29,15 @@
             <th> </th>
             <th> </th>
         </tr>
-        <?php for($i=0;$i<count($tiers);$i++) { ?>
+        <?php foreach($tiers as $tier) { ?>
             <tr>
-                <td> <?php echo $tiers[$i]['numero']; ?> </td>
-                <td> <?php echo $tiers[$i]['designation']; ?> </td>
+                <td> <?php echo $tier['numero']; ?> </td>
+                <td> <?php echo $tier['designation']; ?> </td>
                 <td>
-                    <a href="./modif_tiers.php?id=<?php echo $tiers[$i]['id'] ?>"> Modifier </a>
+                    <a href="./modif_tiers.php?id=<?php echo $tier['id'] ?>"> Modifier </a>
                 </td>
                 <td>
-                    <a href="../../inc/tiers/traitement_delete.php?id=<?php echo $tiers[$i]['id'];?>&num=<?php echo $tiers[$i]['numero']; ?>">Supprimer</a>
+                    <a href="../../inc/tiers/traitement_delete.php?id=<?php echo $tier[$i]['id'];?>&num=<?php echo $tier['numero']; ?>"> Supprimer </a>
                 </td>
             </tr>
         <?php } ?>

@@ -1,5 +1,5 @@
 <?php
-    include("./fonction.php");
+    include("./fonctions.php");
     $id = $_POST['id'];
     $numero = $_POST['num'];
     $designation = $_POST['designation'];
@@ -11,7 +11,7 @@
         header('Location: ../../pages/tiers/affichage_tiers.php');
         exit();
     }else{
-        header("Location: ../../pages/tiers/affichage_tiers.php?error=Une erreur s'est produite lors de la modifications du compte !");
+        header("Location: ../../pages/tiers/affichage_tiers.php?error=Une erreur s'est produite lors de la modifications du compte");
         exit();
     }
 ?>

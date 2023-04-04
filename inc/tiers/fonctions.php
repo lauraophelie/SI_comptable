@@ -59,7 +59,7 @@
 
     function findByNum($id){
         $connexion = db_connect();
-        $sql = "SELECT*from tiers where id= :id";
+        $sql = "SELECT * from tiers where id= :id";
         $stmt = $connexion -> prepare($sql);
         $stmt -> bindParam(':id',$id);
         $stmt -> execute();
