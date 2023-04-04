@@ -6,19 +6,19 @@ const pieceCell = document.querySelector('tr td:nth-child(2)');
 
 dateEcriture.addEventListener('change', function() {
   const dateValue = this.value;
-  dateCell.textContent = dateValue;
+  dateCell.innerHTML = '<p style="padding-top:25px">' + dateValue + '</p>';
 });
 
 numeroPiece.addEventListener('input', function() {
   const pieceValue = this.value;
-  pieceCell.textContent = pieceValue;
+  pieceCell.innerHTML = '<p style="padding-top:25px">' + pieceValue + '</p>';
 });
 
 $(document).ready(function() {
     var formEcriture = $('#form-ecriture');
     var tableEcriture = $('#table-ecriture tbody');
 
-    $('#add-button').click(function(event) {
+    $('#add-ecriture-button').click(function(event) {
       event.preventDefault();
   
         var dateEcriture = $('input[name="date_ecriture"]').val();

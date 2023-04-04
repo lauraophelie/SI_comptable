@@ -147,12 +147,37 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
 
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, credit) VALUES('CA', 1, '2023-04-03', 'PC0003', '53100', 'Sortie Caisse', 250000);
 
-CREATE TABLE tiers(
+/**CREATE TABLE tiers(
      id SERIAL primary key,
      numero VARCHAR(13),
      designation VARCHAR(40)
+);**/
+
+--CREATE OR REPLACE VIEW compte_tiers AS
+--SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
+
+CREATE TYPE type_tiers AS ENUM('CL', 'FO');
+
+CREATE TABLE tiers(
+     id SERIAL PRIMARY KEY,
+     type_tiers type_tiers, 
+     numero VARCHAR(13) NOT NULL,
+     designation VARCHAR(50)
 );
 
-CREATE OR REPLACE VIEW compte_tiers AS
-SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
+INSERT INTO tiers(type_tiers, numero, designation) VALUES('FO', 'JIRAMA', 'FRNS: JIRAMA'),
+                                                       ('FO', 'JOHN', 'FRNS: JOHN'),
+                                                       ('CL', 'LAMBERT', 'CLT: LAMBERT'),
+                                                       ('FO', 'LOVASOA', 'FRNS: LOVASOA'),
+                                                       ('FO', 'MENDRIKA', 'FRNS: MENDRIKA'),
+                                                       ('CL', 'NORO', 'CLT: NORO'),
+                                                       ('FO', 'ORIMBATO', 'FRNS: ORIMBATO'),
+                                                       ('FO', 'PAPANGO', 'FRNS: PAPANGO'),
+                                                       ('CL', 'RABE', 'CLT: RABE'),
+                                                       ('CL', 'RANDRIA', 'CLT: RANDRIA'),
+                                                       ('FO', 'RAVINALA', 'FRNS: RAVINALA'),
+                                                       ('CL', 'RIAKA', 'CLT: RIAKA'),
+                                                       ('FO', 'RONDRO', 'FRNS: RONDRO'),
+                                                       ('CL', 'SOLO', 'CLT: SOLO'),
+                                                       ('FO', 'TELMA', 'FRNS: TELMA');
 

@@ -1,24 +1,19 @@
 <?php
-    session_start();
-
-    require("../../inc/pcg/fonctions.php");
-    require("../../inc/grand_livre/fonctions.php");
+    require("../inc/pcg/fonctions.php");
+    require("../inc/grand_livre/fonctions.php");
     
     $societe = $_SESSION['id_societe'];
     $debut = getDebutCompta($societe);
     $compte = $_GET['num_compte'];
 
-    $ecritures = getGrandLivre($compte, $debut,$societe);
+    $ecritures = getGrandLivre($compte, $debut, $societe);
     $compte = find_all();
-    $id_societe = find_societe($societe);
+    $id_societe = findSociete($societe);
 ?>
 
     <p><label for="num_compte"> Numero de compte : </label>
         <input type="number" name="num_compte" id="num_compte">
     </p>
-        <h2> 
-            <?php echo $journal['designation']; ?>
-        </h2>
         <table border="1">
             <tr>
                 <th> Date </th>

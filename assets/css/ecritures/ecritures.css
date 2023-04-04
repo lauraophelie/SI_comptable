@@ -32,11 +32,11 @@
 }
 
 #ecriture_line:nth-child(odd) {
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(227, 227, 227);
 }
 
 #ecriture_line:nth-child(odd) td {
-    border: 1px solid rgb(232, 232, 232);;
+    border: 1px solid rgb(227, 227, 227);;
 }
 
 #ecriture-title {
@@ -49,6 +49,7 @@
 
 #ecriture-title th {
     border: 1px solid #1C2541;
+    padding-top: 0px;
 }
 
 #journal-title:first-child {
@@ -115,4 +116,8 @@
 
 #see-ecritures i {
     padding-left: 15px;
+}
+
+.element_ecriture {
+    padding-top: 25px;
 }

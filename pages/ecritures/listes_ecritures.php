@@ -41,10 +41,7 @@
                         <td class="case-montant"> <?php echo number_format($ecriture['debit'], 0, ' ', ' '); ?> </td>
                         <td class="case-montant"> <?php echo number_format($ecriture['credit'], 0, ' ', ' '); ?> </td>
                     </tr>
-            <?php } 
-                $sum_debit = get_sum_debit_journal($journal['id'], $id_societe['id'], $compta['date_debut_exercice'], $compta['date_fin_exercice']);
-                $sum_credit = get_sum_credit_journal($journal['id'], $id_societe['id'], $compta['date_debut_exercice'], $compta['date_fin_exercice']);
-            ?>
+            <?php } } ?>
         </table>
         <p id="button-range">
             <a href="./page.php?page=ecritures/ecriture&societe=<?php echo $societe; ?>&id_societe=<?php echo $id_societe['id']; ?>&journal=<?php echo $journal['id']; ?>&designation=<?php echo $journal['designation']; ?>"> 
@@ -57,4 +54,4 @@
                 </button>
             </a>
         </p>
-    <?php } } ?>
+    <?php } ?>
