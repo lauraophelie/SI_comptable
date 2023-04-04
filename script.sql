@@ -155,6 +155,6 @@ CREATE TABLE tiers(
      designation VARCHAR(40)
 );
 
-CREATE OR REPLACE VIEW compte_tiers AS
-SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
+--CREATE OR REPLACE VIEW compte_tiers AS
+--SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
 
