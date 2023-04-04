@@ -23,28 +23,16 @@
         return $data;
     }
 
-    function getMDP($nom) {
-        $connexion = db_connect();
-        $sql = "select mot_de_passe from societe where nom = :nom";
-        $statement = $connexion->prepare($sql);
-        $statement->bindValue(':nom', $nom);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        if($result) {
-            return $result['mot_de_passe'];
-        }
-    }
-
     function get_societe($nom) {
         $connexion = db_connect();
-        $sql = "SELECT * FROM societe WHERE nom = :nom";
+        $sql = "SELECT nom, id, mot_de_passe FROM societe WHERE nom = :nom";
         $statement = $connexion->prepare($sql);
         $statement->bindValue(':nom', $nom);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         
         if($result == true) {
-            return true;
+            return $result;
         } else {
             return false;
         }

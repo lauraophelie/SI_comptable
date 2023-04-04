@@ -6,7 +6,8 @@
 
         $nom = validate($_POST['nom']);
         $mdp = validate($_POST['mdp']);
-        $passe = getMDP($nom);
+        $societe = get_societe($nom);
+        $passe = $societe['mot_de_passe'];
 
         if(!isset($mdp) || empty($mdp) || !isset($nom) || empty($nom)) {
             header("Location: ../../pages/login/login.php?error=Veuillez remplir tous les champs&nom=".$nom);
@@ -17,7 +18,8 @@
             exit();
         }
         if($passe == $mdp){   
-            $_SESSION['nom'] = $nom; 
+            $_SESSION['nom'] = $nom;
+            $_SESSION['id_societe'] = $societe['id'];
             header("Location: ../../pages/accueil/accueil.php ");
             exit();
         } else {
