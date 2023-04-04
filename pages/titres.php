@@ -9,4 +9,7 @@
     
     $titre["ecritures/listes_ecritures.php"] = "Ecriture - Liste des ecritures";
     $titre["ecritures/ecriture.php"] = "Nouvelle ecriture";
+    $titre["ecritures/liste_ecritures_journal.php"] = "Liste des écritures";
+
+    $titre["tiers/affichage_tiers.php"] = "Liste des comptes tiers";
 ?>
