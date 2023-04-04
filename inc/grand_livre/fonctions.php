@@ -21,7 +21,7 @@
     function getTotal($compte, $debut, $societe){
         try {
             $connexion = dbconnect();
-            $sql = "select count(debit) as deb, count(credit) as cred from ecriture where compte_general = :compte and date_ecriture > :debut and societe = :societe";
+            $sql = "select count(debit) as deb, count(credit) as cred from ecriture_journal where compte_general = :compte and date_ecriture > :debut and societe = :societe";
             $stmt = $connexion->prepare($sql);
             $stmt->bindParam(':compte', $compte);
             $stmt->bindParam(':debut', $debut);
