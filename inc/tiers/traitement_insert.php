@@ -1,12 +1,12 @@
 <?php
-    include("./fonction.php");
+    include("./fonctions.php");
     $numero = $_POST['num'];
     $designation = $_POST['designation'];
     $libelle = findByNumero($numero);
     $num = getNum($designation);
 
         if($num == true){
-            header('Location: ../../pages/tiers/tiers.php?error=cette designation existe deja');
+            header('Location: ../../pages/tiers/tiers.php?error=Cette dEsignation existe déjà');
             exit();
         }else{
             $insert= save($designation,$libelle['designation']);

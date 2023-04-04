@@ -1,4 +1,5 @@
 <?php
+
     function db_connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
@@ -32,5 +33,20 @@
         if($result) {
             return $result['mot_de_passe'];
         }
-    }    
+    }
+
+    function get_societe($nom) {
+        $connexion = db_connect();
+        $sql = "SELECT * FROM societe WHERE nom = :nom";
+        $statement = $connexion->prepare($sql);
+        $statement->bindValue(':nom', $nom);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        
+        if($result == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 ?>

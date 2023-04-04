@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/parsley.css">
-    <title> Journal - Ajout </title>
-</head>
-<body>
-    <form action="../../inc/journal/traitement_insert.php" method="post" data-parsley-validate="">
+
+    <form action="../inc/journal/traitement_insert.php" method="post" data-parsley-validate="" id="form1">
         <h1> Ajouter un journal </h1>
         <?php 
             if(isset($_GET['error'])) {
@@ -20,16 +11,16 @@
         ?>
             <p>
                 <label for="numero"> Code journal : </label>
-                <input type="text" name="code" required=""/>
+                <input type="text" name="code" required="" placeholder="Ecrivez ici"/>
             </p>
             <p>
                 <label for="designation"> Signification : </label>
-                <input type="text" name="designation" required=""/>
+                <input type="text" name="designation" required="" placeholder="Ecrivez ici"/>
             </p>
-            <button type="submit"> Ajouter </button>
+            <button type="submit" id="add-button"> Ajouter </button>
     </form>
 
-    <form action="../../inc/journal/traitement_upload.php" method="post" enctype="multipart/form-data">
+    <form action="../inc/journal/traitement_upload.php" method="post" enctype="multipart/form-data" id="form2">
         <h1> Importer un fichier : </h1>
         <?php
             if(isset($_GET['upload_error'])) {
@@ -39,14 +30,10 @@
                 echo '<p style="color: green">'.$_GET['upload_message'].'</p>';
             }
         ?>
-        <p>
-            <label for="excel"> Fichier : </label>
-            <input type="file" name="excel"/>
-        </p>
-        <button type="submit"> Importer </button>
-    </form>
+        <input type="file" name="excel" id="file-input"/>
+        <label for="file-input"> 
+            <i class="fas fa-upload"> </i> Fichier 
+        </label> 
 
-    <script src="../../assets/js/jquery.js"> </script>
-    <script src="../../assets/js/parsley.js"> </script>
-</body>
-</html>
+        <button type="submit" id="import-button"> Importer </button>
+    </form>

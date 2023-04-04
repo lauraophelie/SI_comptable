@@ -1,5 +1,4 @@
 <?php 
-
     function db_connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
@@ -23,6 +22,17 @@
         $connexion = db_connect();
         $sql = "SELECT * FROM pcg2005 ORDER BY numero ASC";
         $stmt = $connexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function find_all_pagination($debut, $total) {
+        $connexion = db_connect();
+        $sql = "SELECT * FROM pcg2005 ORDER BY numero ASC LIMIT :total OFFSET :debut";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':debut', $debut);
+        $stmt->bindParam(':total', $total);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -68,7 +78,7 @@
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
-            echo "Error : ". $e->getMesssage();
+            echo "Error : ". $e->getMessage();
             return false;
         }
     }
@@ -95,7 +105,7 @@
         $type[2]['libelle'] = 'Excel (XLS)';
 
         $type[3]['type'] = 'ods';
-        $type[3]['libelle'] = 'Open Document (ODS)';
+        $type[3]['libelle'] = 'ODS';
 
         return $type;
     }

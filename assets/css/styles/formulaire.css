@@ -1,0 +1,150 @@
+h1 {
+    font-size: 2rem;
+}
+  
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 25px;
+}
+
+input[type=file] {
+    background-color: whitesmoke;
+    display: none;
+}
+
+#form2 label {
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: #3A506B;
+    text-align: center;
+    padding: 15px 70px;
+    letter-spacing: 1px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 1px;
+    color: white;
+    transition: 0.5s;
+}
+
+#form2 label i {
+    margin-right: 10px;
+}
+
+#form2 label:active {
+    transform: scale(0.9);
+}
+
+#form2 label:hover {
+    background-color: #1C2541;
+    transform: scale(1.05);
+}
+  
+form input[type=text], select, form button[type=submit] {
+    width: 53%;
+    height: 40px;
+    margin-top: 25px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: white;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+}
+form {
+    margin-left: 20%;
+}
+
+form h1 {
+    padding-top: 25px;
+}
+
+#add-button {
+    background-color: #CCA43B;
+    margin-top: 35px;
+    transition: 0.5s;
+}
+
+#add-button:hover {
+    background-color: #e3bc5b;
+    transform: scale(1.05);
+}
+
+#modif-button {
+    background-color: #0B132B;
+    margin-top: 35px;
+    transition: 0.5s;
+    color: white;
+}
+
+#modif-button:hover {
+    transform: scale(1.05);
+}
+
+#import-button {
+    width: 275px;
+    height: 50px;
+    background-color: #e1e1e1;
+    margin-left: 45px;
+    transition: 0.5s;
+}
+
+#import-button:hover {
+    transform: scale(1.05);
+}
+
+::placeholder {
+    color: rgb(170, 181, 192);
+    padding-left: 15px;
+}
+
+input[type="text"] {
+    padding-left: 15px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+#label-type {
+    position: relative; 
+    color: #1C2541;
+    width: 9.5%;
+    border: 2px solid #1C2541;
+    padding: 15px 23px;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#label-type:hover {
+    background-color: #1C2541;
+    color: white;
+    transform: scale(1.05px);
+}
+
+input[type="radio"]:checked + #label-type {
+    background-color: #1C2541;
+    color: white;
+}
+
+input[type="radio"]:checked + #label-type:before {
+    height: 15px;
+    width: 15px;
+    border: 5px solid white;
+    background-color: white;
+}
+
+#export-button {
+    background-color: #0B132B;
+    margin-top: 50px;
+    height: 50px;
+    color: white;
+    transition: 0.5s;
+}
+
+#export-button:hover {
+    background-color: #1C2541;
+    transform: scale(1.05);
+}
+
+  
