@@ -141,7 +141,6 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, credit) VALUES('BN', 1, '2023-04-01', 'CQ0015', '53100', 'Sortie Banque', 500000);
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, debit) VALUES('CA', 1, '2023-04-01', 'PC0001', '53100', 'Entrée Caisse', 500000);
 
-
 INSERT INTO societe(nom,objet,date_creation, mot_de_passe) VALUES('DIMPEX','import-export Mada',now(),'individuel');
 
 INSERT INTO comptabilite(societe, capital, devise, date_debut_exercice, date_fin_exercice, devise_equivalence) VALUES(1, 850000, 1, '2023-01-15', '2023-12-31', 2);
@@ -149,3 +148,13 @@ INSERT INTO comptabilite(societe, capital, devise, date_debut_exercice, date_fin
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, debit) VALUES('CA', 1, '2023-04-03', 'PC0002', '53100', 'Entrée Caisse', 5000000);
 
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, libelle, credit) VALUES('CA', 1, '2023-04-03', 'PC0003', '53100', 'Sortie Caisse', 250000);
+
+CREATE TABLE tiers(
+     id SERIAL primary key,
+     numero VARCHAR(13),
+     designation VARCHAR(40)
+);
+
+CREATE OR REPLACE VIEW compte_tiers AS
+SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
+
