@@ -156,3 +156,7 @@ CREATE TABLE tiers(
 CREATE OR REPLACE VIEW compte_tiers AS
 SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
 
+CREATE OR REPLACE VIEW v_balance AS
+SELECT numero, designation, debit, credit, date_ecriture, societe from ecriture_journal JOIN pcg2005 ON compte_general = pcg2005.numero;
+
+select numero, designation, sum(debit) as deb, sum(credit) as cred from v_balance group by numero, designation;
