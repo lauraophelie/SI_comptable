@@ -9,7 +9,6 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-
     function save($nom, $objet, $date_creation, $mdp) {
         try {
             $connexion = db_connect();
@@ -26,15 +25,55 @@
             return false;
         }
     }
-
-    function update($id, $numero, $designation) {
+    function addScanNRCS($filename,$societe) {
         try {
             $connexion = db_connect();
-            $sql = "UPDATE pcg2005 SET numero = :numero, designation = :designation WHERE id = :id";
+            $sql = "UPDATE identification_societe SET scan_nrcs = :filename WHERE societe = :societe";
             $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':numero', $numero);
-            $stmt->bindParam(':designation', $designation);
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':filename', $filename);
+            $stmt->bindParam(':societe', $societe);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Une erreur s'est produite lors de la modification : " . $e->getMessage();
+            return false;
+        }
+    }
+    function addScanNS($filename,$societe) {
+        try {
+            $connexion = db_connect();
+            $sql = "UPDATE identification_societe SET scan_ns = :filename WHERE societe = :societe";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':filename', $filename);
+            $stmt->bindParam(':societe', $societe);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Une erreur s'est produite lors de la modification : " . $e->getMessage();
+            return false;
+        }
+    }
+    function addScanNIF($filename,$societe) {
+        try {
+            $connexion = db_connect();
+            $sql = "UPDATE identification_societe SET scan_nif = :filename WHERE societe = :societe";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':filename', $filename);
+            $stmt->bindParam(':societe', $societe);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Une erreur s'est produite lors de la modification : " . $e->getMessage();
+            return false;
+        }
+    }
+    function addLogo($filename,$societe) {
+        try {
+            $connexion = db_connect();
+            $sql = "UPDATE societe SET logo = :filename WHERE id = :societe";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':filename', $filename);
+            $stmt->bindParam(':societe', $societe);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
