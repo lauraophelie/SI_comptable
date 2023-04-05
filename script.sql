@@ -181,3 +181,7 @@ INSERT INTO tiers(type_tiers, numero, designation) VALUES('FO', 'JIRAMA', 'FRNS:
                                                        ('CL', 'SOLO', 'CLT: SOLO'),
                                                        ('FO', 'TELMA', 'FRNS: TELMA');
 
+CREATE OR REPLACE VIEW v_balance AS
+SELECT numero, designation, debit, credit, date_ecriture, societe from ecriture_journal JOIN pcg2005 ON compte_general = pcg2005.numero;
+
+select numero, designation, sum(debit) as deb, sum(credit) as cred from v_balance group by numero, designation;
