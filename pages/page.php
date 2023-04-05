@@ -57,6 +57,15 @@
                     <p> Plan comptable </p>
                 </a>
             </div>
+
+            <div class="liste-element
+                <?php if($page === "tiers/affichage_tiers.php" || strpos($page, "tiers/") !== false) echo "active"; ?>
+            ">
+                <a href="./page.php?page=tiers/affichage_tiers&num_page=1">
+                    <p> Tiers </p>
+                </a>
+            </div>
+
             <div class="liste-element
             <?php if($page === "devise/devises" || strpos($page, "devise/") !== false) echo "active"; ?>
             "> 

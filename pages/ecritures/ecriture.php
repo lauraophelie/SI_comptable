@@ -6,34 +6,40 @@
     $designation = $_GET['designation'];
     $societe = $_GET['societe'];
 ?>
-<style>
-    input[type="text"] {
-        width: 125px;
-    }
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-</style>
-<body>
-    <h1> Nouvelle écriture : </h1>
-    <p> Journal : <?php echo $designation; ?> </p>
-    <p> 
-        Date :  <input type="date" name="date_ecriture"/>
-        N° de pièce : <input type="text" name="numero_piece" placeholder="Ecrivez ici"/>
-    </p>
+    <h1 id="main-title">
+        Journal : <?php echo $designation; ?>
+    </h1>
+
+    <div style="height:85px"> </div>
+
+    <div id="info-box">
+        <p> 
+            Date :  <input type="date" name="date_ecriture"/>
+            <input type="text" name="numero_piece" placeholder="N° de pièce"/>
+        </p>
+    </div>
     <?php
         if(isset($_GET['error'])) {
             echo '<p style="color: red">'.$_GET['error'].'</p>';
         }
     ?>
-    <form method="post" id="form-ecriture" id="form-add-button">
+    <form method="post" id="form-ecriture">
         <table>
-            <tr>
+            <tr id="input-title">
                 <th> Date </th>
                 <th> Pièce </th>
                 <th> Compte général </th>
                 <th> Compte tiers </th>
                 <th> Libelle </th>
+            </tr>
+            <tr id="input-line">
+                <td> <input type="text" name="date_ecriture" id=""/> </td>
+                <td> <input type="text" name="numero_piece"/> </td>
+                <td> <input type="text" name="cg" id="compte-input"/> </td>
+                <td> <input type="text" name="ct" id="compte-input"/> </td>
+                <td> <input type="text" name="libelle" id=""/></td>
+            </tr>
+            <tr id="input-title">
                 <th> Devise </th>
                 <th> Montant </th>
                 <th> Taux </th>
@@ -41,12 +47,7 @@
                 <th> Crédit </th>
                 <th> </th>
             </tr>
-            <tr>
-                <td> <input type="text" name="date_ecriture" id=""/> </td>
-                <td> <input type="text" name="numero_piece" placeholder="Ecrivez ici"/> </td>
-                <td> <input type="text" name="cg" id="" placeholder="Ecrivez ici"/> </td>
-                <td> <input type="text" name="ct" id="" placeholder="Ecrivez ici"/> </td>
-                <td> <input type="text" name="libelle" id="" placeholder="Ecrivez ici"/></td>
+            <tr id="input-line">
                 <td>
                     <select name="devise" id="">
                         <option value=""> Devise </option>
@@ -57,11 +58,11 @@
                         <?php } ?>
                     </select>
                 </td>
-                <td> <input type="text" name="montant_devise" id="" placeholder="Ecrivez ici"/> </td>
-                <td> <input type="text" name="taux" id="" placeholder="Ecrivez ici"/> </td>
-                <td> <input type="text" name="debit" id="" placeholder="Ecrivez ici"/> </td>
-                <td> <input type="text" name="credit" id="" placeholder="Ecrivez ici"/> </td>
-                <td> <button type="submit" id="add-button"> Ajouter </button> </td>
+                <td> <input type="text" name="montant_devise" id=""/> </td>
+                <td> <input type="text" name="taux" id=""/> </td>
+                <td> <input type="text" name="debit" id=""/> </td>
+                <td> <input type="text" name="credit" id=""/> </td>
+                <td> <button type="submit" id="add-ecriture-button"> Ajouter </button> </td>
             </tr>
         </table>
         <input type="text" name="code_journal" id="code_journal" value="<?php echo $code; ?>" hidden/>
@@ -69,14 +70,14 @@
     </form>
 
     <form method="post" id="form-ecritures">
-        <table id="table-ecriture" width=850px> 
+        <table id="table-ecriture" style="margin-left: -25%; margin-top: 25px"> 
             <tbody> </tbody>
         </table>
         <button id="valider_ecriture" type=button onclick="envoyerEcritures()"> Valider </button>
     </form>
 
-    <script src="../../assets/js/jquery.js"> </script>
-    <script src="../../assets/js/parsley.js"> </script>
+    <script src="../assets/js/jquery.js"> </script>
+    <script src="../assets/js/parsley.js"> </script>
     <script src="./ecritures/js/script.js"> </script>
 
     <script>
@@ -115,7 +116,7 @@
             });
             $.ajax({
                 type: "GET",
-                url: "../../inc/ecritures/traitement_insert.php",
+                url: "../inc/ecritures/traitement_insert.php",
                 data: {
                     societe_nom: societe_nom,
                     code_journal: code_journal,
@@ -124,7 +125,7 @@
                 success: function(response) {
                     alert(response);
                     var nom_societe = societe_nom;
-                    window.location.href = "./listes_ecritures.php?societe=" + nom_societe;
+                    window.location.href = "./page.php?page=ecritures/listes_ecritures";
                 },
                 error: function(xhr, status, error) {
                     alert("Une erreur s'est produite lors de l'envoi des données: " + error);

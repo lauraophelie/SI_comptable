@@ -47,15 +47,23 @@
             </div>
         </a>
 
+        <a href="../page.php?page=tiers/affichage_tiers&num_page=1">
+            <div class="landing-content-box">
+                <h1> Tiers </h1>
+            </div>
+        </a>
+
         <a href="../page.php?page=ecritures/listes_ecritures&societe=<?php echo $nom; ?>">
             <div class="landing-content-box">
                 <h1> Ecritures </h1>
             </div>
         </a>
 
-        <div class="landing-content-box">
-            <h1> Grand livre </h1>
-        </div>
+        <a href="../page.php?page=grandlivre/grandlivre">
+            <div class="landing-content-box">
+                <h1> Grand livre </h1>
+            </div>
+        </a>
 
         <div class="landing-content-box">
             <h1> Balance </h1>

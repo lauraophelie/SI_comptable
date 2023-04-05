@@ -5,13 +5,14 @@
         $PARAM_utilisateur = 'gestion_compta';
         $PARAM_mot_passe = 'compta';
         $PARAM_port = '5432';
-        try {
-            $connexion = new PDO('pgsql:host='.$PARAM_hote.';port='.$PARAM_port.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
-            return $connexion;
-        }catch(Exception $e) {
-            echo 'Erreur : '.$e-> getMessage().'<br />';
-            echo 'N° : '.$e-> getCode();
-        }
+            try {
+                $connexion = new PDO('pgsql:host='.$PARAM_hote.';port='.$PARAM_port.';dbname='.$PARAM_nom_bd, $PARAM_utilisateur, $PARAM_mot_passe);
+                echo "success";
+                return $connexion;
+            }catch(Exception $e) {
+                echo 'Erreur : '.$e-> getMessage().'<br />';
+                echo 'N° : '.$e-> getCode();
+            }
     }
 
     function getGrandLivre($compte,$debut,$societe){
@@ -31,6 +32,16 @@
         }
     }
 
+    function findSociete($societe) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM societe WHERE nom = :nom";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':nom', $societe);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     function getTotal($compte, $debut, $societe){
         try {
             $connexion = dbconnect();
@@ -41,20 +52,22 @@
             $stmt->bindParam(':societe', $societe);
             $stmt->execute();
             $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
             $result['debit'] = $resultat[0]['deb'];
             $result['credit'] = $resultat[0]['cred'];
             $result['total'] = $result['debit']-$result['credit'];
             return $result;
+
         } catch (PDOException $e){
             echo "Error: " . $e->getMessage();
             return false;
         }
     }
 
-    function getDebutCompta($id_societe){
+    function getDebutCompta($id_societe) {
         try {
             $connexion = dbconnect();
-            $sql = "select date_debut_exercice from comptabilite where societe = :societe order by date_debut_exercice desc limit 1";
+            $sql = "SELECT date_debut_exercice FROM comptabilite WHERE societe = :societe ORDER BY date_debut_exercice DESC LIMIT 1";
             $stmt = $connexion->prepare($sql);
             $stmt->bindParam(':societe', $id_societe);
             $stmt->execute();
@@ -65,4 +78,5 @@
             return false;
         }
     }
+    
 ?>

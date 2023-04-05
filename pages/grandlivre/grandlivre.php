@@ -1,7 +1,6 @@
 <?php
     require("../inc/pcg/fonctions.php");
     require("../inc/grand_livre/fonctions.php");
-
     $societe = $_SESSION['id_societe'];
     $debut = getDebutCompta($societe);
 
@@ -21,6 +20,7 @@
         $pcg = find_by_compte($compte);
 ?>  
         <h2><?php  echo $pcg['numero']." ".$pcg['designation']; ?></h2>
+        
         <table border="1">
         <?php if(empty($ecritures)) { ?>
         <p class="empty-pan"> Aucune disponible écriture dans ce grand livre pour le moment </p>
