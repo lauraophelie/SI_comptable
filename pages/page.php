@@ -44,18 +44,21 @@
                 </a>
             </div>
 
-            <div class="liste-element">
-                <p> Informations sur la société </p>
+            <div class="liste-element
+                <?php if($page === "societe/info.php" || strpos($page, "societe/") !== false) echo "active"; ?>
+            "> 
+                <a href="./page.php?page=societe/info">
+                    <p> Informations sur la société </p>
+                </a>
             </div>
 
             <div class="liste-element
-                <?php if($page === "pcg/affichage_pcg.php" || strpos($page, "pcg/") !== false) echo "active"; ?>
+                <?php if($page === "pcg/affichage_pcg" || strpos($page, "pcg/") !== false) echo "active"; ?>
             "> 
                 <a href="./page.php?page=pcg/affichage_pcg&num_page=1">
                     <p> Plan comptable </p>
                 </a>
             </div>
-
 
             <div class="liste-element
                 <?php if($page === "tiers/affichage_tiers.php" || strpos($page, "tiers/") !== false) echo "active"; ?>
