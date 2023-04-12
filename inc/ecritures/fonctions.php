@@ -23,34 +23,24 @@
             $connexion = dbconnect();
             $connexion->beginTransaction();
     
-            $sql = "INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit, devise, montant_devise, taux) 
-                    VALUES(:journal, :societe, :date_ecriture, :numero_piece, :compte_general, :compte_tiers, :libelle, :debit, :credit, :devise, :montant_devise, :taux)";
-           
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':journal', $journal);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->bindParam(':date_ecriture', $date_ecriture);
-            $stmt->bindParam(':numero_piece', $numero_piece);
-            $stmt->bindParam(':compte_general', $cg);
-            $stmt->bindParam(':compte_tiers', $ct);
-            $stmt->bindParam(':libelle', $libelle);
-            $stmt->bindParam(':debit', $debit);
-            $stmt->bindParam(':credit', $credit);
-            $stmt->bindParam(':devise', $devise);
-            $stmt->bindParam(':montant_devise', $montant_devise);
-            $stmt->bindParam(':taux', $taux);
+            $sql = sprintf(
+                "INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit, devise, montant_devise, taux) 
+                VALUES('%s', %d, '%s', '%s', '%s', '%s', '%s', %d, %d, %d, %d, %d)",
+                $journal, $societe, $date_ecriture, $numero_piece, $cg, $ct, $libelle, $debit, $credit, $devise, $montant_devise, $taux
+            );
     
+            $stmt = $connexion->prepare($sql);
             $stmt->execute();
             $connexion->commit();
-        
+    
             return true;
-            
         } catch (Exception $e) {
             $connexion->rollback();
             echo "Error: " . $e->getMessage();
             return false;
         }
     }
+    
 
     function find($devise) {
         $connexion = dbconnect();

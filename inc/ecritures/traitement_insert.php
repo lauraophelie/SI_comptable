@@ -19,7 +19,7 @@
         $devise = $ecriture['devise'];
         $montant_devise = $ecriture['montant_devise'];
         $taux = $ecriture['taux'];
-
+        
         $insert = save_ecriture($code_journal, $id_societe['id'], $date, $numero_piece, $cg, $ct, $libelle, $debit, $credit, $devise, $montant_devise, $taux);
         if($insert == true) {
             echo "Les écritures ont été insérées avec succès dans la base de données.";
