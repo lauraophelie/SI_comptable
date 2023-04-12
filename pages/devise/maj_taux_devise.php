@@ -9,7 +9,7 @@
     <h1 style="padding-top: 50px"> Mettre à jour : </h1>
 
     <input type="text" name="devise" id="" value="<?php echo $devise; ?>" hidden>
-    &
+    
     <label for="taux"> Taux : </label>
     <input type="text" name="taux" id="" value="<?php echo $maj['taux']; ?>" required="">
 
