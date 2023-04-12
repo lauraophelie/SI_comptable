@@ -17,12 +17,14 @@
         <button id="button-export"> Exporter le pcg </button>
     </a>
 
-    <div class="search_section">
-        <input type="text" name="recherche_compte" id="recherche_compte" placeholder="Rechercher un compte dans le pcg"/> 
-        <button type="submit">
-            <i class="fas fa-search"> </i>
-        </button>
-    </div>
+    <form action="../inc/pcg/traitement_recherche.php" method="get">
+        <div class="search_section">
+            <input type="text" name="recherche_compte" id="recherche_compte" placeholder="Rechercher un compte dans le pcg"/> 
+            <button type="submit">
+                <i class="fas fa-search"> </i>
+            </button>
+        </div>
+    </form>
 
     <?php 
         if(isset($_GET['message'])) {

@@ -56,4 +56,17 @@
                     <?php echo number_format($sum_credit, 0, ' ', ' '); ?>
                 </td>
             </tr>
+    </table> 
     <?php } ?>
+
+    <p id="button-range">
+        <a href="./page.php?page=ecritures/ecriture&societe=<?php echo $societe; ?>&id_societe=<?php echo $id_societe['id']; ?>&journal=<?php echo $journal; ?>&designation=<?php echo $designation; ?>"> 
+                <button id="new-ecriture"> Nouvelle écriture </button>
+        </a>
+        <a href="./page.php?page=ecritures/import_ecritures&journal=<?php echo $journal; ?>&designation=<?php echo $journal; ?>">
+            <button id="see-ecritures"> 
+                Importer des écritures 
+                <i class="fas fa-arrow-upload"> </i>
+                </button>
+            </a>
+    </p>

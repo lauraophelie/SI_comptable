@@ -31,9 +31,9 @@
             $values = array();
 
             foreach ($cellIterator as $cell) {
-              $values[] = $cell->getValue();
+              $values [] = $cell->getValue();
             }
-            save($journal, $societe, $values[0], $values[1], , $values[2], , $values[3], , $values[5], , $values[6], , $values[7], , $values[8], , $values[9]);
+            save_ecriture($journal, $societe, $values[0], $values[1], $values[2], $values[3], $values[5], $values[6], $values[7], null, null, null);
         }
         header('Location: ../../pages/page.php?page=ecritures/import_ecritures&upload_message=Import terminée avec succès !');
     } else {

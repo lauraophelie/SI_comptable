@@ -153,8 +153,10 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
      designation VARCHAR(40)
 );**/
 
---CREATE OR REPLACE VIEW compte_tiers AS
---SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;
+/**CREATE OR REPLACE VIEW compte_tiers AS
+SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;**/
+
+--------------------------------- 05-04-2023 ---------------------------------------------------
 
 CREATE TYPE type_tiers AS ENUM('CL', 'FO');
 
@@ -181,3 +183,40 @@ INSERT INTO tiers(type_tiers, numero, designation) VALUES('FO', 'JIRAMA', 'FRNS:
                                                        ('CL', 'SOLO', 'CLT: SOLO'),
                                                        ('FO', 'TELMA', 'FRNS: TELMA');
 
+
+CREATE OR REPLACE VIEW v_balance AS
+SELECT numero, designation, debit, credit, date_ecriture, societe from ecriture_journal JOIN pcg2005 ON compte_general = pcg2005.numero;
+
+select numero, designation, sum(debit) as deb, sum(credit) as cred from v_balance group by numero, designation;
+
+
+------------------------ 12-04-2023 ----------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS taux_devise(
+     devise INTEGER REFERENCES devise(id),
+     taux DECIMAL DEFAULT 0,
+     date_taux DATE DEFAULT NOW()
+);
+
+INSERT INTO taux_devise(devise, taux) VALUES(1, 15), (2, 10), (3, 15), (4, 5), (5, 10), (6, 5);
+
+INSERT INTO taux_devise(devise, taux, date_taux) VALUES(1, 25, '2023-04-13');
+
+select * from taux_devise 
+join (select id as devise_id, devise as designation from devise) as devise on taux_devise.devise = devise.devise_id;
+
+select taux_devise.*, devise.designation from taux_devise 
+join (select id as devise_id, devise as designation from devise) as devise on taux_devise.devise = devise.devise_id;
+
+CREATE OR REPLACE VIEW v_taux_devise AS(
+     select taux_devise.*, devise.designation from taux_devise 
+     join (select id as devise_id, devise as designation from devise) as devise on taux_devise.devise = devise.devise_id
+);
+
+SELECT * FROM v_taux_devise ORDER BY date_taux;
+
+SELECT * FROM v_taux_devise WHERE date_taux = date(now()) OR date_taux >= date(now()) ORDER BY date_taux;
+
+SELECT max(date_taux) as max_date FROM v_taux_devise;
+
+SELECT DISTINCT ON (devise) * FROM v_taux_devise ORDER BY devise, date_taux DESC;

@@ -27,6 +27,17 @@
         return $result;
     }
 
+    function find_all_by_recherche($recherche) {
+        $connexion = db_connect();
+        $sql = "SELECT * FROM pcg2005 WHERE numero LIKE :recherche ORDER BY numero ASC";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindValue(':recherche', '%' . $recherche . '%', PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }    
+
+
     function find_all_pagination($debut, $total) {
         $connexion = db_connect();
         $sql = "SELECT * FROM pcg2005 ORDER BY numero ASC LIMIT :total OFFSET :debut";
