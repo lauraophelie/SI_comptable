@@ -41,6 +41,21 @@
         }
     }
 
+    function check_devise($devise) {
+        $connexion = db_connect();
+        $sql = "SELECT * FROM devise WHERE devise = :devise";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':devise', $devise);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($result['devise']) {
+            return true;
+        }
+        return false;
+    }
+    
+
 /// taux devise : vue -> v_taux_devise; table -> taux_devise
 
     function find_all_taux() {
