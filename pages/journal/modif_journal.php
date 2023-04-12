@@ -3,15 +3,6 @@
     $journal = $_GET['journal'];
     $modif = find_by_code($journal);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Journal - Modification de journal </title>
-</head>
-<body>
 <form action="../inc/journal/traitement_update.php" method="post" data-parsley-validate="" id="form1">
         <h1> Modifier le journal : </h1>
         <?php 
@@ -26,9 +17,5 @@
             <label for="designation"> Signification : </label>
             <input type="text" name="designation" value="<?php echo $modif['designation']; ?>" required=""/>
         
-            <button type="submit" id="modif-button"> Modifier </button>
-        
-    </form>
-
-</body>
-</html>
+            <button type="submit" id="modif-button"> Modifier </button>     
+</form>

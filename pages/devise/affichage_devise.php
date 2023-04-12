@@ -20,7 +20,7 @@
             <td> <?php echo $taux_recent['taux']; ?> </td>
             <td> <?php echo $taux_recent['date_taux']; ?> </td>
             <td> 
-                <a href="./page.php?page=devise/maj_taux_devise&devise=<?php echo $taux_recent['devise']; ?>">
+                <a href="./page.php?page=devise/maj_taux_devise&devise=<?php echo $taux_recent['devise']; ?>&date_taux=<?php echo $taux_recent['date_taux']; ?>">
                     <i class="fas fa-pen open-button"> </i>
                 </a>
             </td>

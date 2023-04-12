@@ -40,8 +40,8 @@ input[type=file] {
     transform: scale(1.05);
 }
   
-form input[type=text], select, form button[type=submit] {
-    width: 53%;
+form input[type=text], select, form input[type=date], form button[type=submit] {
+    width: 50%;
     height: 40px;
     margin-top: 25px;
     padding: 10px;
@@ -50,6 +50,7 @@ form input[type=text], select, form button[type=submit] {
     box-sizing: border-box;
     border: 1px solid transparent;
 }
+
 form {
     margin-left: 20%;
 }

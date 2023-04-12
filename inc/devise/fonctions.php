@@ -70,6 +70,17 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }    
+
+    function find_by_devise($devise, $date_taux) {
+        $connexion = db_connect();
+        $sql = "SELECT * FROM v_taux_devise WHERE devise=:devise AND date_taux=:date_taux";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':devise', $devise);
+        $stmt->bindParam(':date_taux', $date_taux);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
     
     function insert_taux($devise, $taux, $date_taux) {
         try {
