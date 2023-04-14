@@ -5,3 +5,14 @@ body {
 a {
     text-decoration: none;
 }
+
+.radio-box {
+    height: 150px;
+    padding-top: 125px;
+    padding-left: 25%;
+}
+
+.radio-box label {
+    width: 145px;
+    margin-left: 25px;
+}
