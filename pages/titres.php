@@ -15,4 +15,6 @@
     $titre["grandlivre/grandlivre.php"] = "Grand Livre";
 
     $titre["balance/balance.php"] = "Balance";
+
+    $titre["bilans/menu_bilan.php"] = "Bilans"
 ?>
