@@ -13,4 +13,6 @@
     $titre["ecritures/liste_ecritures_journal.php"] = "Liste des écritures";
     $titre["tiers/affichage_tiers.php"] = "Liste des comptes tiers";
     $titre["grandlivre/grandlivre.php"] = "Grand Livre";
+
+    $titre["balance/balance.php"] = "Balance";
 ?>
