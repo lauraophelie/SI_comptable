@@ -12,7 +12,7 @@
 </div>
 
 <center>
-    <p> Veuillez choisir le bilan que vous souhaitez voir </p>
+    <p> Veuillez choisir le bilan que vous souhaitez consulter </p>
 </center>
 
 <script>
