@@ -105,6 +105,13 @@
                     <p> Balance </p>
                 </a>
             </div>
+            <div class="liste-element
+                <?php if($page == "bilans/menu_bilan" || strpos($page, "bilans/") !== false) echo "active"; ?>
+                ">
+                <a href="./page.php?page=bilans/menu_bilan">
+                    <p> Bilans </p>
+                </a>
+            </div>
             <div class="liste-element ">
                 <a href="./deconnexion.php">
                     <p> Se déconnecter </p>
