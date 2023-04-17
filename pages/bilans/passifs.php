@@ -40,17 +40,17 @@
         </tr>
         <tr class="passif-line">
             <td> Résultat en instance d'affectation </td>
-            <td> 12... </td>
+            <td> 128 </td>
             <td> 0 </td>
         </tr>
         <tr class="passif-line">
             <td> Résultat net </td>
-            <td> 12... </td>
+            <td> 120 </td>
             <td> 0 </td>
         </tr>
         <tr class="passif-line">
             <td> Autres capitaux propres </td>
-            <td> 11... </td>
+            <td> 11 </td>
             <td> 0 </td>
         </tr>
         <tr class="passif-line total-line">
