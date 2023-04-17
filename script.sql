@@ -220,3 +220,8 @@ SELECT * FROM v_taux_devise WHERE date_taux = date(now()) OR date_taux >= date(n
 SELECT max(date_taux) as max_date FROM v_taux_devise;
 
 SELECT DISTINCT ON (devise) * FROM v_taux_devise ORDER BY devise, date_taux DESC;
+
+------------------------------- 18-04-2023 -----------------------------------------------------------
+
+
+
