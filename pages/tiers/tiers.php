@@ -13,10 +13,10 @@
         <label for="type"> Type de tiers : </label>
 
         <input type="radio" name="type_tiers" id="FO" value="FO"/>
-        <label for="FO" id="label-type" style="width: 195px; text-align:center"> Fournisseur </label>
+        <label for="FO" id="label-type" style="width: 190px; text-align:center"> Fournisseur </label>
 
         <input type="radio" name="type_tiers" id="CL" value="CL"/>
-        <label for="CL" id="label-type" style="width: 195px; text-align:center; margin-left: 25px"> Client </label>
+        <label for="CL" id="label-type" style="width: 190px; text-align:center; margin-left: 25px"> Client </label>
 
         <label for="num"> Numéro : </label> 
         <input type="text" name="num" id="" required="" data-parsley-maxlength="13" data-parsley-maxlength-message="<?php echo $max_length_message; ?>" placeholder="Ecrivez ici">

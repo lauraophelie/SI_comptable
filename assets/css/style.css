@@ -5,3 +5,78 @@ body {
 a {
     text-decoration: none;
 }
+
+.radio-box {
+    height: 125px;
+    padding-top: 125px;
+    padding-left: 30%;
+}
+
+.radio-box label {
+    width: 145px;
+    margin-left: 25px;
+    text-align: center;
+}
+
+/**---------------bilans----------------**/
+
+.info-societe-box {
+    border: 1px solid transparent;
+    height: fit-content;
+    margin-top: 5px;
+    background-color: transparent;
+}
+
+.info-societe-box h3 {
+    padding-left: 5%;
+    font-size: 17px;
+}
+
+.bilan-box {
+    border: 1px solid black;
+    height: fit-content;
+}
+
+.bilan-box h3 {
+    text-align: center;
+    font-size: 17px;
+}
+
+.bilan-box-content {
+    border: 1px solid black;
+    height: fit-content;
+}
+
+.bilan-box-content table .passif-line th:first-child, .bilan-box-content table .passif-line td:first-child {
+    width: 65%;
+}
+
+.bilan-box-content table .passif-line td:nth-child(2), .bilan-box-content table .passif-line td:nth-child(3) {
+    width: 175px;
+}
+
+.bilan-box-content table .passif-line td:nth-child(2) {
+    text-align: center;
+}
+
+.bilan-box-content table .passif-line td:nth-child(3), .bilan-box-content table .passif-line th:nth-child(3){
+    text-align: right;
+    padding-right: 20px;
+}
+
+.passif-line {
+    height: 30px;
+}
+
+.passif-line th, .passif-line td {
+    padding-left: 25px;
+}
+
+.passif-line th h4 {
+    text-align: left;
+}
+
+.total-line {
+    border: 1px solid black;
+    height: 35px;
+}

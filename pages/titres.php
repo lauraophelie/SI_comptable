@@ -16,5 +16,8 @@
 
     $titre["balance/balance.php"] = "Balance";
 
-    $titre["bilans/menu_bilan.php"] = "Bilans"
+    $titre["bilans/menu_bilan.php"] = "Bilans";
+    $titre["bilans/actifs.php"] = "Actifs";
+    $titre["bilans/passifs.php"] = "Passifs";
+    $titre["bilans/resultat.php"] = "Resultat";
 ?>
