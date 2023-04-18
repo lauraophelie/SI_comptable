@@ -28,7 +28,6 @@
                 VALUES('%s', %d, '%s', '%s', '%s', '%s', '%s', %d, %d, %d, %d, %d)",
                 $journal, $societe, $date_ecriture, $numero_piece, $cg, $ct, $libelle, $debit, $credit, $devise, $montant_devise, $taux
             );
-            echo $sql;
     
             $stmt = $connexion->prepare($sql);
             $stmt->execute();

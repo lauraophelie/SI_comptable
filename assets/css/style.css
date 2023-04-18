@@ -48,11 +48,11 @@ a {
 }
 
 .bilan-box-content table .passif-line th:first-child, .bilan-box-content table .passif-line td:first-child {
-    width: 65%;
+    width: 63%;
 }
 
 .bilan-box-content table .passif-line td:nth-child(2), .bilan-box-content table .passif-line td:nth-child(3) {
-    width: 150px;
+    width: 175px;
 }
 
 .bilan-box-content table .passif-line td:nth-child(2) {

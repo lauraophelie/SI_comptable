@@ -1,5 +1,5 @@
 <?php
-    /*function dbconnect() {
+    function dbconnect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
         $PARAM_utilisateur = 'gestion_compta';
@@ -14,7 +14,7 @@
                 echo 'N° : '.$e-> getCode();
             }
     }
-    function find_compta($id_societe) {
-
-    }*/
+    function get_sum_produit() {
+        
+    }
 ?>
