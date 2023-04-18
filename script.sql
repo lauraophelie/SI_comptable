@@ -104,7 +104,8 @@ INSERT INTO pcg2005(numero,designation) VALUES('10100', 'CAPITAL'),
                                             ('32110', 'STOCK MATIERES PREMIERES'),
                                             ('32120', 'PETITRES FOURNITURES');
                                         
-                                        
+INSERT INTO pcg2005(numero,designation) VALUES('41100', 'CLIENT');                                     
+
 CREATE TABLE IF NOT EXISTS code_journal(
     id VARCHAR(10) PRIMARY KEY,
     designation VARCHAR(20)

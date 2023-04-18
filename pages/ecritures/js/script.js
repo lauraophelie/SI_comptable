@@ -47,7 +47,6 @@ $(document).ready(function() {
     
         tableEcriture.append(newRow);
     
-        $('input[name="date_ecriture"]').val('');
         $('input[name="cg"]').val('');
         $('input[name="ct"]').val('');
         $('input[name="libelle"]').val('');
