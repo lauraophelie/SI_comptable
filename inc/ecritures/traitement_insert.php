@@ -7,6 +7,7 @@
 
     $id_societe = find_societe($societe_nom);
 
+    $success = true;
     foreach ($ecritures as $ecriture) {
 
         $date = $ecriture['date'];
@@ -21,11 +22,14 @@
         $taux = $ecriture['taux'];
         
         $insert = save_ecriture($code_journal, $id_societe['id'], $date, $numero_piece, $cg, $ct, $libelle, $debit, $credit, $devise, $montant_devise, $taux);
-        if($insert == true) {
-            echo "Les écritures ont été insérées avec succès dans la base de données.";
-            exit();
-        } else {
-            echo "Une erreur s'est produite";
+        if($insert == false) {
+            $success = false;
+            break;
         }
+    }
+    if($success) {
+        echo "Les écritures ont été insérées avec succès dans la base de données.";
+    } else {
+        echo "Une erreur s'est produite lors de l'insertion des écritures.";
     }
 ?>

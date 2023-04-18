@@ -104,7 +104,8 @@ INSERT INTO pcg2005(numero,designation) VALUES('10100', 'CAPITAL'),
                                             ('32110', 'STOCK MATIERES PREMIERES'),
                                             ('32120', 'PETITRES FOURNITURES');
                                         
-                                        
+INSERT INTO pcg2005(numero,designation) VALUES('41100', 'CLIENT');                                     
+
 CREATE TABLE IF NOT EXISTS code_journal(
     id VARCHAR(10) PRIMARY KEY,
     designation VARCHAR(20)
@@ -220,3 +221,43 @@ SELECT * FROM v_taux_devise WHERE date_taux = date(now()) OR date_taux >= date(n
 SELECT max(date_taux) as max_date FROM v_taux_devise;
 
 SELECT DISTINCT ON (devise) * FROM v_taux_devise ORDER BY devise, date_taux DESC;
+
+------------------------------- 18-04-2023 -----------------------------------------------------------
+
+SELECT * FROM v_balance WHERE numero LIKE '10%' ORDER BY numero;
+
+SELECT DISTINCT numero, SUM(debit) as total_debits, SUM(credit) as total_credits FROM v_balance
+WHERE numero LIKE '10%' GROUP BY numero ORDER BY numero;
+
+SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+FROM v_balance
+WHERE numero LIKE '10%'
+GROUP BY numero, libelle, societe
+ORDER BY numero;
+
+
+SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+FROM v_balance
+WHERE numero = '10100' OR numero = '12800'
+GROUP BY numero, libelle, societe
+ORDER BY numero;
+
+SELECT * FROM pcg2005 where numero LIKE '5%';
+
+SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+FROM v_balance
+WHERE numero LIKE '5%'
+GROUP BY numero, libelle, societe
+ORDER BY numero;
+
+CREATE OR REPLACE VIEW v_compte_tresorerie AS(
+     SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+     FROM v_balance
+     WHERE numero LIKE '5%'
+     GROUP BY numero, libelle, societe
+     ORDER BY numero
+);
+
+select sum(debit) as total_debit, sum(credit) as total_credit from v_balance where numero LIKE '7%';
+select sum(debit) as total_debit, sum(credit) as total_credit from v_balance where numero LIKE '6%';
+

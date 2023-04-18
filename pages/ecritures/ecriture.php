@@ -128,7 +128,7 @@
                     window.location.href = "./page.php?page=ecritures/listes_ecritures";
                 },
                 error: function(xhr, status, error) {
-                    alert("Une erreur s'est produite lors de l'envoi des données: " + error);
+                    alert("Une erreur s'est produite lors de l'envoi des données : " + error);
                 }
             });
         }
