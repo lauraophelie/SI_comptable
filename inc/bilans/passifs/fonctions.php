@@ -14,7 +14,20 @@
                 echo 'N° : '.$e-> getCode();
             }
     }
-    function get_sum_produit() {
-        
+    function get_sum_produits() {
+        $connexion = dbconnect();
+        $sql = "select sum(debit) as total_debit, sum(credit) as total_credit from v_balance where numero LIKE '7%'";
+        $stmt = $connexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    function get_sum_charges() {
+        $connexion = dbconnect();
+        $sql = "select sum(debit) as total_debit, sum(credit) as total_credit from v_balance where numero LIKE '6%'";
+        $stmt = $connexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 ?>
