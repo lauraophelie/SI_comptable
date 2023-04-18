@@ -30,4 +30,5 @@
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+    function traitement_solde()
 ?>
