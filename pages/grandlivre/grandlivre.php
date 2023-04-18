@@ -39,11 +39,11 @@
                 
                 <tr id = "ecriture-title">
                     <th> </th>
-                    <th class="titre-montant"> Debit </th>
-                    <th class="titre-montant"> Credit </th>
+                    <th class="titre-montant"> Débit </th>
+                    <th class="titre-montant"> Crédit </th>
                 </tr>
                 <tr class="total-case">
-                    <td></td>
+                    <td> </td>
                     <td class="case-somme">
                         <?php echo number_format($sum_debit, 0, ' ', ' '); ?>
                     </td>
@@ -52,7 +52,7 @@
                     </td>
                 </tr>
                 <tr class="total-case">
-                    <td>Solde</td>
+                    <td> Solde </td>
                     <td class="case-somme">
                     <?php
                         if($total['total']<=0){
