@@ -75,7 +75,7 @@
 
     function get_all_by_journal($code, $societe, $date_exercice, $date_fin) {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin) ORDER BY date_ecriture DESC";
+        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin) ORDER BY date_ecriture DESC";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':journal', $code);
         $stmt->bindParam(':societe', $societe);
@@ -88,7 +88,7 @@
 
     function get_recent_ecritures($code, $societe, $date_exercice, $date_fin, $limite = 5) {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin) ORDER BY date_ecriture DESC LIMIT :limite";
+        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin) ORDER BY date_ecriture DESC LIMIT :limite";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':journal', $code);
         $stmt->bindParam(':societe', $societe);
@@ -102,7 +102,7 @@
 
     function get_sum_debit_journal($journal, $societe, $date_exercice, $date_fin) {
         $connexion = dbconnect();
-        $sql = "SELECT SUM(debit) FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)";
+        $sql = "SELECT SUM(debit) FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin)";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':journal', $journal);
         $stmt->bindParam(':societe', $societe);
@@ -115,7 +115,7 @@
     
     function get_sum_credit_journal($journal, $societe, $date_exercice, $date_fin) {
         $connexion = dbconnect();
-        $sql = "SELECT SUM(credit) FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)";
+        $sql = "SELECT SUM(credit) FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin)";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':journal', $journal);
         $stmt->bindParam(':societe', $societe);
