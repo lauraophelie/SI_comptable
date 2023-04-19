@@ -284,3 +284,9 @@ ORDER BY numero;
 
 SELECT SUM(debit) as total_debits, SUM(credit) as total_credits FROM v_compte_tresorerie WHERE societe = 1;
 
+SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+FROM v_balance
+WHERE (numero LIKE '130%' AND libelle LIKE '%IMPOTS DIFFERES%' AND societe = 1)
+GROUP BY numero, libelle, societe
+ORDER BY numero;
+

@@ -309,6 +309,43 @@
         return $passifs;
     }
 
+/// passifs non courants
+
+    function solde_impots_differes($societe_id, $date_debut, $date_fin_exercice) {
+        $connexion = db_connect();
+        $sql = "SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+                FROM v_balance
+                WHERE (numero LIKE '130%' AND LIKE '%IMPOTS DIFFERES%' AND societe = :societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)
+                GROUP BY numero, libelle, societe
+                ORDER BY numero";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':societe', $societe_id);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    function impots_differes($societe_id, $date_debut, $date_fin_exercice) {
+        $soldes = solde_impots_differes($societe_id, $date_debut, $date_fin_exercice);
+        $debit = $soldes["total_debits"];
+        $credit = $soldes["total_credits"];
+
+        if($debit > $credit) return $debit - $credit;
+        else if($credit > $debit) return $credit - $debit;
+        else return 0;
+    }
+
+    function passifs_non_courants($societe_id, $date_debut, $date_fin_exercice) {
+        $impots_differes = impots_differes($societe_id, $date_debut, $date_fin_exercice);
+        $passifs_non_courants = array(
+            "impots_differes" => $impots_differes
+        );
+        return $passifs_non_courants;
+    }
+
 /// total 
 
     function somme_valeurs($tab) {
@@ -322,7 +359,8 @@
     function somme_totale($societe_id, $date_debut, $date_fin_exercice) {
         $capitaux_propres = capitaux_propres($societe_id, $date_debut, $date_fin_exercice);
         $passifs_courants = passifs_courants($societe_id, $date_debut, $date_fin_exercice);
-        $somme_totale = somme_valeurs($capitaux_propres) + somme_valeurs($passifs_courants);
+        $passifs_non_courants = passifs_non_courants($societe_id, $date_debut, $date_fin_exercice);
+        $somme_totale = somme_valeurs($capitaux_propres) + somme_valeurs($passifs_courants) + somme_valeurs($passifs_non_courants);
 
         return $somme_totale;
     }

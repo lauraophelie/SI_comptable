@@ -11,6 +11,8 @@
 
     $capitaux_propres = capitaux_propres($societe_id, $date_debut, $date_fin_exercice);
     $passifs_courants = passifs_courants($societe_id, $date_debut, $date_fin_exercice);
+    $passifs_non_courants = passifs_non_courants($societe_id, $date_debut, $date_fin_exercice);
+
     $somme_totale = somme_totale($societe_id, $date_debut, $date_fin_exercice);
 ?>
 
@@ -84,7 +86,7 @@
         <tr class="passif-line">
             <td> Impôts différés </td>
             <td> 13000 </td>
-            <td> Ar 0 </td>
+            <td> Ar <?php echo number_format($passifs_non_courants["impots_differes"], 0, ' ', ' '); ?> </td>
         </tr>
         <tr class="passif-line">
             <td> Emprunts / dettes à LMT part +1 an </td>
@@ -96,7 +98,7 @@
                 <h4 style="text-align:center"> TOTAL DES PASSIFS NON COURANTS </h4>
             </th>
             <th> </th>
-            <th> Ar 0 </th>
+            <th> Ar <?php echo number_format(somme_valeurs($passifs_non_courants), 0, ' ', ' '); ?> </th>
         </tr>
         <tr class="passif-line">
             <th colspan="4"> 
