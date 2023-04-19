@@ -8,7 +8,7 @@
     $date_debut_exercice = $societe_compta['date_debut_exercice'];
 ?>
 
-<h1 id="main-title"> Bilan : Résulats </h1>
+<h1 id="main-title"> Bilan : Résultats </h1>
 
 <div style="height: 125px"> </div>
 

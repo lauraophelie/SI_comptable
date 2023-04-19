@@ -1,10 +1,15 @@
 <?php
     require("../inc/ecritures/fonctions.php");
+    require("../inc/bilans/passifs/fonctions.php");
     $nom_societe = $_SESSION['nom'];
     $societe = find_societe($nom_societe);
     $societe_id = $societe['id'];
     $societe_compta = find_societe_comptabilite($societe_id);
+
+    $date_debut = $societe_compta['date_debut_exercice'];
     $date_fin_exercice = $societe_compta['date_fin_exercice'];
+
+    $capital = get_capital($societe_id, $date_debut, $date_fin_exercice);
 ?>
 
 <h1 id="main-title"> Bilan : Passifs </h1>
@@ -40,7 +45,7 @@
         <tr class="passif-line">
             <td> Capital émis </td>
             <td> 10100 </td>
-            <td> Ar 0 </td>
+            <td> Ar <?php echo $capital; ?> </td>
         </tr>
         <tr class="passif-line">
             <td> Réserves légales </td>

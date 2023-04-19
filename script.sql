@@ -262,3 +262,10 @@ select sum(debit) as total_debit, sum(credit) as total_credit from ecriture_jour
 
 select sum(debit) as total_debit, sum(credit) as total_credit from ecriture_journal where compte_general LIKE '6%';
 
+------------------------------------ 19-04-2023 -----------------------------------------------------
+
+SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+FROM v_balance
+WHERE numero = '10100' AND societe = 1
+GROUP BY numero, libelle, societe
+ORDER BY numero;
