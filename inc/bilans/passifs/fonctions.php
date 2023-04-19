@@ -213,16 +213,103 @@
         else return $credit - $debit; 
     }
 
+    function get_fournisseurs($societe_id, $date_debut, $date_fin_exercice) {
+        $connexion = db_connect();
+        $sql = "SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+                FROM v_balance
+                WHERE (numero LIKE '40%' OR libelle LIKE '%FOURNISSEUR%' OR libelle LIKE '%FRNS%' AND societe = :societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)
+                GROUP BY numero, libelle, societe
+                ORDER BY numero";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':societe', $societe_id);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    function solde_fournisseurs($societe_id, $date_debut, $date_fin_exercice) {
+        $soldes = get_fournisseurs($societe_id, $date_debut, $date_fin_exercice);
+        $debit = $soldes["total_debits"];
+        $credit = $soldes["total_credits"];
+
+        if($debit > $credit) return $debit - $credit;
+        else if($credit > $debit) return $credit - $debit;
+        else return 0;
+    }
+
+    function solde_dettes_courts_termes($societe_id, $date_debut, $date_fin_exercice) {
+        $connexion = db_connect();
+        $sql = "SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+                FROM v_balance
+                WHERE (numero LIKE '165%' AND societe = :societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)
+                GROUP BY numero, libelle, societe
+                ORDER BY numero";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':societe', $societe_id);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    function dettes_court_termes($societe_id, $date_debut, $date_fin_exercice) {
+        $soldes = solde_dettes_courts_termes($societe_id, $date_debut, $date_fin_exercice);
+        $debit = $soldes["total_debits"];
+        $credit = $soldes["total_credits"];
+
+        if($debit > $credit) return $debit - $credit;
+        else if($credit > $debit) return $credit - $debit;
+        else return 0;
+    }
+
+    function solde_autres_dettes($societe_id, $date_debut, $date_fin_exercice) {
+        $connexion = db_connect();
+        $sql = "SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+                FROM v_balance
+                WHERE (numero LIKE '40%' OR libelle NOT LIKE '%FOURNISSEUR%' OR libelle NOT LIKE '%FRNS%' AND societe = :societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)
+                GROUP BY numero, libelle, societe
+                ORDER BY numero";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':societe', $societe_id);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    function autres_dettes($societe_id, $date_debut, $date_fin_exercice) {
+        $soldes = solde_autres_dettes($societe_id, $date_debut, $date_fin_exercice);
+        $debit = $soldes["total_debits"];
+        $credit = $soldes["total_credits"];
+
+        if($debit > $credit) return $debit - $credit;
+        else if($credit > $debit) return $credit - $debit;
+        else return 0;
+    }
+
     function passifs_courants($societe_id, $date_debut, $date_fin_exercice) {
         $tresorerie = solde_tresorerie_passifs($societe_id, $date_debut, $date_fin_exercice);
+        $fournisseurs = solde_fournisseurs($societe_id, $date_debut, $date_fin_exercice);
+        $dettes_court_termes = dettes_court_termes($societe_id, $date_debut, $date_fin_exercice);
+        $autres_dettes = autres_dettes($societe_id, $date_debut, $date_fin_exercice);
 
         $passifs = array(
-            "tresorerie" => $tresorerie
+            "tresorerie" => $tresorerie,
+            "fournisseurs" => $fournisseurs,
+            "dettes_court_termes" => $dettes_court_termes,
+            "autres_dettes" => $autres_dettes
         );
         return $passifs;
     }
 
-/// autres 
+/// total 
 
     function somme_valeurs($tab) {
         $somme = 0;
@@ -231,5 +318,13 @@
         }
         return $somme;
     }    
+
+    function somme_totale($societe_id, $date_debut, $date_fin_exercice) {
+        $capitaux_propres = capitaux_propres($societe_id, $date_debut, $date_fin_exercice);
+        $passifs_courants = passifs_courants($societe_id, $date_debut, $date_fin_exercice);
+        $somme_totale = somme_valeurs($capitaux_propres) + somme_valeurs($passifs_courants);
+
+        return $somme_totale;
+    }
     
 ?>

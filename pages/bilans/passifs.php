@@ -11,6 +11,7 @@
 
     $capitaux_propres = capitaux_propres($societe_id, $date_debut, $date_fin_exercice);
     $passifs_courants = passifs_courants($societe_id, $date_debut, $date_fin_exercice);
+    $somme_totale = somme_totale($societe_id, $date_debut, $date_fin_exercice);
 ?>
 
 <h1 id="main-title"> Bilan : Passifs </h1>
@@ -110,12 +111,12 @@
         <tr class="passif-line">
             <td> Dettes courts termes </td>
             <td> 16500 </td>
-            <td> Ar 0 </td>
+            <td> Ar <?php echo number_format($passifs_courants["dettes_court_termes"], 0, ' ', ' '); ?> </td>
         </tr>
         <tr class="passif-line">
             <td> Fournisseurs et comptes rattachés </td>
             <td> 40000 </td>
-            <td> Ar 0 </td>
+            <td> Ar <?php echo number_format($passifs_courants["fournisseurs"], 0, ' ', ' '); ?> </td>
         </tr>
         <tr class="passif-line">
             <td> Avance reçues des clients </td>
@@ -125,7 +126,7 @@
         <tr class="passif-line">
             <td> Autres dettes </td>
             <td> 40000 </td>
-            <td> Ar 0 </td>
+            <td> Ar <?php echo number_format($passifs_courants["autres_dettes"], 0, ' ', ' '); ?> </td>
         </tr>
         <tr class="passif-line">
             <td> Comptes de trésoreries </td>
@@ -144,7 +145,7 @@
                 <h4 style="text-align:center"> TOTAL DES CAPITAUX PROPRES ET PASSIFS </h4>
             </th>
             <th> </th>
-            <th> Ar 0 </th>
+            <th> Ar <?php echo number_format($somme_totale, 0, ' ', ' '); ?> </th>
         </tr>
     </table>
 </div>

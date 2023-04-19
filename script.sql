@@ -270,4 +270,17 @@ WHERE numero = '10100' AND societe = 1
 GROUP BY numero, libelle, societe
 ORDER BY numero;
 
+SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+FROM v_balance
+WHERE (numero LIKE '40%' OR libelle LIKE '%FOURNISSEUR%' OR libelle LIKE '%FRNS%' AND societe = 1)
+GROUP BY numero, libelle, societe
+ORDER BY numero;
+
+SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+FROM v_balance
+WHERE (numero LIKE '40%' AND libelle NOT LIKE '%FOURNISSEUR%' OR libelle NOT LIKE '%FRNS%' AND societe = 1)
+GROUP BY numero, libelle, societe
+ORDER BY numero;
+
 SELECT SUM(debit) as total_debits, SUM(credit) as total_credits FROM v_compte_tresorerie WHERE societe = 1;
+
