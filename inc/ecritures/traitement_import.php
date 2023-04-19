@@ -1,6 +1,8 @@
 <?php 
     require("../../librairies/excel/PHPExcel.php");
     include("./fonctions.php");
+    date_default_timezone_set('Africa/Nairobi');
+
     $journal = $_POST['journal'];
     $societe = $_POST['societe'];
 
@@ -13,7 +15,7 @@
         $allowed_extensions = array('xlsx', 'csv', 'ods', 'xls');
 
         if(!in_array(strtolower($file_extension), $allowed_extensions)) {
-            header('Location: ../../pages/page.php?page=ecritures/import_ecritures&upload_error=Fichier non pris en charge');
+            header('Location: ../../pages/page.php?page=ecritures/import_ecritures&upload_error=Fichier non pris en charge&journal='.$journal);
             exit();
         }
 
@@ -31,11 +33,17 @@
             $values = array();
 
             foreach ($cellIterator as $cell) {
-              $values [] = $cell->getValue();
+                $value = $cell->getValue();
+                if(!empty($value)) {
+                    $values [] = $value;
+                } else {
+                    $values [] = null;
+                }
             }
-            save_ecriture($journal, $societe, $values[0], $values[1], $values[2], $values[3], $values[5], $values[6], $values[7], null, null, null);
+            save_ecriture($journal, $societe, date('Y-m-d', PHPExcel_Shared_Date::ExcelToPHP($values[0])), $values[1], $values[2], $values[3], $values[4], $values[5], $values[6], null, null, null);
         }
-        header('Location: ../../pages/page.php?page=ecritures/import_ecritures&upload_message=Import terminée avec succès !');
+        //header('Location: ../../pages/page.php?page=ecritures/import_ecritures&upload_message=Import terminée avec succès !&journal='.$journal);
+        //exit();
     } else {
         header('Location: ../../pages/page.php?page=ecritures/import_ecriture&supload_error=Veuillez choisire un fichier');
         exit();

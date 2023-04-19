@@ -19,7 +19,7 @@
     <div style="height:85px"> </div>
 
     <?php if(empty($ecritures)) { ?>
-        <p class="empty-pan"> Aucune disponible écriture pour le moment </p>
+        <p> Aucune disponible écriture pour le moment </p>
     <?php } else { ?>
         <table class="ecriture_table">
             <tr id="ecriture-title">
