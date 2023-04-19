@@ -14,6 +14,9 @@
                 echo 'N° : '.$e-> getCode();
             }
     }
+
+/// capitaux propres 
+
     function get_sum_produits($societe_id, $date_exercice, $date_fin) {
         $connexion = db_connect();
         $sql = "SELECT SUM(debit) AS total_debit, SUM(credit) AS total_credit FROM ecriture_journal WHERE(compte_general LIKE '7%' AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)";
@@ -74,10 +77,48 @@
         else return 0;
     }
 
-    function calcul_resultat($societe_id, $date_exercice, $date_fin) {
+    function calcul_resultat_net($societe_id, $date_exercice, $date_fin) {
         $produits = get_solde_produits($societe_id, $date_exercice, $date_fin);
         $charges = get_solde_charges($societe_id, $date_exercice, $date_fin);
         return $produits - $charges;
+    }
+
+    function reserves_legales($societe_id, $date_exercice, $date_fin) {
+        $resultat_net = calcul_resultat_net($societe_id, $date_exercice, $date_fin);
+        $reserves_legales = 0;
+        if($resultat_net > 0) {
+            $reserves_legales = ($resultat_net * 5) / 100;
+        } else {
+            $reserves_legales = 0;
+        }
+        return $reserves_legales;
+    }
+
+    function get_resultat_en_instance($societe_id, $date_exercice, $date_fin) {
+        $connexion = db_connect();
+        $sql = "SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+                FROM v_balance
+                WHERE (numero = '12800' AND societe = :societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)
+                GROUP BY numero, libelle, societe
+                ORDER BY numero";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':societe', $societe_id);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    function resultat_en_instance($societe_id, $date_exercice, $date_fin) {
+        $resultat = get_resultat_en_instance($societe_id, $date_exercice, $date_fin);
+        $debit = $resultat['total_debits'];
+        $credit = $resultat['total_credits'];
+
+        if($debit > $credit) return $debit - $credit;
+        else if($credit > $debit) return $credit - $debit;
+        else return 0;
     }
 
     function get_capital($societe_id, $date_exercice, $date_fin) {
@@ -98,5 +139,97 @@
         }
         return $capital;
     }
+
+    function solde_autres_capitaux($societe_id, $date_debut, $date_fin_exercice) {
+        $connexion = db_connect();
+        $sql = "SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+                FROM v_balance
+                WHERE (numero LIKE '11%' AND societe = :societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)
+                GROUP BY numero, libelle, societe
+                ORDER BY numero";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':societe', $societe_id);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    function autres_capitaux($societe_id, $date_debut, $date_fin_exercice) {
+        $resultat = solde_autres_capitaux($societe_id, $date_debut, $date_fin_exercice);
+        $debit = $resultat['total_debits'];
+        $credit = $resultat['total_credits'];
+
+        if($debit > $credit) return $debit - $credit;
+        else if($credit > $debit) return $credit - $debit;
+        else return 0;
+    }
+
+    function capitaux_propres($societe_id, $date_debut, $date_fin_exercice) {
+
+        $capital = get_capital($societe_id, $date_debut, $date_fin_exercice);
+        $resultat = calcul_resultat_net($societe_id, $date_debut, $date_fin_exercice);
+        $resultat_instance = resultat_en_instance($societe_id, $date_debut, $date_fin_exercice);
+        $reserves_legales = reserves_legales($societe_id, $date_debut, $date_fin_exercice);
+        $autres_capitaux = autres_capitaux($societe_id, $date_debut, $date_fin_exercice);
+
+        $passifs = array(
+            "capital" => $capital,
+            "resultat" => $resultat,
+            "resultat_instance" => $resultat_instance,
+            "reserves_legales" => $reserves_legales,
+            "autres_capitaux" => $autres_capitaux
+        );
+        return $passifs;
+    }
+
+/// passifs courants 
+
+    function get_tresoreries($societe_id, $date_debut, $date_fin_exercice) {
+        $connexion = db_connect();
+        $sql = "SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
+                FROM v_compte_tresorerie
+                WHERE (societe = :societe AND date_ecriture >= :date_exercice AND date_ecriture < :date_fin)
+                GROUP BY numero, libelle, societe
+                ORDER BY numero";
+        $stmt = $connexion ->prepare($sql);
+        $stmt->bindParam(':societe', $societe_id);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    function solde_tresorerie_passifs($societe_id, $date_debut, $date_fin_exercice) {
+        $soldes = get_tresoreries($societe_id, $date_debut, $date_fin_exercice);
+        $debit = $soldes["total_debits"];
+        $credit = $soldes["total_credits"];
+
+        if($debit > $credit || $debit == $credit) return 0;
+        else return $credit - $debit; 
+    }
+
+    function passifs_courants($societe_id, $date_debut, $date_fin_exercice) {
+        $tresorerie = solde_tresorerie_passifs($societe_id, $date_debut, $date_fin_exercice);
+
+        $passifs = array(
+            "tresorerie" => $tresorerie
+        );
+        return $passifs;
+    }
+
+/// autres 
+
+    function somme_valeurs($tab) {
+        $somme = 0;
+        foreach($tab as $valeur) {
+            $somme += $valeur;
+        }
+        return $somme;
+    }    
     
 ?>
