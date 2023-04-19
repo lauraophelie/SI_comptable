@@ -1,4 +1,5 @@
 <?php
+
     function dbconnect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
