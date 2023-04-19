@@ -1,7 +1,4 @@
 <?php
-
-    include("../../ecritures/fonctions.php");
-
     function db_connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
@@ -25,7 +22,7 @@
         $stmt->bindParam(':date_exercice', $date_exercice);
         $stmt->bindParam(':date_fin', $date_fin);
         $stmt->execute();
-        $result = $stmt->fetchColumn();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
     function get_sum_charges($societe_id, $date_exercice, $date_fin) {
@@ -36,7 +33,7 @@
         $stmt->bindParam(':date_exercice', $date_exercice);
         $stmt->bindParam(':date_fin', $date_fin);
         $stmt->execute();
-        $result = $stmt->fetch();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -52,14 +49,40 @@
         $stmt->bindParam(':date_exercice', $date_exercice);
         $stmt->bindParam(':date_fin', $date_fin);
         $stmt->execute();
-        $result = $stmt->fetch();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $result;
     }
 
+    function get_solde_produits($societe_id, $date_exercice, $date_fin) {
+        $produits = get_sum_produits($societe_id, $date_exercice, $date_fin);
+        $debit = $produits['total_debit'];
+        $credit = $produits['total_credit'];
+
+        if($debit > $credit) return $debit - $credit;
+        else if($credit > $debit) return $credit - $debit;
+        else return 0;
+    }
+
+    function get_solde_charges($societe_id, $date_exercice, $date_fin) {
+        $charges = get_sum_charges($societe_id, $date_exercice, $date_fin);
+        $debit = $charges['total_debit'];
+        $credit = $charges['total_credit'];
+
+        if($debit > $credit) return $debit - $credit;
+        else if($credit > $debit) return $credit - $debit;
+        else return 0;
+    }
+
+    function calcul_resultat($societe_id, $date_exercice, $date_fin) {
+        $produits = get_solde_produits($societe_id, $date_exercice, $date_fin);
+        $charges = get_solde_charges($societe_id, $date_exercice, $date_fin);
+        return $produits - $charges;
+    }
+
     function get_capital($societe_id, $date_exercice, $date_fin) {
         $societe_compta = find_societe_comptabilite($societe_id);
-        $soldes = get_solde_capital($societe_compta, $date_exercice, $date_fin);
+        $soldes = get_solde_capital($societe_id, $date_exercice, $date_fin);
         
         $total_credits = $societe_compta['capital'] + $soldes['total_credits'];
         $total_debits = $soldes['total_debits'];

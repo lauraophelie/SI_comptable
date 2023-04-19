@@ -10,6 +10,7 @@
     $date_fin_exercice = $societe_compta['date_fin_exercice'];
 
     $capital = get_capital($societe_id, $date_debut, $date_fin_exercice);
+    $resultat = calcul_resultat($societe_id, $date_debut, $date_fin_exercice);
 ?>
 
 <h1 id="main-title"> Bilan : Passifs </h1>
@@ -45,7 +46,7 @@
         <tr class="passif-line">
             <td> Capital émis </td>
             <td> 10100 </td>
-            <td> Ar <?php echo $capital; ?> </td>
+            <td> Ar <?php echo number_format($capital, 0, ' ', ' '); ?> </td>
         </tr>
         <tr class="passif-line">
             <td> Réserves légales </td>
@@ -60,7 +61,7 @@
         <tr class="passif-line">
             <td> Résultat net </td>
             <td> 12000 </td>
-            <td> Ar 0 </td>
+            <td> Ar <?php echo number_format($resultat, 0, ' ', ' '); ?> </td>
         </tr>
         <tr class="passif-line">
             <td> Autres capitaux propres </td>
