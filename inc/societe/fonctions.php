@@ -1,6 +1,13 @@
 <?php
     require('../connexion.php');
 
+    function validate($data){
+        $data = trim($data);
+        $data = stripcslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     function find_all() {
         $connexion = db_connect();
         $sql = "SELECT * FROM societe ORDER BY id ASC";

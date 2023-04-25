@@ -16,7 +16,7 @@
             <?php echo $journal['designation']; ?>
         </h2>
         <?php 
-            $ecritures = get_recent_ecritures($journal['id'], $id_societe['id'], $compta['date_debut_exercice'], $compta['date_fin_exercice'], null);
+            $ecritures = get_recent_ecritures($journal['id'], $id_societe['id'], $compta['date_debut_exercice'], $compta['date_fin_exercice'], 3);
             if(empty($ecritures)) { ?>
                 <p class="empty-pan"> Aucune disponible écriture pour le moment </p>
         <?php } else { ?>
