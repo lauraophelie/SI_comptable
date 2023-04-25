@@ -7,7 +7,6 @@
     $societe_compta = find_societe_comptabilite($societe_id);
     $date_fin_exercice = $societe_compta['date_fin_exercice'];
     $date_debut_exercice = $societe_compta['date_debut_exercice'];
-
 ?>
 
 <h1 id="main-title"> Bilan : Résultats </h1>
