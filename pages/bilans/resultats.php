@@ -172,7 +172,7 @@
                 <h4 style="text-align:center"> VIII. RESULTAT NET DES ACTIVITES ORDINAIRES </h4>
             </th>
             <th> </th>
-            <th> Ar  </th>
+            <th> Ar <?php echo $res = $produit_ordinaire - $charge_ordinaire; ?> </th>
         </tr>
         <tr class="passif-line">
             <td> Eléments extraordinaires ( produits ) </td>
@@ -189,14 +189,14 @@
                 <h4 style="text-align:center"> IX. RESULTAT EXTRAORDINAIRE </h4>
             </th>
             <th> </th>
-            <th> Ar <?php echo $resultat_extraordinaire=$solde77+$solde67; ?> </th>
+            <th> Ar <?php echo $resultat_extraordinaire=$solde77-$solde67; ?> </th>
         </tr>
         <tr class="passif-line total-line">
             <th> 
                 <h4 style="text-align:center"> X. RESULTAT NET DE L'EXERCICE </h4>
             </th>
             <th> </th>
-            <th> Ar 0 </th>
+            <th> Ar <?php echo $res + $resultat_extraordinaire; ?> </th>
         </tr>
     </table>
 </div>

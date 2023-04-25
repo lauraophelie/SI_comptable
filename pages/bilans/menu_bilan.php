@@ -29,6 +29,6 @@
   });
 
   resultatRadio.addEventListener("click", () => {
-    window.location.href = "./page.php?page=bilans/resultat";
+    window.location.href = "./page.php?page=bilans/resultats";
   });
 </script>
