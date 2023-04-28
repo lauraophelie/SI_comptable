@@ -302,14 +302,28 @@ CREATE TABLE IF NOT EXISTS pourcentage_compte_6(
 
 ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT check_compte_6 CHECK (id_compte_6 LIKE '6%');
 
+CREATE TABLE IF NOT EXISTS produit(
+     id SERIAL PRIMARY KEY,
+     designation VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS centre(
+     id SERIAL PRIMARY KEY,
+     designation VARCHAR(50)
+);
+
 CREATE TABLE IF NOT EXISTS compte_6_centre(
      id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
-     id_centre INTEGER,
+     id_centre INTEGER REFERENCES centre(id),
      pourcentage DECIMAL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS compte_6_produit(
      id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
-     id_produit INTEGER,
+     id_produit INTEGER REFERENCES produit(id),
      pourcentage DECIMAL DEFAULT 0
 );
+
+INSERT INTO centre(designation) VALUES('Administration'), ('Usine'), ('Plantation');
+
+INSERT INTO produit(designation) VALUES('Maïs concassé');
