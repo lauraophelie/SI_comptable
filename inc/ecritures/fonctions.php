@@ -125,4 +125,63 @@
         $result = $stmt->fetchColumn();
         return $result;
     }
+
+/// comptes 6 
+
+    function insert_param_compte_6($compte_6, $fixe, $variable, $inc, $n_inc) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+            $sql = "INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc, n_inc) VALUES('%s', %d, %d, %d, %d)";
+            $sql = sprintf($sql, $compte_6, $fixe, $variable, $inc, $n_inc);
+
+            $stmt = $connexion->prepare($sql);
+            $stmt->execute();
+            $connexion->commit();
+
+            return true;
+        } catch(Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function insert_produit_compte_6($id_compte_6, $id_produit, $pourcentage) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+
+            $sql = sprintf("INSERT INTO compte_6_produit(id_compte_6, id_produit, pourcentage) VALUES('%s', %d, %d)", 
+                            $id_compte_6, $id_produit, $pourcentage);
+            $stmt = $connexion->prepare($sql);
+            $stmt->execute();
+            $connexion->commit();
+            
+            return true;
+        } catch(Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function insert_centre_compte_6($id_compte_6, $id_centre, $pourcentage) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+
+            $sql = sprintf("INSERT INTO compte_6_centre(id_compte_6, id_centre, pourcentage) VALUES('%s', %d, %d)", 
+                            $id_compte_6, $id_centre, $pourcentage);
+            $stmt = $connexion->prepare($sql);
+            $stmt->execute();
+            $connexion->commit();
+            
+            return true;
+        } catch(Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 ?>
