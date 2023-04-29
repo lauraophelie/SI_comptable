@@ -66,11 +66,13 @@
             </tr>
             <?php if($code === 'AC') { ?>
                 <tr id="input-title">
+                    <th style="padding-top: 25px"> </th>
                     <th style="padding-top: 25px"> Fixe </th>
                     <th style="padding-top: 25px"> Variable </th>
                     <th> </th>
                 </tr>
                 <tr id="input-line">
+                    <td> <input type="text" name="cg" id="compte-input-1" placeholder="N° de compte" readonly/> </td>
                     <td> <input type="text" name="fixe" id="fixe" placeholder="%"> </td>
                     <td> <input type="text" name="variable" id="variable" placeholder="%"> </td>
                     <td>
