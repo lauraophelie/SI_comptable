@@ -40,11 +40,11 @@
                 <td> <input type="text" name="libelle" id=""/></td>
             </tr>
             <tr id="input-title">
-                <th> Devise </th>
-                <th> Montant </th>
-                <th> Taux </th>
-                <th> Débit </th>
-                <th> Crédit </th>
+                <th style="padding-top: 25px"> Devise </th>
+                <th style="padding-top: 25px"> Montant </th>
+                <th style="padding-top: 25px"> Taux </th>
+                <th style="padding-top: 25px"> Débit </th>
+                <th style="padding-top: 25px"> Crédit </th>
                 <th> </th>
             </tr>
             <tr id="input-line">
@@ -60,10 +60,27 @@
                 </td>
                 <td> <input type="text" name="montant_devise" id=""/> </td>
                 <td> <input type="text" name="taux" id=""/> </td>
-                <td> <input type="text" name="debit" id=""/> </td>
-                <td> <input type="text" name="credit" id=""/> </td>
+                <td> <input type="text" name="debit" id="" value="0"/> </td>
+                <td> <input type="text" name="credit" id="" value="0"/> </td>
                 <td> <button type="submit" id="add-ecriture-button"> Ajouter </button> </td>
             </tr>
+            <?php if($code === 'AC') { ?>
+                <tr id="input-title">
+                    <th style="padding-top: 25px"> Fixe </th>
+                    <th style="padding-top: 25px"> Variable </th>
+                    <th> </th>
+                </tr>
+                <tr id="input-line">
+                    <td> <input type="text" name="fixe" id="" placeholder="%"> </td>
+                    <td> <input type="text" name="variable" id="" placeholder="%"> </td>
+                    <td>
+                        <select name="inc" id="">
+                            <option value="inc"> Incorporable </option>
+                            <option value="ninc"> Non incorporable </option>
+                        </select>
+                    </td>
+                </tr>
+            <?php } ?>
         </table>
         <input type="text" name="code_journal" id="code_journal" value="<?php echo $code; ?>" hidden/>
         <input type="text" name="societe" id="societe_nom" value="<?php echo $societe; ?>" hidden/>

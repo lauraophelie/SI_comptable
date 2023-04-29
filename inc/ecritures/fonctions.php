@@ -184,4 +184,8 @@
             return false;
         }
     }
+
+    function get_all_produit() {
+        
+    }
 ?>
