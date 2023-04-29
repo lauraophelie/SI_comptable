@@ -90,7 +90,7 @@
         <table id="table-ecriture" style="margin-left: -25%; margin-top: 25px"> 
             <tbody> </tbody>
         </table>
-        <button id="valider_ecriture" type=button onclick="envoyerEcritures()"> Valider </button>
+        <button id="valider_ecriture" type=button onclick="envoyerEcritures()"> Valider l'écriture </button>
     </form>
 
     <script src="../assets/js/jquery.js"> </script>

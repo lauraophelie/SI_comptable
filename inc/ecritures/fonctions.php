@@ -186,6 +186,20 @@
     }
 
     function get_all_produit() {
-        
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM produit";
+        $stmt = $connexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function get_all_centre() {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM centre";
+        $stmt = $connexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 ?>
