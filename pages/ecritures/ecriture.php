@@ -36,7 +36,7 @@
             <tr id="input-line">
                 <td> <input type="text" name="date_ecriture" id=""/> </td>
                 <td> <input type="text" name="numero_piece"/> </td>
-                <td> <input type="text" name="cg" id="compte-input"/> </td>
+                <td> <input type="text" name="cg" id="compte-input" oninput="checkPourcentage()"/> </td>
                 <td> <input type="text" name="ct" id="compte-input"/> </td>
                 <td> <input type="text" name="libelle" id=""/></td>
             </tr>
@@ -101,3 +101,4 @@
     <script src="./ecritures/js/script.js"> </script>
     <script src="./ecritures/js/script_2.js"> </script>
     <script src="./ecritures/js/script_ecritures.js"> </script>
+    <script src="./ecritures/js/script_check_pourcentage.js"> </script>

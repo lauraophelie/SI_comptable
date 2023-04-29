@@ -296,8 +296,8 @@ CREATE TABLE IF NOT EXISTS pourcentage_compte_6(
      id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
      fixe DECIMAL DEFAULT 0,
      variable DECIMAL DEFAULT 0,
-     inc DECIMAL DEFAULT 0,
-     n_inc DECIMAL DEFAULT 0
+     inc INTEGER DEFAULT 0,
+     n_inc INTEGER DEFAULT 0
 );
 
 ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT check_compte_6 CHECK (id_compte_6 LIKE '6%');
@@ -332,5 +332,5 @@ INSERT INTO produit(designation) VALUES('Maïs concassé');
 
 ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT compte_unique UNIQUE(id_compte_6);
 
-INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable) VALUES('60100', 50, 50);
+INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('60100', 50, 50, 1);
 

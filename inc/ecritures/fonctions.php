@@ -204,7 +204,7 @@
     }
 
     function check_pourcentages_compte_6($compte_6) {
-        $connexion = db_connect();
+        $connexion = dbconnect();
         $sql = "SELECT * FROM pourcentage_compte_6 WHERE id_compte_6=:id_compte_6";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':id_compte_6', $compte_6);
