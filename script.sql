@@ -157,7 +157,7 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
 /**CREATE OR REPLACE VIEW compte_tiers AS
 SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;**/
 
---------------------------------- 05-04-2023 ---------------------------------------------------
+------------------------------------------------- 05-04-2023 ---------------------------------------------------
 
 CREATE TYPE type_tiers AS ENUM('CL', 'FO');
 
@@ -191,7 +191,7 @@ SELECT numero, designation, debit, credit, date_ecriture, societe from ecriture_
 select numero, designation, sum(debit) as deb, sum(credit) as cred from v_balance group by numero, designation;
 
 
------------------------- 12-04-2023 ----------------------------------------------------------
+------------------------------------------- 12-04-2023 ----------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS taux_devise(
      devise INTEGER REFERENCES devise(id),
@@ -327,3 +327,10 @@ CREATE TABLE IF NOT EXISTS compte_6_produit(
 INSERT INTO centre(designation) VALUES('Administration'), ('Usine'), ('Plantation');
 
 INSERT INTO produit(designation) VALUES('Maïs concassé');
+
+------------------------------------ 29-04-2023 ----------------------------------------------------------------
+
+ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT compte_unique UNIQUE(id_compte_6);
+
+INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable) VALUES('60100', 50, 50);
+
