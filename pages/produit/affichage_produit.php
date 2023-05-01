@@ -1,5 +1,5 @@
 <?php
-    require("../../inc/produit/fonctions.php");
+    require("../inc/produit/fonctions.php");
     $produits = findAll();
 ?>
     <h1 id="main-title"> Tous les produits </h1>
@@ -21,8 +21,8 @@
     <?php } else { ?>
         <table id="pcg_table">
             <tr id="data-title">
-                <th> numero </th>
-                <th> produits </th>
+                <th> ID </th>
+                <th> Désignation </th>
                 <th> </th>
             </tr>
             <?php foreach($produits as $produit) { ?>
@@ -31,12 +31,12 @@
                     <td> <?php echo $produit['designation']; ?> </td>
                     <td>
                         <a href="modif_produit.php?id=<?php echo $produit['id']; ?>">
-                            <p>Modifier</p>
+                            <i class="fas fa-pen"> </i>
                         </a>
                     </td>
                     <td>
                         <a href="../../inc/produit/traitement_delete.php?id=<?php echo $produit['id']; ?>">
-                            <p>Supprimer</p>
+                            <i class="fas fa-trash-alt"> </i>
                         </a>
                     </td>
                 </tr>

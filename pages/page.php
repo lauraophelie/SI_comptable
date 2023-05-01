@@ -112,6 +112,13 @@
                     <p> Bilans </p>
                 </a>
             </div>
+            <div class="liste-element
+                <?php if($page == "produit/affichage_produit" || strpos($page, "produit/") !== false) echo "active"; ?>
+                ">
+                <a href="./page.php?page=produit/affichage_produit">
+                    <p> Produits </p>
+                </a>
+            </div>
             <div class="liste-element ">
                 <a href="./deconnexion.php">
                     <p> Se déconnecter </p>
