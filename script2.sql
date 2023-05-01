@@ -10,4 +10,4 @@ create table produit(
     designation VARCHAR(50)
 );
 
-insert into produit(designation) values(mais),(manioc),(riz),(fromage),(chocolat),(Yaourt),(carottes),(lait);
+insert into produit(designation) values('mais'),('manioc'),('riz'),('fromage'),('chocolat'),('Yaourt'),('carottes'),('lait');
