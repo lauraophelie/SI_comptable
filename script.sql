@@ -63,12 +63,12 @@ INSERT INTO devise(devise) VALUES('Won'), ('Yen'), ('Mur');
 
 INSERT INTO devise_equivalence(devise) VALUES('Ariary'), ('Euro'), ('Dollar'), ('Won'), ('Yen');
 
-CREATE TABLE IF NOT EXISTS pcompte_general2005(
+CREATE TABLE IF NOT EXISTS pcg2005(
     numero VARCHAR(5) PRIMARY KEY,
     designation VARCHAR(40)
 );
 
-INSERT INTO pcompte_general2005(numero,designation) VALUES('10100', 'CAPITAL'),
+INSERT INTO pcg2005(numero, designation) VALUES('10100', 'CAPITAL'),
                                             ('10610', 'RESERVE LEGALE'),
                                             ('10620', 'RESERVES STATUTAIRES'),
                                             ('11000', 'REPORT A NOUVEAU'),
@@ -104,7 +104,7 @@ INSERT INTO pcompte_general2005(numero,designation) VALUES('10100', 'CAPITAL'),
                                             ('32110', 'STOCK MATIERES PREMIERES'),
                                             ('32120', 'PETITRES FOURNITURES');
                                         
-INSERT INTO pcompte_general2005(numero,designation) VALUES('41100', 'CLIENT');                                     
+INSERT INTO pcg2005(numero,designation) VALUES('41100', 'CLIENT');                                     
 
 CREATE TABLE IF NOT EXISTS code_journal(
     id VARCHAR(10) PRIMARY KEY,
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS ecriture_journal(
     societe INTEGER REFERENCES societe(id),
     date_ecriture DATE,
     numero_piece VARCHAR(50) NOT NULL,
-    compte_general VARCHAR(5) REFERENCES pcompte_general2005(numero),
+    compte_general VARCHAR(5) REFERENCES pcg2005(numero),
     compte_tiers VARCHAR(13),
     libelle VARCHAR(50),
     devise INTEGER,
@@ -155,9 +155,9 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
 );**/
 
 /**CREATE OR REPLACE VIEW compte_tiers AS
-SELECT numero as num from pcompte_general2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;**/
+SELECT numero as num from pcg2005 where CAST(numero AS integer) BETWEEN 40100 AND 46000;**/
 
---------------------------------- 05-04-2023 ---------------------------------------------------
+------------------------------------------------- 05-04-2023 ---------------------------------------------------
 
 CREATE TYPE type_tiers AS ENUM('CL', 'FO');
 
@@ -186,12 +186,12 @@ INSERT INTO tiers(type_tiers, numero, designation) VALUES('FO', 'JIRAMA', 'FRNS:
 
 
 CREATE OR REPLACE VIEW v_balance AS
-SELECT numero, designation, debit, credit, date_ecriture, societe from ecriture_journal JOIN pcompte_general2005 ON compte_general = pcompte_general2005.numero;
+SELECT numero, designation, debit, credit, date_ecriture, societe from ecriture_journal JOIN pcg2005 ON compte_general = pcg2005.numero;
 
 select numero, designation, sum(debit) as deb, sum(credit) as cred from v_balance group by numero, designation;
 
 
------------------------- 12-04-2023 ----------------------------------------------------------
+------------------------------------------- 12-04-2023 ----------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS taux_devise(
      devise INTEGER REFERENCES devise(id),
@@ -242,7 +242,7 @@ WHERE numero = '10100' OR numero = '12800'
 GROUP BY numero, libelle, societe
 ORDER BY numero;
 
-SELECT * FROM pcompte_general2005 where numero LIKE '5%';
+SELECT * FROM pcg2005 where numero LIKE '5%';
 
 SELECT DISTINCT numero, designation as libelle, societe, SUM(debit) as total_debits, SUM(credit) as total_credits
 FROM v_balance
@@ -289,4 +289,48 @@ FROM v_balance
 WHERE (numero LIKE '130%' AND libelle LIKE '%IMPOTS DIFFERES%' AND societe = 1)
 GROUP BY numero, libelle, societe
 ORDER BY numero;
+
+---------------------------------------------- 28-04-2023 ---------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS pourcentage_compte_6(
+     id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
+     fixe DECIMAL DEFAULT 0,
+     variable DECIMAL DEFAULT 0,
+     inc INTEGER DEFAULT 0,
+     n_inc INTEGER DEFAULT 0
+);
+
+ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT check_compte_6 CHECK (id_compte_6 LIKE '6%');
+
+CREATE TABLE IF NOT EXISTS produit(
+     id SERIAL PRIMARY KEY,
+     designation VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS centre(
+     id SERIAL PRIMARY KEY,
+     designation VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS compte_6_centre(
+     id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
+     id_centre INTEGER REFERENCES centre(id),
+     pourcentage DECIMAL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS compte_6_produit(
+     id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
+     id_produit INTEGER REFERENCES produit(id),
+     pourcentage DECIMAL DEFAULT 0
+);
+
+INSERT INTO centre(designation) VALUES('Administration'), ('Usine'), ('Plantation');
+
+INSERT INTO produit(designation) VALUES('Maïs concassé');
+
+------------------------------------ 29-04-2023 ----------------------------------------------------------------
+
+ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT compte_unique UNIQUE(id_compte_6);
+
+INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('60100', 50, 50, 1);
 

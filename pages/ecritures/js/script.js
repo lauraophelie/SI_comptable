@@ -21,29 +21,29 @@ $(document).ready(function() {
     $('#add-ecriture-button').click(function(event) {
       event.preventDefault();
   
-        var dateEcriture = $('input[name="date_ecriture"]').val();
-        var numeroPiece = $('input[name="numero_piece"]').val();
-        var cg = $('input[name="cg"]').val();
-        var ct = $('input[name="ct"]').val();
-        var libelle = $('input[name="libelle"]').val();
-        var devise = $('select[name="devise"]').val();
-        var montantDevise = $('input[name="montant_devise"]').val();
-        var taux = $('input[name="taux"]').val();
-        var debit = $('input[name="debit"]').val();
-        var credit = $('input[name="credit"]').val();
+        var dateEcriture    = $('input[name="date_ecriture"]').val();
+        var numeroPiece     = $('input[name="numero_piece"]').val();
+        var cg              = $('input[name="cg"]').val();
+        var ct              = $('input[name="ct"]').val();
+        var libelle         = $('input[name="libelle"]').val();
+        var devise          = $('select[name="devise"]').val();
+        var montantDevise   = $('input[name="montant_devise"]').val();
+        var taux            = $('input[name="taux"]').val();
+        var debit           = $('input[name="debit"]').val();
+        var credit          = $('input[name="credit"]').val();
     
-        var newRow = '<tr>' +
-                    '<td>' + dateEcriture + '</td>' +
-                    '<td>' + numeroPiece + '</td>' +
-                    '<td>' + cg + '</td>' +
-                    '<td>' + ct + '</td>' +
-                    '<td>' + libelle + '</td>' +
-                    '<td>' + devise + '</td>' +
-                    '<td>' + montantDevise + '</td>' +
-                    '<td>' + taux + '</td>' +
-                    '<td>' + debit + '</td>' +
-                    '<td>' + credit + '</td>' +
-                    '</tr>';
+        var newRow =  '<tr>' +
+                      '<td>' + dateEcriture + '</td>' +
+                      '<td>' + numeroPiece + '</td>' +
+                      '<td>' + cg + '</td>' +
+                      '<td>' + ct + '</td>' +
+                      '<td>' + libelle + '</td>' +
+                      '<td>' + devise + '</td>' +
+                      '<td>' + montantDevise + '</td>' +
+                      '<td>' + taux + '</td>' +
+                      '<td>' + debit + '</td>' +
+                      '<td>' + credit + '</td>' +
+                      '</tr>';
     
         tableEcriture.append(newRow);
     
