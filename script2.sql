@@ -11,3 +11,10 @@ create table produit(
 );
 
 insert into produit(designation) values('mais'),('manioc'),('riz'),('fromage'),('chocolat'),('Yaourt'),('carottes'),('lait');
+
+create table centre(
+    id serial primary key,
+    designation VARCHAR(50)
+);
+
+insert into centre(designation) values('usine'),('plantation'),('admin');
