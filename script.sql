@@ -188,7 +188,7 @@ INSERT INTO tiers(type_tiers, numero, designation) VALUES('FO', 'JIRAMA', 'FRNS:
 CREATE OR REPLACE VIEW v_balance AS
 SELECT numero, designation, debit, credit, date_ecriture, societe from ecriture_journal JOIN pcg2005 ON compte_general = pcg2005.numero;
 
-select numero, designation, sum(debit) as deb, sum(credit) as cred from v_balance group by numero, designation;
+select numero, designation, sum(debit) as debit, sum(credit) as credit from v_balance group by numero, designation;
 
 
 ------------------------------------------- 12-04-2023 ----------------------------------------------------------
@@ -334,3 +334,31 @@ ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT compte_unique UNIQUE(id_compte_6
 
 INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('60100', 50, 50, 1);
 
+
+------------------------------------ 02-05-2023 ----------------------------------------------------------------
+-- rectification import ecriture
+INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit) 
+                VALUES('AN', 1, '2022-12-31', 'AN2022', '16110', NULL, 'EMPRUNT A LT', 0, 1819280),
+                ('AN', 1, '2022-12-31', 'AN2022', '16510', NULL, 'EMPRUNT A MOYEN TERME', 0, 180720),
+                ('AN', 1, '2022-12-31', 'AN2022', '21880', NULL, 'AUTRES IMMOBILISATIONS CORP', 121800, 0),
+                ('AN', 1, '2022-12-31', 'AN2022', '39700', NULL, 'PROVISIONS/DEPRECIATIONS STOCKS', 0, 346580),
+                ('AN', 1, '2022-12-31', 'AN2022', '49100', NULL, 'PERTE/CLIENT', 0, 80000);
+
+-- table charge suppletif
+CREATE TABLE charge_suppletif(
+     id SERIAL PRIMARY KEY,
+     societe INT REFERENCES societe(id),
+     motif VARCHAR(35),
+     valeur DOUBLE PRECISION NOT NULL,
+     date_charge DATE NOT NULL
+);
+
+INSERT INTO charge_suppletif(societe,motif,valeur,date_charge) 
+     VALUES(1,'Heure supplémentaire DG',200000,'31-01-2023');
+
+-- INSERT INTO charge_suppletif(societe,motif,valeur,date_charge) 
+--     VALUES(%d,'%s',%d,'%s');
+
+UPDATE charge_suppletif SET motif = '%s', valeur = %d, date_charge = '%s'  WHERE id = %d;
+
+DELETE from charge_suppletif WHERE id = %d;
