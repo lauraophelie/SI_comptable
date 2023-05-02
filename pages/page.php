@@ -119,6 +119,13 @@
                     <p> Produits </p>
                 </a>
             </div>
+            <div class="liste-element
+                <?php if($page == "centre/affichage_centre" || strpos($page, "centre/") !== false) echo "active"; ?>
+                ">
+                <a href="./page.php?page=centre/affichage_centre">
+                    <p> Centres </p>
+                </a>
+            </div>
             <div class="liste-element ">
                 <a href="./deconnexion.php">
                     <p> Se déconnecter </p>
