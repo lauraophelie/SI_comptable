@@ -75,7 +75,7 @@
 
     function get_all_by_journal($code, $societe, $date_exercice, $date_fin) {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin) ORDER BY date_ecriture DESC";
+        $sql = "SELECT * FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin) ORDER BY compte_general ASC";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':journal', $code);
         $stmt->bindParam(':societe', $societe);

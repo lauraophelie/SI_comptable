@@ -18,3 +18,4 @@ create table centre(
 );
 
 insert into centre(designation) values('usine'),('plantation'),('admin');
+
