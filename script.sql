@@ -343,22 +343,3 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
                 ('AN', 1, '2022-12-31', 'AN2022', '21880', NULL, 'AUTRES IMMOBILISATIONS CORP', 121800, 0),
                 ('AN', 1, '2022-12-31', 'AN2022', '39700', NULL, 'PROVISIONS/DEPRECIATIONS STOCKS', 0, 346580),
                 ('AN', 1, '2022-12-31', 'AN2022', '49100', NULL, 'PERTE/CLIENT', 0, 80000);
-
--- table charge suppletif
-CREATE TABLE charge_suppletif(
-     id SERIAL PRIMARY KEY,
-     societe INT REFERENCES societe(id),
-     motif VARCHAR(35),
-     valeur DOUBLE PRECISION NOT NULL,
-     date_charge DATE NOT NULL
-);
-
-INSERT INTO charge_suppletif(societe,motif,valeur,date_charge) 
-     VALUES(1,'Heure supplémentaire DG',200000,'31-01-2023');
-
--- INSERT INTO charge_suppletif(societe,motif,valeur,date_charge) 
---     VALUES(%d,'%s',%d,'%s');
-
-UPDATE charge_suppletif SET motif = '%s', valeur = %d, date_charge = '%s'  WHERE id = %d;
-
-DELETE from charge_suppletif WHERE id = %d;
