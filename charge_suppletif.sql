@@ -6,8 +6,7 @@ CREATE TABLE charge_suppletif(
      id_produit INT REFERENCES produit(id),
      societe INT REFERENCES societe(id),
      designation VARCHAR(35),
-     categorie VARCHAR(15) DEFAULT 'INCORPORABLE',
-
+     categorie VARCHAR(15) DEFAULT 'INCORPORABLE'
 );
 
 create TABLE unite_oeuvre(
@@ -36,6 +35,10 @@ create table details_ecriture_charge_suppletif(
      valeur_centre int not null
 );
 
+SELECT * from ecriture_charge_suppletif
+     JOIN details_ecriture_charge_suppletif ON id_ecriture = ecriture_charge_suppletif.id
+     JOIN centre ON id_centre = centre.id
+
 INSERT INTO charge_suppletif(societe, designation) 
      VALUES(1,'Heure supplémentaire DG');
 
@@ -45,3 +48,6 @@ INSERT INTO charge_suppletif(societe, designation)
 UPDATE charge_suppletif SET motif = '%s', valeur = %d, date_ecriture = '%s'  WHERE id = %d;
 
 DELETE from charge_suppletif WHERE id = %d;
+
+SELECT charge_suppletif.*, designation FROM charge_suppletif
+     JOIN produit on id_produit = produit.id;

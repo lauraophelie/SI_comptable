@@ -79,8 +79,17 @@
         return $resultat;
     }
 
-    function getDetailChargeSuppletif(){
-        
+    function getDetailChargeSuppletif($id){
+        $connexion = dbConnect();
+        $sql="SELECT * from charge_suppletif join ecriture_charge_suppletive on charge_suppletive.id = id_charge_suppletive join details_ecriture_charge_suppletive on id_ecriture = ecriture_charge_suppletive.id where id = :id";
+        $stmt=$connexion->prepare($sql);
+        $stmt->bindParam(':id',$id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
+    function getSumVariableSuppletive(){
+        
+    }
 ?>
