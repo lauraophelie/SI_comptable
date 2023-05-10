@@ -66,10 +66,10 @@ SELECT charge_suppletif.designation as nom_charge, societe, id_charge_suppletive
 
 -- req1
 SELECT sum(valeur*variable) as prix_variable from v_prix
-where date_ecriture < date_fin_exercice
-AND date_ecriture > date_debut_exercice
+where date_ecriture > date_debut_exercice
+AND societe = :societe
 
 -- req2
 SELECT sum(valeur*fixe) as prix_fixe from v_prix
-where date_ecriture < date_fin_exercice
-AND date_ecriture > date_debut_exercice
+where date_ecriture < date_debut_exercice
+AND societe = :societe
