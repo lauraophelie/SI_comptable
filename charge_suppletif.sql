@@ -6,20 +6,20 @@ CREATE TABLE charge_suppletif(
      id_produit INT REFERENCES produit(id),
      societe INT REFERENCES societe(id),
      designation VARCHAR(35),
+     id_unite_oeuvre INT REFERENCES unite_oeuvre(id) NULL,
      categorie VARCHAR(15) DEFAULT 'INCORPORABLE'
 );
 
 create TABLE unite_oeuvre(
      id SERIAL PRIMARY KEY,
-     designation VARCHAR(35) NOT NULL,
-     prix_unitaire DOUBLE PRECISION NOT NULL 
+     designation VARCHAR(35) NOT NULL
 );
 
 create table ecriture_charge_suppletif(
      id SERIAL PRIMARY KEY,
      id_charge_suppletive INT REFERENCES charge_suppletif(id),
-     quantite DOUBLE PRECISION NOT NULL,
-     id_unite_oeuvre INT REFERENCES unite_oeuvre(id),
+     nombre_unite_oeuvre INT NOT NULL,
+     cout_unite_oeuvre DOUBLE PRECISION NOT NULL
      date_ecriture DATE NOT NULL,
      id_devise INT REFERENCES devise(id),
      variable DOUBLE PRECISION,
@@ -65,11 +65,11 @@ SELECT charge_suppletif.designation as nom_charge, societe, id_charge_suppletive
      join charge_suppletif on id_charge_suppletive=charge_suppletif.id
 
 -- req1
-SELECT sum(valeur*variable) as prix_variable from v_prix
+SELECT sum(valeur*variable) as cout_variable from v_prix
 where date_ecriture > date_debut_exercice
 AND societe = :societe
 
 -- req2
-SELECT sum(valeur*fixe) as prix_fixe from v_prix
+SELECT sum(valeur*fixe) as cout_fixe from v_prix
 where date_ecriture < date_debut_exercice
 AND societe = :societe
