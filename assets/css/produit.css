@@ -26,7 +26,7 @@
 
 #pop-up {
     height: fit-content;
-    width: 550px;
+    width: 800px;
     border: 1px solid transparent;
     background-color: white;
     position: absolute;
@@ -45,7 +45,7 @@
 }
 
 #pop-up * {
-    padding-left: 25px;
+    padding-left: 20px;
 }
 
 #pop-up-close {

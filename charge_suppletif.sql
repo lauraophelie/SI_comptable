@@ -13,7 +13,7 @@ CREATE TABLE charge_suppletif(
 create TABLE unite_oeuvre(
      id SERIAL PRIMARY KEY,
      designation VARCHAR(35) NOT NULL,
-     prix_unitaire DOUBLE PRECISION NOT NULL 
+     prix_unitaire DOUBLE PRECISION DEFAULT 0
 );
 
 create table ecriture_charge_suppletif(
