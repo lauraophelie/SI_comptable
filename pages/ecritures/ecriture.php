@@ -1,6 +1,6 @@
 <?php
-    require("../inc/devise/fonctions.php");
-    require("../inc/ecritures/fonctions.php");
+    require_once("../inc/devise/fonctions.php");
+    require_once("../inc/ecritures/fonctions.php");
     $devises = find_all();
 
     $code = $_GET['journal'];
@@ -36,7 +36,7 @@
             <tr id="input-line">
                 <td> <input type="text" name="date_ecriture" id=""/> </td>
                 <td> <input type="text" name="numero_piece"/> </td>
-                <td> <input type="text" name="cg" id="compte-input" oninput="checkPourcentage()"/> </td>
+                <td> <input type="text" name="cg" id="compte-input"/> </td>
                 <td> <input type="text" name="ct" id="compte-input"/> </td>
                 <td> <input type="text" name="libelle" id=""/></td>
             </tr>
@@ -71,20 +71,62 @@
                     <th style="padding-top: 25px"> Fixe </th>
                     <th style="padding-top: 25px"> Variable </th>
                     <th> </th>
+                    <th> </th>
                 </tr>
                 <tr id="input-line">
                     <td> <input type="text" name="cg" id="compte-input-1" placeholder="N° de compte" readonly/> </td>
                     <td> <input type="text" name="fixe" id="fixe" placeholder="%"> </td>
                     <td> <input type="text" name="variable" id="variable" placeholder="%"> </td>
                     <td>
-                        <select name="inc" id="">
+                        <select name="inc" id="inc_n_inc">
                             <option value="inc"> Incorporable </option>
                             <option value="ninc"> Non incorporable </option>
                         </select>
                     </td>
+                    <td> 
+                        <button id="pop-up-produit">
+                            <i class="fas fa-list"> </i>
+                        </button>
+                    </td>
                 </tr>
+                </table>
+                <div id="popup-overlay"> </div>
+                <div id="pop-up">
+                    <div style="height: 15px"> </div>
+                    <h2> Produit(s) </h2>
+                    <table id="produit-table">
+                        <?php 
+                            $produits = get_all_produit();
+                            foreach($produits as $produit) {
+                        ?>
+                            <tr> 
+                                <td> <?php echo $produit['designation']; ?> </td>
+                                <td>
+                                    <input type="text" name="<?php echo $produit['id']; ?>" id="<?php echo "produit".$produit['id']; ?>" placeholder="%">
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                    <h2> Centre(s) </h2>
+                    <table id="centre-table">
+                        <?php
+                            $centres = get_all_centre();
+                            $i = 1;
+                            foreach($centres as $centre) {
+                        ?>
+                            <tr>
+                                <td> <?php echo $centre['designation']; ?> </td>
+                                <td>
+                                    <input type="text" name="<?php echo 'centre'.$i; ?>" id="<?php echo 'centre'.$i; ?>" placeholder="%">
+                                </td>
+                            </tr>
+                        <?php $i++; } ?>
+                    </table>
+                    <button id="pop-up-close"> Fermer </button>
+                    <button id="pop-up-add"> Valider </button>
+                    <div style="height: 50px"> </div>
+                </div>
             <?php } ?>
-        </table>
         <input type="text" name="code_journal" id="code_journal" value="<?php echo $code; ?>" hidden/>
         <input type="text" name="societe" id="societe_nom" value="<?php echo $societe; ?>" hidden/>
     </form>
@@ -102,3 +144,4 @@
     <script src="./ecritures/js/script_2.js"> </script>
     <script src="./ecritures/js/script_ecritures.js"> </script>
     <script src="./ecritures/js/script_check_pourcentage.js"> </script>
+    <script src="./ecritures/js/script_produit.js"> </script>

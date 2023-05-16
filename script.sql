@@ -336,6 +336,12 @@ INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('60100
 
 
 ------------------------------------ 02-05-2023 ----------------------------------------------------------------
+
+INSERT INTO produit(designation) VALUES('Farine');
+
+INSERT INTO compte_6_produit(id_compte_6, id_produit, pourcentage) VALUES('60100', 1, 60),
+                                                                           ('60100', 2, 40);
+
 -- rectification import ecriture
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit) 
                 VALUES('AN', 1, '2022-12-31', 'AN2022', '16110', NULL, 'EMPRUNT A LT', 0, 1819280),
@@ -343,3 +349,4 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
                 ('AN', 1, '2022-12-31', 'AN2022', '21880', NULL, 'AUTRES IMMOBILISATIONS CORP', 121800, 0),
                 ('AN', 1, '2022-12-31', 'AN2022', '39700', NULL, 'PROVISIONS/DEPRECIATIONS STOCKS', 0, 346580),
                 ('AN', 1, '2022-12-31', 'AN2022', '49100', NULL, 'PERTE/CLIENT', 0, 80000);
+
