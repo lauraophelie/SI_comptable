@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="../assets/css/ecritures/ajout_ecriture.css">
     <link rel="stylesheet" href="../assets/dashboard/dashboard.css">
     <link rel="stylesheet" href="../assets/css/menu/main_menu.css">
+    <link rel="stylesheet" href="../assets/css/menu/menu_compta.css">
 
     <title> <?php echo $titre[$page]; ?> </title>
 </head>
