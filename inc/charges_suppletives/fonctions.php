@@ -16,6 +16,21 @@
             }
     }
 
+    function getDebutCompta($id_societe){
+        try {
+            $connexion = dbconnect();
+            $sql = "select date_debut_exercice from comptabilite where societe = :societe order by date_debut_exercice desc limit 1";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':societe', $id_societe);
+            $stmt->execute();
+            $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $resultat[0]["date_debut_exercice"];
+        } catch (PDOException $e){
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
     function saveChargeSuppletif($idSociete,$designation) {
         try{
             $connexion = dbConnect();
@@ -31,10 +46,11 @@
         }
     }
 
-    function findAllChargeSuppletif(){
+    function findAllChargeSuppletif($id_societe){
         $connexion = dbConnect();
-        $sql="SELECT * from charge_suppletif";
+        $sql="SELECT * from charge_suppletif where societe = :societe";
         $stmt=$connexion->prepare($sql);
+        $stmt->bindParam(':societe',$id_societe);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -79,8 +95,37 @@
         return $resultat;
     }
 
-    function getDetailChargeSuppletif(){
-        
+    function getDetailChargeSuppletif($id){
+        $connexion = dbConnect();
+        $sql="SELECT * from charge_suppletif join ecriture_charge_suppletive on charge_suppletive.id = id_charge_suppletive join details_ecriture_charge_suppletive on id_ecriture = ecriture_charge_suppletive.id where id = :id";
+        $stmt=$connexion->prepare($sql);
+        $stmt->bindParam(':id',$id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
+    function getSumVariableSuppletive($id_societe){
+        $connexion = dbConnect();
+        $debut = getDebutCompta($id_societe);
+        $sql="SELECT sum(valeur*variable) as prix_variable from v_prix where date_ecriture > :date_debut_exercice AND societe = :societe";
+        $stmt=$connexion->prepare($sql);
+        $stmt->bindParam(':societe',$id_societe);
+        $stmt->bindParam(':date_debut_exercice',$debut);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function getSumFixeSuppletive($id_societe){
+        $connexion = dbConnect();
+        $debut = getDebutCompta($id_societe);
+        $sql="SELECT sum(valeur*variable) as prix_variable from v_prix where date_ecriture > :date_debut_exercice AND societe = :societe";
+        $stmt=$connexion->prepare($sql);
+        $stmt->bindParam(':societe',$id_societe);
+        $stmt->bindParam(':date_debut_exercice',$debut);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 ?>
