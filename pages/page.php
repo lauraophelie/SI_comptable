@@ -18,6 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/produit.css">
     <link rel="stylesheet" href="../assets/css/devise.css">
     <link rel="stylesheet" href="../assets/css/styles/style.css">
     <link rel="stylesheet" href="../assets/css/styles/formulaire.css">
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="../assets/css/parsley.css">
     <link rel="stylesheet" href="../assets/css/ecritures/ecritures.css">
     <link rel="stylesheet" href="../assets/css/ecritures/ajout_ecriture.css">
+    <link rel="stylesheet" href="../assets/dashboard/dashboard.css">
 
     <title> <?php echo $titre[$page]; ?> </title>
 </head>
@@ -37,98 +39,26 @@
             </h1>
         </div>
         <div id="liste-liens">
-
-            <div class="liste-element">
-                <a href="accueil/accueil.php">
-                    <p> Accueil </p>
-                </a>
-            </div>
-
             <div class="liste-element
-                <?php if($page === "societe/info.php" || strpos($page, "societe/") !== false) echo "active"; ?>
-            "> 
+                    <?php if($page === "societe/info.php" || strpos($page, "societe/") !== false) echo "active"; ?>
+                "> 
                 <a href="./page.php?page=societe/info">
-                    <p> Informations sur la société </p>
+                    <p> Informations </p>
                 </a>
             </div>
-
-            <div class="liste-element
-                <?php if($page === "pcg/affichage_pcg" || strpos($page, "pcg/") !== false) echo "active"; ?>
-            "> 
-                <a href="./page.php?page=pcg/affichage_pcg&num_page=1">
-                    <p> Plan comptable </p>
+            <div class="liste-element">
+                <a href="./page.php?page=dashboard/dashboard">
+                    <p> Tableau </p>
                 </a>
             </div>
-
-            <div class="liste-element
-                <?php if($page === "tiers/affichage_tiers.php" || strpos($page, "tiers/") !== false) echo "active"; ?>
-            ">
-                <a href="./page.php?page=tiers/affichage_tiers&num_page=1">
-                    <p> Tiers </p>
+            <div class="liste-element">
+                <a href="./page.php?page=dashboard/menu_analytique">
+                    <p> Analytique </p>
                 </a>
             </div>
-
-            <div class="liste-element
-                <?php if($page === "devise/affichage_devise" || strpos($page, "devise/") !== false) echo "active"; ?>
-            "> 
-                <a href="./page.php?page=devise/affichage_devise">
-                    <p> Devise </p>
-                </a>
-            </div>
-            
-            <div class="liste-element
-                <?php if($page === "journal/affichage_journaux" || strpos($page, "journal/") !== false) echo "active"; ?>
-            "> 
-                <a href="./page.php?page=journal/affichage_journaux">
-                    <p> Journal </p>
-                </a>
-            </div>
-            
-            <div class="liste-element 
-                <?php if($page == "ecritures/listes_ecritures" || strpos($page, "ecritures/") !== false) echo "active"; ?>
-            ">
-                <a href="./page.php?page=ecritures/listes_ecritures">
-                    <p> Ecritures </p>
-                </a>
-            </div>
-            <div class="liste-element 
-                <?php if($page == "grandlivre/grandlivre" || strpos($page, "grandlivre/") !== false) echo "active"; ?>
-            ">
-                <a href="./page.php?page=grandlivre/grandlivre">
-                    <p> Grand livre </p>
-                </a>
-            </div>
-            <div class="liste-element 
-                <?php if($page == "balance/balance" || strpos($page, "balance/") !== false) echo "active"; ?>
-                ">
-                <a href="./page.php?page=balance/balance">
-                    <p> Balance </p>
-                </a>
-            </div>
-            <div class="liste-element
-                <?php if($page == "bilans/menu_bilan" || strpos($page, "bilans/") !== false) echo "active"; ?>
-                ">
-                <a href="./page.php?page=bilans/menu_bilan">
-                    <p> Bilans </p>
-                </a>
-            </div>
-            <div class="liste-element
-                <?php if($page == "produit/affichage_produit" || strpos($page, "produit/") !== false) echo "active"; ?>
-                ">
-                <a href="./page.php?page=produit/affichage_produit">
-                    <p> Produits </p>
-                </a>
-            </div>
-            <div class="liste-element
-                <?php if($page == "centre/affichage_centre" || strpos($page, "centre/") !== false) echo "active"; ?>
-                ">
-                <a href="./page.php?page=centre/affichage_centre">
-                    <p> Centres </p>
-                </a>
-            </div>
-            <div class="liste-element ">
-                <a href="./deconnexion.php">
-                    <p> Se déconnecter </p>
+            <div class="liste-element">
+                <a href="./page.php?page=dashboard/menu_general">
+                    <p> Général </p>
                 </a>
             </div>
         </div>
