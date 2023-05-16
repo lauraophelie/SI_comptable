@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(249, 249, 249);
+    background-color: rgb(242, 242, 242);
 }
 
 .page-menu {
@@ -42,13 +42,6 @@ a {
 a:hover {
     color: white;
     font-weight: bold;
-}
-
-.active {
-    color: white;
-    height: 75%;
-    font-weight: bold; 
-    width: 75px;
 }
 
 .page-menu #liste-liens .liste-element p {

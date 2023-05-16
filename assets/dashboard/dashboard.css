@@ -10,6 +10,24 @@ a {
 .header-board-element {
   width: 100%;
   height: 175px;
+  /*.seuil-box {
+      background-color: lightblue;
+
+      p {
+          color: #00134c;
+      }
+      h2 {
+          color: black;
+      }
+  }
+
+  .seuil-box:hover {
+      box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);
+      color: white;
+      h2 {
+          color: white;
+      }
+  }*/
 }
 .header-board-element .board-element-content {
   background-color: white;
@@ -32,10 +50,19 @@ a {
 .header-board-element .board-element-content:first-child {
   margin-left: 60px;
 }
+.header-board-element .resultat-box {
+  background-color: #00134c;
+}
+.header-board-element .resultat-box p {
+  color: rgb(212, 212, 212);
+}
+.header-board-element .resultat-box h2 {
+  color: white;
+}
 .header-board-element .board-element-content:hover {
   box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);
   color: white;
-  background-color: #1C2541;
+  background-color: #00134c;
   transform: scale(1.05);
 }
 .header-board-element .board-element-content:hover p {
@@ -48,18 +75,23 @@ a {
   margin-top: 50px;
 }
 .header-board-charts .board-element-chart {
-  height: 115%;
-  width: 66%;
+  height: 60%;
+  width: 90%;
   /*background-color: white;*/
   margin-left: 60px;
+  float: left;
   /*box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);*/
 }
 .header-board-charts .board-element-chart canva {
   margin-top: 50px;
   padding-top: 50px;
 }
-.header-board-charts .board-element-case {
-  border: 1px solid black;
-  height: 20%;
-  width: 30%;
+
+.header-board-title {
+  height: 75px;
+  width: 100%;
+}
+.header-board-title h2 {
+  padding-left: 65px;
+  padding-top: 65px;
 }/*# sourceMappingURL=dashboard.css.map */

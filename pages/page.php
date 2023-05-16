@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="../assets/css/ecritures/ecritures.css">
     <link rel="stylesheet" href="../assets/css/ecritures/ajout_ecriture.css">
     <link rel="stylesheet" href="../assets/dashboard/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/menu/main_menu.css">
 
     <title> <?php echo $titre[$page]; ?> </title>
 </head>
@@ -38,29 +39,37 @@
                 <?php echo $_SESSION['nom']; ?>
             </h1>
         </div>
-        <div id="liste-liens">
-            <div class="liste-element
-                    <?php if($page === "societe/info.php" || strpos($page, "societe/") !== false) echo "active"; ?>
-                "> 
+        <div class="main-menu-element <?php if($page === "dashboard/dashboard.php" || strpos($page, "dashboard/") !== false) echo "active-link"; ?>">
+            <a href="./page.php?page=dashboard/dashboard">
+                <p> 
+                    <i class="fas fa-home"> </i>
+                    <label for=""> Dashboard </label>
+                </p>
+            </a>
+        </div>
+        <div class="main-menu-element <?php if($page === "societe/info.php" || strpos($page, "societe/") !== false) echo "active"; ?>">
                 <a href="./page.php?page=societe/info">
-                    <p> Informations </p>
+                    <p> 
+                        <i class="fas fa-user"> </i> 
+                        <label for=""> Société </label>
+                    </p>
                 </a>
-            </div>
-            <div class="liste-element">
-                <a href="./page.php?page=dashboard/dashboard">
-                    <p> Tableau </p>
-                </a>
-            </div>
-            <div class="liste-element">
-                <a href="./page.php?page=dashboard/menu_analytique">
-                    <p> Analytique </p>
-                </a>
-            </div>
-            <div class="liste-element">
-                <a href="./page.php?page=dashboard/menu_general">
-                    <p> Général </p>
-                </a>
-            </div>
+        </div>
+        <div class="main-menu-element">
+            <a href="./page.php?page=dashboard/menu_analytique">
+                <p> 
+                    <i class="fas fa-chart-bar"> </i>
+                    <label for=""> Analytique </label>
+                </p>
+            </a>
+        </div>
+        <div class="main-menu-element">
+            <a href="./page.php?page=dashboard/menu_general">
+                <p> 
+                    <i class="fas fa-wallet"> </i>
+                    <label for=""> Général </label>
+                </p>
+            </a>
         </div>
     </div>
     <div class="page-content">

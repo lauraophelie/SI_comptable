@@ -1,0 +1,26 @@
+.main-menu-element {
+  border: 1px solid transparent;
+  margin-top: 45px;
+  margin-left: 25px;
+  height: 50px;
+  width: 150px;
+}
+.main-menu-element a p {
+  padding-left: 20px;
+  padding-top: -15px;
+  font-size: 20px;
+  color: rgb(47, 47, 47);
+}
+.main-menu-element a p i {
+  font-size: 20px;
+}
+.main-menu-element a p label {
+  display: inline;
+  padding-left: 20px;
+  font-weight: lighter;
+  font-size: 16px;
+}
+
+i {
+  font-size: 20px;
+}/*# sourceMappingURL=main_menu.css.map */
