@@ -1,0 +1,85 @@
+#pop-up-produit {
+    height: 40px;
+    border: 1px solid transparent;
+    margin-top: 25px;
+    width: 80px;
+    background-color: #363636;
+    color: white;
+    transition: 0.5s;
+}
+
+#pop-up-produit:hover {
+    background-color: #242F40;
+    transform: scale(1.05);
+}
+
+#popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    display: none;
+}
+
+#pop-up {
+    height: fit-content;
+    width: 550px;
+    border: 1px solid transparent;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    overflow: auto;
+    display: none;
+    transition: 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#pop-up h2 {
+    padding-left: 35%;
+}
+
+#pop-up * {
+    padding-left: 25px;
+}
+
+#pop-up-close {
+    text-align: center;
+    height: 40px;
+    width: 180px;
+    margin-left: 50px;
+    padding-left: 0px;
+    margin-top: 15px;
+    border: 1px solid transparent;
+    background-color: #242F40;
+    color: white;
+}
+
+#pop-up-add {
+    text-align: center;
+    height: 40px;
+    width: 180px;
+    margin-left: 35px;
+    padding-left: 0px;
+    margin-top: 15px;
+    border: 1px solid transparent;
+    background-color: #05083f;
+    color: white;
+}
+
+#pop-up input {
+    background-color: whitesmoke;
+}
+
+#pop-up table tr td {
+    width: 200px;
+}
+
+
+
+
