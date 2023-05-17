@@ -2,7 +2,7 @@
     require("../inc/produit/fonctions.php");
     $produits = findAll();
 ?>
-    <h1 id="main-title"> Tous les produits </h1>
+    <h1 id="main-title"> Liste des produits </h1>
 
     <a href="./page.php?page=produit/form_insert">
         <button id="button-add"> Ajouter un produit </button>

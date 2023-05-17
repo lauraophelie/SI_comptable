@@ -1,8 +1,8 @@
 <?php
-    require("../../inc/centre/fonctions.php");
+    require_once("../inc/centre/fonctions.php");
     $centres = findAll();
 ?>
-    <h1 id="main-title"> Tous les centres</h1>
+    <h1 id="main-title"> Liste des centres </h1>
 
     <a href="form_insert.php">
         <button id="button-add"> Ajouter un centre </button>
@@ -22,7 +22,7 @@
         <table id="pcg_table">
             <tr id="data-title">
                 <th> ID </th>
-                <th> Designation </th>
+                <th> Désignation </th>
                 <th> </th>
             </tr>
             <?php foreach($centres as $centre) { ?>

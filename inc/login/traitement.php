@@ -20,7 +20,7 @@
         if($passe == $mdp){   
             $_SESSION['nom'] = $nom;
             $_SESSION['id_societe'] = $societe['id'];
-            header("Location: ../../pages/accueil/accueil.php ");
+            header("Location: ../../pages/page.php?page=dashboard/dashboard");
             exit();
         } else {
             header("Location: ../../pages/login/login.php?erreur=Mot de passe incorrect, veuillez réessayer&nom=".$nom);
