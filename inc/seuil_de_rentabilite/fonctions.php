@@ -30,7 +30,7 @@
         }
     }
 
-    function getSum($societe, $idproduit){
+    function getSum($societe, $id_produit){
         try {
             $date_debut = getDebutCompta($societe);
             $connexion = dbconnect();
@@ -67,6 +67,11 @@
             return false;
         }
     }
+
+    function getAllCharge($id_societe, $id_produit){
+        
+    }
+
 
     /*function getSumVariable($societe, $idproduit){
         try {
