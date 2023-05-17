@@ -168,3 +168,43 @@ INSERT INTO repartition_produit_centre(id_compte_6, id_produit, id_centre, fixe,
                                                                                                 ('60200', 1, 2, 20, 30),
                                                                                                 ('60200', 1, 3, 70, 50);
 
+CREATE OR REPLACE VIEW v_cle_rep_produit_compte_6 AS(
+    SELECT
+        DISTINCT(produit_id),
+        produit,
+        numero_compte,
+        pourcentage AS cle,
+        fixe,
+        variable
+    FROM
+	    v_repartition_produit_compte_6
+);
+
+SELECT * FROM v_cle_rep_produit_compte_6 ORDER BY numero_compte ASC;
+
+SELECT 
+    DISTINCT(produit_id),
+    produit, 
+    numero_compte,
+    id_centre,
+    centre,
+    c_fixe, 
+    c_variable
+FROM
+    v_repartition_produits_centre
+ORDER BY numero_compte ASC;
+
+CREATE OR REPLACE VIEW v_cle_rep_produit_centre AS(
+    SELECT 
+        DISTINCT(produit_id),
+        produit, 
+        numero_compte,
+        id_centre,
+        centre,
+        c_fixe, 
+        c_variable
+    FROM
+        v_repartition_produits_centre
+);
+
+SELECT * FROM v_cle_rep_produit_centre ORDER BY numero_compte ASC;
