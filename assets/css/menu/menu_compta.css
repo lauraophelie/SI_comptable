@@ -1,0 +1,38 @@
+.compta-menu-line-one {
+  width: 100%;
+  height: 175px;
+  margin-top: 50px;
+}
+.compta-menu-line-one .compta-menu-element-one {
+  width: 225px;
+  height: 100%;
+  float: left;
+  margin-left: 45px;
+  background-color: white;
+  box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);
+  transition: 0.5s;
+  cursor: pointer;
+}
+.compta-menu-line-one .compta-menu-element-one i {
+  padding-left: 35px;
+  padding-top: 35px;
+  color: rgb(23, 23, 23);
+}
+.compta-menu-line-one .compta-menu-element-one h2 {
+  padding-left: 35px;
+  padding-top: 10px;
+  font-weight: lighter;
+}
+.compta-menu-line-one .compta-menu-element-one:hover {
+  box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);
+  color: white;
+  background-color: #00134c;
+  transform: scale(1.05);
+}
+.compta-menu-line-one .compta-menu-element-one:hover i {
+  color: white;
+}
+
+#second-title {
+  padding-left: 25px;
+}/*# sourceMappingURL=menu_compta.css.map */

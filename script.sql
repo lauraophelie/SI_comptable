@@ -19,8 +19,9 @@ ALTER TABLE societe ADD CONSTRAINT check_min_length CHECK (length(nom) >= 5);
 CREATE TABLE IF NOT EXISTS adresses_societe(
      societe INTEGER REFERENCES societe(id),
      siege VARCHAR(35),
-     adresse VARCHAR(35),
+     adresse VARCHAR(90),
      telephone VARCHAR(10),
+     telecopie VARCHAR(10),
      mail VARCHAR(35)
 );
 

@@ -110,3 +110,40 @@ CREATE OR REPLACE VIEW v_repartition_produit_compte_6 AS(
 INSERT INTO repartition_produit_centre(id_compte_6, id_produit, id_centre, fixe, variable) VALUES('60100', 1, 1, 10, 20),
                                                                                                 ('60100', 1, 2, 20, 30),
                                                                                                 ('60100', 1, 3, 70, 50);
+
+SELECT 
+    v_rpc.date_ecriture,
+    v_rpc.numero_compte,
+    v_rpc.produit_id,
+    v_rpc.produit,
+    rpc.id_centre,
+    centre.designation AS centre,
+    rpc.fixe AS c_fixe,
+    ((v_rpc.valeur_fixe * rpc.fixe) / 100) AS centre_fixe,
+    rpc.variable AS c_variable,
+    ((v_rpc.valeur_variable * rpc.variable) / 100) AS centre_variable
+FROM repartition_produit_centre rpc 
+JOIN centre on rpc.id_centre = centre.id
+JOIN v_repartition_produit_compte_6 v_rpc ON rpc.id_produit = v_rpc.produit_id;
+
+CREATE OR REPLACE VIEW v_repartition_produits_centre AS(
+    SELECT 
+        v_rpc.date_ecriture,
+        v_rpc.numero_compte,
+        v_rpc.produit_id,
+        v_rpc.produit,
+        rpc.id_centre,
+        centre.designation AS centre,
+        rpc.fixe AS c_fixe,
+        ((v_rpc.valeur_fixe * rpc.fixe) / 100) AS centre_fixe,
+        rpc.variable AS c_variable,
+        ((v_rpc.valeur_variable * rpc.variable) / 100) AS centre_variable
+    FROM repartition_produit_centre rpc 
+    JOIN centre on rpc.id_centre = centre.id
+    JOIN v_repartition_produit_compte_6 v_rpc ON rpc.id_produit = v_rpc.produit_id
+);
+
+-------------------------------------------------------- 16-05-2023 ------------------------------------------------
+
+INSERT INTO unite_oeuvre(designation) VALUES('KG'), ('NB'), ('Cons Périodiques'), ('KW'), ('Litres'), ('Loyer Mensuel'),
+                                            ('Heure de travail'), ('Salaire mensuel');

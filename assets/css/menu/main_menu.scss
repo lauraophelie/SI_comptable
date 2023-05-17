@@ -1,0 +1,30 @@
+$icon-size : 20px;
+
+.main-menu-element {
+    border: 1px solid transparent;
+    a {
+        p {
+            padding-left: 20px;
+            padding-top: -15px;
+            font-size: $icon-size;
+            color: rgb(47, 47, 47);
+            i {
+                font-size: $icon-size;
+            }
+            label {
+                display: inline;
+                padding-left: 20px;
+                font-weight: lighter;
+                font-size: 16px;
+            }
+        }
+    }
+    margin-top: 45px;
+    margin-left: 25px;
+    height: 50px;
+    width: 150px;
+}
+
+i {
+    font-size: $icon-size;
+}

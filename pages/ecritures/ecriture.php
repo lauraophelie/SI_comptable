@@ -104,23 +104,14 @@
                                 <td>
                                     <input type="text" name="<?php echo $produit['id']; ?>" id="<?php echo "produit".$produit['id']; ?>" placeholder="%">
                                 </td>
-                            </tr>
-                        <?php } ?>
-                    </table>
-                    <h2> Centre(s) </h2>
-                    <table id="centre-table">
-                        <?php
-                            $centres = get_all_centre();
-                            $i = 1;
-                            foreach($centres as $centre) {
-                        ?>
-                            <tr>
-                                <td> <?php echo $centre['designation']; ?> </td>
-                                <td>
-                                    <input type="text" name="<?php echo 'centre'.$i; ?>" id="<?php echo 'centre'.$i; ?>" placeholder="%">
+                                <td> 
+                                    <input type="text" name="<?php echo 'fixe'.$produit['id']; ?>" placeholder="% fixe">
+                                </td>
+                                <td> 
+                                    <input type="text" name="<?php echo 'variable'.$produit['id']; ?>" placeholder="% variable">
                                 </td>
                             </tr>
-                        <?php $i++; } ?>
+                        <?php } ?>
                     </table>
                     <button id="pop-up-close"> Fermer </button>
                     <button id="pop-up-add"> Valider </button>
