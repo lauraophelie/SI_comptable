@@ -293,16 +293,6 @@ ORDER BY numero;
 
 ---------------------------------------------- 28-04-2023 ---------------------------------------------------
 
-/*CREATE TABLE IF NOT EXISTS pourcentage_compte_6(
-     id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
-     fixe DECIMAL DEFAULT 0,
-     variable DECIMAL DEFAULT 0,
-     inc INTEGER DEFAULT 0,
-     n_inc INTEGER DEFAULT 0
-);
-
-ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT check_compte_6 CHECK (id_compte_6 LIKE '6%');
-
 CREATE TABLE IF NOT EXISTS produit(
      id SERIAL PRIMARY KEY,
      designation VARCHAR(50)
@@ -313,35 +303,14 @@ CREATE TABLE IF NOT EXISTS centre(
      designation VARCHAR(50)
 );
 
-CREATE TABLE IF NOT EXISTS compte_6_centre(
-     id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
-     id_centre INTEGER REFERENCES centre(id),
-     pourcentage DECIMAL DEFAULT 0
-);
-
-CREATE TABLE IF NOT EXISTS compte_6_produit(
-     id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
-     id_produit INTEGER REFERENCES produit(id),
-     pourcentage DECIMAL DEFAULT 0
-);
-
 INSERT INTO centre(designation) VALUES('Administration'), ('Usine'), ('Plantation');
 
 INSERT INTO produit(designation) VALUES('Maïs concassé');
 
 ------------------------------------ 29-04-2023 ----------------------------------------------------------------
 
-ALTER TABLE pourcentage_compte_6 ADD CONSTRAINT compte_unique UNIQUE(id_compte_6);
-
-INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('60100', 50, 50, 1);
-
 
 ------------------------------------ 02-05-2023 ----------------------------------------------------------------
-
-INSERT INTO produit(designation) VALUES('Farine');
-
-INSERT INTO compte_6_produit(id_compte_6, id_produit, pourcentage) VALUES('60100', 1, 60),
-                                                                           ('60100', 2, 40);*/
 
 -- rectification import ecriture
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit) 
