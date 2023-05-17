@@ -44,134 +44,17 @@
         }
     }
 
-    function getTresor($societe){
-        try {
-            $date_debut = getDebutCompta($societe);
-            $connexion = dbconnect();
-            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe and numero like '5%'";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':debut', $date_debut);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        } catch (PDOException $e){
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    function getClient($societe){
-        try {
-            $date_debut = getDebutCompta($societe);
-            $connexion = dbconnect();
-            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe and numero like '4%' and deb > cred";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':debut', $date_debut);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        } catch (PDOException $e){
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    function getImmoInco($societe){
-        try {
-            $date_debut = getDebutCompta($societe);
-            $connexion = dbconnect();
-            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe and numero like '20%'";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':debut', $date_debut);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        } catch (PDOException $e){
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    function getImmoCo($societe){
-        try {
-            $date_debut = getDebutCompta($societe);
-            $connexion = dbconnect();
-            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe and numero like '21%'";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':debut', $date_debut);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        } catch (PDOException $e){
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    function getImmoBio($societe){
-        try {
-            $date_debut = getDebutCompta($societe);
-            $connexion = dbconnect();
-            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe and numero like '22%'";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':debut', $date_debut);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        } catch (PDOException $e){
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    function getImmoEnCours($societe){
-        try {
-            $date_debut = getDebutCompta($societe);
-            $connexion = dbconnect();
-            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe and numero like '23%'";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':debut', $date_debut);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        } catch (PDOException $e){
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    function getImmoFin($societe){
-        try {
-            $date_debut = getDebutCompta($societe);
-            $connexion = dbconnect();
-            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe and numero like '25%'";
-            $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':debut', $date_debut);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        } catch (PDOException $e){
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
-
     function getInfo($compte, $societe){
         try {
             $date_debut = getDebutCompta($societe);
             $connexion = dbconnect();
-            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe and numero like :numero%";
+            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > '%s' and societe = %d and numero like '%d";
+            $sql = sprintf($sql,$date_debut,$societe,$compte);
+            $sql = $sql."%'";
+            if ($compte == "4"){
+                $sql = $sql." and debit > credit";
+            }
             $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':debut', $date_debut);
-            $stmt->bindParam(':societe', $societe);
-            $stmt->bindParam(':numero', $compte);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if($result!=null){
