@@ -293,7 +293,7 @@ ORDER BY numero;
 
 ---------------------------------------------- 28-04-2023 ---------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS pourcentage_compte_6(
+/*CREATE TABLE IF NOT EXISTS pourcentage_compte_6(
      id_compte_6 VARCHAR(5) REFERENCES pcg2005(numero),
      fixe DECIMAL DEFAULT 0,
      variable DECIMAL DEFAULT 0,
@@ -341,7 +341,7 @@ INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('60100
 INSERT INTO produit(designation) VALUES('Farine');
 
 INSERT INTO compte_6_produit(id_compte_6, id_produit, pourcentage) VALUES('60100', 1, 60),
-                                                                           ('60100', 2, 40);
+                                                                           ('60100', 2, 40);*/
 
 -- rectification import ecriture
 INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit) 
