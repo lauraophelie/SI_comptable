@@ -1,4 +1,4 @@
-function checkPourcentage() {
+/*function checkPourcentage() {
     var compte_6 = document.getElementById("compte-input").value;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -48,9 +48,9 @@ function checkPourcentage() {
     };
     xhr.open("GET", "../inc/ecritures/check_pourcentages.php?compte_6=" + compte_6, true);
     xhr.send();
-}
+}*/
 
-var compteInput   = document.getElementById("compte-input");
+/*var compteInput   = document.getElementById("compte-input");
 var fixeInput     = document.getElementById("fixe");
 var variableInput = document.getElementById("variable");
 
@@ -65,4 +65,4 @@ compteInput.addEventListener("input", function() {
 
 compteInput.addEventListener("input", function() {
     checkPourcentage();
-});
+});*/

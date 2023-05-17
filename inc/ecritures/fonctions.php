@@ -147,6 +147,16 @@
         }
     }
 
+    function get_nature_compte_6($compte_6) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM nature_compte_6 WHERE id_compte_6 = :compte_6";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':compte_6', $compte_6);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     function insert_compte_6_produit($id_compte_6, $id_produit, $pourcentage, $fixe, $variable) {
         try {
             $connexion = dbconnect();
@@ -164,6 +174,16 @@
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }
+
+    function get_cle_compte_6_produit($compte_6) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM compte_6_produit WHERE id_compte_6=:compte_6";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':compte_6', $compte_6);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     function insert_repartition_produit_centre($id_compte_6, $id_produit, $id_centre, $fixe, $variable) {
@@ -203,7 +223,7 @@
         return $result;
     }
 
-    function check_pourcentages_compte_6($compte_6) {
+    /*function check_pourcentages_compte_6($compte_6) {
         $connexion = dbconnect();
         $sql = "SELECT * FROM pourcentage_compte_6 WHERE id_compte_6=:id_compte_6";
         $stmt = $connexion->prepare($sql);
@@ -211,5 +231,5 @@
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
-    }
+    }*/
 ?>

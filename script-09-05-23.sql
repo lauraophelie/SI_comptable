@@ -147,3 +147,24 @@ CREATE OR REPLACE VIEW v_repartition_produits_centre AS(
 
 INSERT INTO unite_oeuvre(designation) VALUES('KG'), ('NB'), ('Cons Périodiques'), ('KW'), ('Litres'), ('Loyer Mensuel'),
                                             ('Heure de travail'), ('Salaire mensuel');
+
+
+-------------------------------------------------------- 17-05-2023 -------------------------------------------------
+
+SELECT
+	DISTINCT(produit_id),
+	produit,
+	numero_compte,
+	pourcentage AS cle,
+	fixe,
+	variable
+FROM
+	v_repartition_produit_compte_6
+ORDER BY numero_compte ASC;
+
+INSERT INTO compte_6_produit(id_compte_6, id_produit, pourcentage, fixe, variable) VALUES('60200', 2, 85, 80, 20);
+
+INSERT INTO repartition_produit_centre(id_compte_6, id_produit, id_centre, fixe, variable) VALUES('60200', 1, 1, 10, 20),
+                                                                                                ('60200', 1, 2, 20, 30),
+                                                                                                ('60200', 1, 3, 70, 50);
+
