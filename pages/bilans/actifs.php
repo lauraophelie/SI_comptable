@@ -155,10 +155,11 @@
                 echo $brutNonCourant;
             ?></td>
             <td>Ar <?php
-                $AmortNonCourant = $amortInco + $amortCo;
-                echo $brutNonCourant;
+                $amortNonCourant = $amortInco + $amortCo;
+                echo $amortNonCourant;
             ?></td>
-            <td>Ar 0</td>
+            <td>Ar <?php $netNonCourant = $brutNonCourant - $amortNonCourant;
+            echo $netNonCourant; ?></td>
         </tr>
         <tr class="passif-line">
             <th colspan="4"> 
@@ -201,12 +202,14 @@
             <td>Clients et autres débiteurs</td>
             <td>4...</td>
             <td>Ar <?php
-                $client = getInfo("4",$_SESSION['id_societe']);
-                if($client == null){
-                    echo "0";
-                } else{
-                    echo ($client['deb']-$client['cred']);
+                $val1 = getInfo("4",$_SESSION['id_societe']);
+                $client = 0;
+                if($val1 != null)
+                {
+                    $client = $val1['deb']-$val1['cred'];
                 }
+                echo $client;
+            ?>
             ?></td>
             <td>Ar 0</td>
             <td>Ar 0</td>
@@ -229,12 +232,13 @@
             <td>TRESORERIE ET EQUIVALENTS DE TRESORERIE</td>
             <td>5...</td>
             <td>Ar <?php
-                $val6 = getInfo("5",$_SESSION['id_societe']);
-                if($val6 == null){
-                    echo "0";
-                } else{
-                    echo ($val6['deb']-$val6['cred']);
+                $val1 = getInfo("5",$_SESSION['id_societe']);
+                $tresor = 0;
+                if($val1 != null)
+                {
+                    $tresor = $val1['deb']-$val1['cred'];
                 }
+                echo $tresor;
             ?></td>
             <td>Ar 0</td>
             <td>Ar 0</td>
@@ -244,9 +248,16 @@
                 <h4 style="text-align:center"> TOTAL DES ACTIFS COURANTS </h4>
             </th>
             <th> </th>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>Ar <?php
+                $brutCourant = $stockBrut + $client + $tresor;
+                echo $brutCourant;
+            ?></td>
+            <td>Ar <?php
+                $amortCourant = $provisionStock;
+                echo $amortCourant;
+            ?></td>
+            <td>Ar <?php $netCourant = $brutCourant - $amortCourant;
+            echo $netCourant; ?>
         </tr>
         <br/>
         <tr class="passif-line total-line">
@@ -254,9 +265,16 @@
                 <h4 style="text-align:center"> TOTAL DES ACTIFS </h4>
             </th>
             <th> </th>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>Ar <?php
+                $brutTot = $brutCourant + $brutNonCourant;
+                echo $brutTot;
+            ?></td>
+            <td>Ar <?php
+                $amortTot = $amortCourant + $amortNonCourant;
+                echo $amortTot;
+            ?></td>
+            <td>Ar <?php $netTot = $brutTot - $amortTot;
+            echo $netTot; ?>
         </tr>
     </table>
 </div>
