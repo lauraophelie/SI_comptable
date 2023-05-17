@@ -68,20 +68,30 @@
             <?php if($code === 'AC') { ?>
                 <tr id="input-title">
                     <th style="padding-top: 25px"> </th>
-                    <th style="padding-top: 25px"> Fixe </th>
-                    <th style="padding-top: 25px"> Variable </th>
                     <th> </th>
+                    <th style="padding-top: 25px"> Unité d'oeuvre </th>
+                    <th style="padding-top: 25px"> Quantité </th>
+                    <th style="padding-top: 25px"> Montant </th>
                     <th> </th>
                 </tr>
                 <tr id="input-line">
                     <td> <input type="text" name="cg" id="compte-input-1" placeholder="N° de compte" readonly/> </td>
-                    <td> <input type="text" name="fixe" id="fixe" placeholder="%"> </td>
-                    <td> <input type="text" name="variable" id="variable" placeholder="%"> </td>
                     <td>
                         <select name="inc" id="inc_n_inc">
                             <option value="inc"> Incorporable </option>
                             <option value="ninc"> Non incorporable </option>
                         </select>
+                    </td>
+                    <td>
+                        <select name="uo" id="">
+                            <option value=""> UO </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="nuo" id="" placeholder="Nombre">
+                    </td>
+                    <td>
+                        <input type="text" name="nuo" id="" value="0">
                     </td>
                     <td> 
                         <button id="pop-up-produit">
