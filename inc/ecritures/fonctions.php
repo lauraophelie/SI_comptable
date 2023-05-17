@@ -128,7 +128,7 @@
 
 /// comptes 6 
 
-    function insert_param_compte_6($compte_6, $fixe, $variable, $inc, $n_inc) {
+    /*function insert_param_compte_6($compte_6, $fixe, $variable, $inc, $n_inc) {
         try {
             $connexion = dbconnect();
             $connexion->beginTransaction();
@@ -145,9 +145,47 @@
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }*/
+
+    function insert_nature_compte_6($compte_6, $inc, $n_inc) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+            $sql = "INSERT INTO nature_compte_6(id_compte_6, inc, n_inc) VALUES('%s', %d, %d)";
+            $sql = sprintf($sql, $compte_6, $inc, $n_inc);
+
+            $stmt = $connexion->prepare($sql);
+            $stmt->execute();
+            $connexion->commit();
+
+            return true;
+        } catch(Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
     }
 
-    function insert_produit_compte_6($id_compte_6, $id_produit, $pourcentage) {
+    function insert_compte_6_produit($id_compte_6, $id_produit, $pourcentage, $fixe, $variable) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+
+            $sql = sprintf("INSERT INTO compte_6_produit(id_compte_6, id_produit, pourcentage, fixe, variable) VALUES('%s', %d, %d, %d, %d)", 
+                            $id_compte_6, $id_produit, $pourcentage, $fixe, $variable);
+            $stmt = $connexion->prepare($sql);
+            $stmt->execute();
+            $connexion->commit();
+            
+            return true;
+        } catch(Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    /*function insert_produit_compte_6($id_compte_6, $id_produit, $pourcentage) {
         try {
             $connexion = dbconnect();
             $connexion->beginTransaction();
@@ -164,9 +202,9 @@
             echo "Error: " . $e->getMessage();
             return false;
         }
-    }
+    }*/
 
-    function insert_centre_compte_6($id_compte_6, $id_centre, $pourcentage) {
+    /*function insert_centre_compte_6($id_compte_6, $id_centre, $pourcentage) {
         try {
             $connexion = dbconnect();
             $connexion->beginTransaction();
@@ -183,7 +221,7 @@
             echo "Error: " . $e->getMessage();
             return false;
         }
-    }
+    }*/
 
     function get_all_produit() {
         $connexion = dbconnect();
