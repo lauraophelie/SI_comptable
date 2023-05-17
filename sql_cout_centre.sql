@@ -84,3 +84,92 @@ INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('63000
 INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('64110', 100, 0, 1);
 INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('64800', 0, 100, 1);
 INSERT INTO pourcentage_compte_6(id_compte_6, fixe, variable, inc) VALUES('65000', 0, 100, 1);
+
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60120',2,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60120',3,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60120',5,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60111',2,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60111',3,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60111',5,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60680',2,5);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60680',3,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60680',5,95);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60610',2,5);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60610',3,15);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60610',5,80);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60620',3,10);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60620',5,30);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60620',2,60);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('61320',3,10);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('61320',5,30);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('61320',2,60);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('61500',3,15);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('61500',5,70);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('61500',2,15);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60640',3,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60640',5,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('60640',2,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62260',3,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62260',5,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62260',2,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62510',3,40);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62510',5,30);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62510',2,30);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62410',3,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62410',5,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62410',2,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62560',3,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62560',5,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62560',2,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62700',3,40);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62700',5,30);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62700',2,30);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62410',3,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62410',5,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62410',2,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62560',3,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62560',5,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62560',2,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62700',3,40);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62700',5,30);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62700',2,30);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62000',3,40);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62000',5,30);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62000',2,30);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('63000',3,35);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('63000',5,35);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('63000',2,30);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('64110',3,20);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('64110',5,35);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('64110',2,45);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('64800',3,40);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('64800',5,30);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('64800',2,30);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('65000',3,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('65000',5,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('65000',2,0);
+
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62600',3,100);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62600',5,0);
+insert into compte_6_centre(id_compte_6,id_centre,pourcentage) values('62600',2,0);
