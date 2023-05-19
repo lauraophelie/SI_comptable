@@ -68,7 +68,7 @@
             <?php if($code === 'AC') { ?>
                 <tr id="input-title">
                     <th style="padding-top: 25px"> </th>
-                    <th> </th>
+                    <th style="padding-top: 25px"> Nature </th>
                     <th style="padding-top: 25px"> Unité d'oeuvre </th>
                     <th style="padding-top: 25px"> Quantité </th>
                     <th style="padding-top: 25px"> Montant </th>
