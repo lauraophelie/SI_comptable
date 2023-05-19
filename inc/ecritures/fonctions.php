@@ -223,13 +223,25 @@
         return $result;
     }
 
-    /*function check_pourcentages_compte_6($compte_6) {
-        $connexion = dbconnect();
-        $sql = "SELECT * FROM pourcentage_compte_6 WHERE id_compte_6=:id_compte_6";
-        $stmt = $connexion->prepare($sql);
-        $stmt->bindParam(':id_compte_6', $compte_6);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
-    }*/
+    function reset_cles_rep_produit_et_centre() {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+            
+            $sql1 = "DELETE FROM compte_6_produit";
+            $stmt1 = $connexion->prepare($sql1);
+            $stmt1->execute();
+        
+            $sql2 = "DELETE FROM repartition_produit_centre";
+            $stmt2 = $connexion->prepare($sql2);
+            $stmt2->execute();
+            
+            $connexion->commit();
+            return true;
+        } catch(Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 ?>
