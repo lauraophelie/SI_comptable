@@ -1,5 +1,5 @@
 
-    <form action="../../inc/produit/traitement_insert.php" method="post" data-parsley-validate="">
+    <form action="../inc/produit/traitement_insert.php" method="post" data-parsley-validate="">
         <h1> Ajouter un produit </h1>
         <?php 
             if(isset($_GET['error'])) {

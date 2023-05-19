@@ -126,7 +126,7 @@
         return $result;
     }
 
-/// comptes 6 
+/// comptes 6, clé de répartition
 
     function insert_nature_compte_6($compte_6, $inc, $n_inc) {
         try {
@@ -223,7 +223,7 @@
         return $result;
     }
 
-    function reset_cles_rep_produit_et_centre() {
+    function reset_cles_rep_produit_centre() {
         try {
             $connexion = dbconnect();
             $connexion->beginTransaction();
