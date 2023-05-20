@@ -66,3 +66,77 @@ compteInput.addEventListener("input", function() {
 compteInput.addEventListener("input", function() {
     checkPourcentage();
 });*/
+
+function checkPourcentage() {
+    var compte_6 = document.getElementById("compte-input");
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+
+            var result = JSON.parse(xhr.responseText);
+            
+            if(result === null || typeof result.cle_repartition === 'undefined' || result.cle_repartition === null) {
+                return;
+            } 
+            if(result.nature_compte_6 != null || typeof result.nature_compte_6 !== 'undefined') {
+
+                var cles        = result.cle_repartition;
+                var table       = document.getElementById("produit-table");
+                var produits    = table.querySelectorAll("tr");
+
+                var cle         = [];
+                var fixe        = [];
+                var variable    = [];
+
+                for (let i = 0; i < produits.length; i++) {
+
+                    let cleElement         = produits[i].getElementsByTagName("td")[1];
+                    let fixeElement        = produits[i].getElementsByTagName("td")[2];
+                    let variableElement    = produits[i].getElementsByTagName("td")[3];
+
+                    cle.push(cleElement);
+                    fixe.push(fixeElement);
+                    variable.push(variableElement);
+                }
+
+                var cleInput        = [];
+                var fixeInput       = [];
+                var variableInput   = [];
+
+                for(let i = 0; i < produits.length; i++) {
+                    cleInput.push(cle[i].getElementsByTagName("input"));
+                    fixeInput.push(fixe[i].getElementsByTagName("input"));
+                    variableInput.push(variable[i].getElementsByTagName("input"));
+                }
+
+                
+            }
+            else {
+                var cles        = result.cle_repartition;
+                var table       = document.getElementById("produit-table");
+                var produits    = table.querySelectorAll("tr");
+
+                for(let i = 0; i < produits.length; i++) {
+                    var cle         = produits[i].getElementsByTagName("td")[1];
+                    var fixe        = produits[i].getElementsByTagName("td")[2];
+                    var variable    = produits[i].getElementsByTagName("td")[3];
+                }
+            }
+        }
+    };
+    xhr.open("GET", "../inc/ecritures/check_pourcentages.php?compte_6=" + compte_6, true);
+    xhr.send();
+}
+
+var compteInput   = document.getElementById("compte-input");
+//var fixeInput     = document.getElementById("fixe");
+//var variableInput = document.getElementById("variable");
+
+compteInput.addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    fixeInput.value     = "";
+    variableInput.value = "";
+  } else {
+    checkPourcentage();
+  }
+});
