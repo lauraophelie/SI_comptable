@@ -153,7 +153,7 @@
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':compte_6', $compte_6);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -178,7 +178,7 @@
 
     function get_cle_compte_6_produit($compte_6) {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM compte_6_produit WHERE id_compte_6=:compte_6";
+        $sql = "SELECT * FROM v_cle_rep_produit_compte_6 WHERE numero_compte=:compte_6";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':compte_6', $compte_6);
         $stmt->execute();

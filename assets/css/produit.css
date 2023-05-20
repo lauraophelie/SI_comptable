@@ -80,6 +80,10 @@
     width: 200px;
 }
 
+select {
+    border: none;
+}
+
 
 
 

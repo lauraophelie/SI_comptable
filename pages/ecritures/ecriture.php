@@ -37,7 +37,7 @@
                 <td> <input type="text" name="date_ecriture" id=""/> </td>
                 <td> <input type="text" name="numero_piece"/> </td>
                 <td> <input type="text" name="cg" id="compte-input"/> </td>
-                <td> <input type="text" name="ct" id="compte-input"/> </td>
+                <td> <input type="text" name="ct" id="compte-input-2"/> </td>
                 <td> <input type="text" name="libelle" id=""/></td>
             </tr>
             <tr id="input-title">
@@ -120,6 +120,7 @@
                                 <td> 
                                     <input type="text" name="<?php echo 'variable'.$produit['id']; ?>" placeholder="% variable">
                                 </td>
+                                <td> </td>
                             </tr>
                         <?php } ?>
                     </table>

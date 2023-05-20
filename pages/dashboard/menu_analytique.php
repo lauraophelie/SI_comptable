@@ -11,6 +11,10 @@
         <i class="fas fa-map-pin"> </i>
         <h2> Centres </h2>
     </div>
+    <div class="compta-menu-element-one">
+        <i class="fas fa-divide"> </i>
+        <h2> Unité d'oeuvre </h2>
+    </div>
 </div>
 
 <div style="height: 25px"> </div>
