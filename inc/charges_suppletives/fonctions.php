@@ -48,7 +48,8 @@
 
     function findAllChargeSuppletif($id_societe){
         $connexion = dbConnect();
-        $sql="SELECT * from charge_suppletif where societe = :societe";
+        $sql="SELECT  charge_suppletive.id as id, charge_suppletive.designation as designation, societe, unite_oeuvre.designation as unite
+                from charge_suppletive JOIN unite_oeuvre ON id_unite_oeuvre = unite_oeuvre.id where societe = :societe ";
         $stmt=$connexion->prepare($sql);
         $stmt->bindParam(':societe',$id_societe);
         $stmt->execute();

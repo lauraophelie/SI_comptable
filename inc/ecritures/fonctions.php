@@ -277,7 +277,7 @@
         return $result;
     }
 
-    function cout_revient() {
-        
+    function cout_revient($volume_production, $somme_charges) {
+        return ($somme_charges / $volume_production);
     }
 ?>
