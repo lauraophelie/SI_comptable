@@ -4,7 +4,7 @@
 ?>
     <h1 id="main-title"> Liste des produits </h1>
 
-    <a href="form_insert.php">
+    <a href="./page.php?page=produit/form_insert">
         <button id="button-add"> Ajouter un produit </button>
     </a>
 
