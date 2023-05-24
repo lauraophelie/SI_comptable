@@ -24,10 +24,12 @@
 <div style="height: 100px"> </div>
 
 <div class="compta-menu-line-one">
-    <div class="compta-menu-element-one">
-        <i class="fas fa-list-ul"> </i>
-        <h2> Par Produits </h2>
-    </div>
+    <a href="./page.php?page=cout/couts_produits">
+        <div class="compta-menu-element-one">
+            <i class="fas fa-list-ul"> </i>
+            <h2> Par Produits </h2>
+        </div>
+    </a>
     <div class="compta-menu-element-one">
         <i class="fas fa-map-pin"> </i>
         <h2> Par Centres </h2>
