@@ -208,3 +208,22 @@ CREATE OR REPLACE VIEW v_cle_rep_produit_centre AS(
 );
 
 SELECT * FROM v_cle_rep_produit_centre ORDER BY numero_compte ASC;
+
+
+--------------------------------------------------------- 24-05-2023 -----------------------------------------------------------
+
+CREATE OR REPLACE VIEW v_charges AS(
+    SELECT * from ecriture_journal where compte_general like '6%' and compte_general not like '68%'
+);
+
+SELECT DISTINCT produit, produit_id, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY produit, produit_id;
+
+CREATE OR REPLACE VIEW v_couts_produits AS(
+    SELECT DISTINCT produit, produit_id, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY produit, produit_id
+);
+
+SELECT DISTINCT produit, produit_id, id_centre, centre, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY produit, produit_id, id_centre, centre;
+
+CREATE OR REPLACE VIEW v_couts_produits_centres AS(   
+    SELECT DISTINCT produit, produit_id, id_centre, centre, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY produit, produit_id, id_centre, centre
+);

@@ -258,10 +258,22 @@
     // coûts 
 
     function cout_par_produit($produit) {
-
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM v_couts_produits WHERE produit_id = :produit_id";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':produit_id', $produit_id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
-
+    
     function cout_par_centre_produit($produit, $centre) {
-
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM v_couts_produits_centres WHERE produit_id = :produit_id";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':produit_id', $produit_id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 ?>
