@@ -43,12 +43,23 @@ create table details_ecs_produit_centre(
 );
 
 -- v_ecriture_charge
-SELECT quantite, quantite*prix_unitaire as valeur, unite_oeuvre.designation, fixe, variable from ecriture_charge_suppletive
-     JOIN unite_oeuvre ON id_unite_oeuvre = unite_oeuvre.id
+
+--SELECT quantite, quantite*prix_unitaire as valeur, unite_oeuvre.designation, fixe, variable from ecriture_charge_suppletive
+     --JOIN unite_oeuvre ON id_unite_oeuvre = unite_oeuvre.id
+
+-- CREATE VIEW AS v_ecriture_suppletive
+SELECT id_charge_suppletive,charge_suppletive.designation as nom_charge, nombre_unite_oeuvre as quantite, nombre_unite_oeuvre * cout_unite_oeuvre as valeur, unite_oeuvre.designation  as unite, cle_repartition, id_produit, variable, fixe
+from ecriture_charge_suppletive 
+join details_ecs_produit on details_ecs_produit.id_ecriture = ecriture_charge_suppletive.id
+join charge_suppletive on id_charge_suppletive= charge_suppletive.id
+JOIN unite_oeuvre ON id_unite_oeuvre = unite_oeuvre.id
+
 
 -- v_details_charge_suppl_produit
 SELECT ecriture_charge_suppletive.id as id_ecriture, nombre_unite_oeuvre*cout_unitaire_oeuvre as valeur_oeuvre, date_ecriture,  FROM ecriture_charge_suppletive
      JOIN details_ecs_produit ON id_ecriture = ecriture_charge_suppletive.id
+
+
      
 
 INSERT INTO charge_suppletive(societe, designation) 

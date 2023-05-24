@@ -68,25 +68,39 @@
         }
     }
 
-    function getAllCharge($id_societe, $id_produit){
-        
-    }
-
-
-    /*function getSumVariable($societe, $idproduit){
+    function getAllChargeSuppl($societe, $idproduit){
         try {
             $connexion = dbconnect();
-            $sql = "select date_debut_exercice from comptabilite where societe = :societe order by date_debut_exercice desc limit 1";
+            $sql = "SELECT nom_charge, valeur*fixe as cout_fixe, valeur*variable as cout_variable from v_prix_suppletive
+                        where date_ecriture < date_debut_exercice
+                        AND societe = :societe
+                        AND id_produit = :produit";            
             $stmt = $connexion->prepare($sql);
-            $stmt->bindParam(':societe', $id_societe);
+            $stmt->bindParam(':societe', $societe);
+            $stmt->bindParam(':produit', $idproduit);
             $stmt->execute();
             $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $resultat[0]["date_debut_exercice"];
+            return $resultat;
         } catch (PDOException $e){
             echo "Error: " . $e->getMessage();
             return false;
         }
-    }*/
+    }
 
+    function findProduitByNum($id) {
+        $connexion = db_connect();
+        $sql = "SELECT * from produit where id= :id";
+        $stmt = $connexion -> prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
 
+    function getSeuil($societe, $idproduit, $prix){
+        $sum = getSum($societe, $idproduit);
+        $produit = findProduitByNum($idproduit);
+        $result =  $sum['fixe']/($prix-($sum['variavle']/$produit['nombre']));
+        return $result;
+    }
 ?>

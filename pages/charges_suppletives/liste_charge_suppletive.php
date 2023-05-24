@@ -24,12 +24,14 @@
             <tr id="data-title">
                 <th> ID </th>
                 <th> Désignation </th>
+                <th> Unité </th>
                 <th> </th>
             </tr>
             <?php foreach($charges_suppletives as $charge) { ?>
                 <tr id="data-line">
                     <td> <?php echo $charge['id']; ?> </td>
                     <td> <?php echo $charge['designation']; ?> </td>
+                    <td> <?php echo $charge['unite']; ?> </td>
                     <td>
                         <a href="./page.php?page=modif_charge_suppletive&id=<?php echo $charge['id']; ?>">
                             <i class="fas fa-pen"> </i>
