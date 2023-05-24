@@ -3,14 +3,18 @@
 <div style="height: 100px"> </div>
 
 <div class="compta-menu-line-one">
-    <div class="compta-menu-element-one">
-        <i class="fas fa-list-ul"> </i>
-        <h2> Produits </h2>
-    </div>
-    <div class="compta-menu-element-one">
-        <i class="fas fa-map-pin"> </i>
-        <h2> Centres </h2>
-    </div>
+    <a href="./page.php?page=produit/affichage_produit">
+        <div class="compta-menu-element-one">
+            <i class="fas fa-list-ul"> </i>
+            <h2> Produits </h2>
+        </div>
+    </a>
+    <a href="./page.php?page=centre/affichage_centre">
+        <div class="compta-menu-element-one">
+            <i class="fas fa-map-pin"> </i>
+            <h2> Centres </h2>
+        </div>
+    </a>
     <div class="compta-menu-element-one">
         <i class="fas fa-divide"> </i>
         <h2> Unité d'oeuvre </h2>
