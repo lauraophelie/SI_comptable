@@ -74,12 +74,15 @@ function checkPourcentage() {
         if(xhr.readyState == 4 && xhr.status == 200) {
 
             var result = JSON.parse(xhr.responseText);
-            
+            console.log(result);
             if(result === null || typeof result.cle_repartition === 'undefined' || result.cle_repartition === null) {
                 return;
             } 
             if(result.nature_compte_6 != null || typeof result.nature_compte_6 !== 'undefined') {
 
+                
+            }
+            else {
                 var cles        = result.cle_repartition;
                 var table       = document.getElementById("produit-table");
                 var produits    = table.querySelectorAll("tr");
@@ -109,17 +112,10 @@ function checkPourcentage() {
                     variableInput.push(variable[i].getElementsByTagName("input"));
                 }
 
-                
-            }
-            else {
-                var cles        = result.cle_repartition;
-                var table       = document.getElementById("produit-table");
-                var produits    = table.querySelectorAll("tr");
-
                 for(let i = 0; i < produits.length; i++) {
-                    var cle         = produits[i].getElementsByTagName("td")[1];
-                    var fixe        = produits[i].getElementsByTagName("td")[2];
-                    var variable    = produits[i].getElementsByTagName("td")[3];
+                    cleInput[i].value       = cles.cle;
+                    fixeInput[i].value      = cles.fixe;
+                    variableInput[i].value  = cles.variable;
                 }
             }
         }
@@ -132,11 +128,16 @@ var compteInput   = document.getElementById("compte-input");
 //var fixeInput     = document.getElementById("fixe");
 //var variableInput = document.getElementById("variable");
 
-compteInput.addEventListener("input", function() {
+/*compteInput.addEventListener("input", function() {
+    checkPourcentage();
   if (this.value.trim() === "") {
     fixeInput.value     = "";
     variableInput.value = "";
   } else {
     checkPourcentage();
   }
+});*/
+
+compteInput.addEventListener("input", function() {
+    checkPourcentage();
 });

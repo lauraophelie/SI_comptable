@@ -205,9 +205,19 @@
         }
     }
 
+    function get_cle_rep_produit_centre($compte_6) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM v_cle_rep_produit_centre WHERE numero_compte=:compte_6";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':compte_6', $compte_6);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     function get_all_produit() {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM produit";
+        $sql = "SELECT * FROM produit ORDER BY id ASC";
         $stmt = $connexion->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -243,5 +253,15 @@
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }
+
+    // coûts 
+
+    function cout_par_produit($produit) {
+
+    }
+
+    function cout_par_centre_produit($produit, $centre) {
+
     }
 ?>

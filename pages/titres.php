@@ -10,6 +10,7 @@
     
     $titre["ecritures/listes_ecritures.php"]            = "Ecriture - Liste des écritures";
     $titre["ecritures/ecriture.php"]                    = "Nouvelle écriture";
+    $titre["ecritures/cle_repartitions.php"]            = "Répartition par centre";
     $titre["ecritures/import_ecritures.php"]            = "Ecriture - Import";
     $titre["ecritures/liste_ecritures_journal.php"]     = "Ecriture - Liste des écritures";
     
