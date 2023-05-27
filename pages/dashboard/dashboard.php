@@ -27,10 +27,12 @@
         <h2> Seuil </h2>
     </div>
     <div class="board-element-content">
-
+        <p> Coût de revient  </p>
+        <h2> Revient  </h2>
     </div>
     <div class="board-element-content">
-
+        <p> Chiffre d'affaire </p>
+        <h2> CA  </h2>
     </div>
 </div>
 <div style="height: 5px"> </div>

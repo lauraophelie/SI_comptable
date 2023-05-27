@@ -1,5 +1,6 @@
 <?php
 
+/// connexion à la base de données
     function dbconnect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
@@ -42,7 +43,6 @@
         }
     }
     
-
     function find($devise) {
         $connexion = dbconnect();
         $sql = "SELECT * FROM devise WHERE devise = :devise";
@@ -100,6 +100,8 @@
         return $result;
     }
 
+/// somme débits
+
     function get_sum_debit_journal($journal, $societe, $date_exercice, $date_fin) {
         $connexion = dbconnect();
         $sql = "SELECT SUM(debit) FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin)";
@@ -112,7 +114,8 @@
         $result = $stmt->fetchColumn();
         return $result;
     }
-    
+/// somme crédits
+
     function get_sum_credit_journal($journal, $societe, $date_exercice, $date_fin) {
         $connexion = dbconnect();
         $sql = "SELECT SUM(credit) FROM ecriture_journal WHERE (journal=:journal AND societe=:societe AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin)";
@@ -255,7 +258,7 @@
         }
     }
 
-    // coûts 
+/// coûts par produits, par centres, par centres et par produits, coûts de revient
 
     function cout_par_produit($produit) {
         $connexion = dbconnect();
@@ -272,6 +275,16 @@
         $sql = "SELECT * FROM v_couts_produits_centres WHERE produit_id = :produit_id";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':produit_id', $produit);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function cout_par_centre($centre) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM v_couts_centres WHERE id_centre = :centre_id";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':centre_id', $centre);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
