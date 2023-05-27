@@ -67,14 +67,14 @@
             <th class="titre-montant"> Variable </th>
         </tr>
         <?php foreach($couts_centre as $cout_centre) { ?>
-            <tr style="height: 50px">
+            <tr style="height: 50px" class="cases">
                 <th class="centre_designation">
                     <?php echo $cout_centre['centre']; ?>
                 </th>
-                <td style="text-align: right" class="valeurs_fixe">
+                <td style="text-align: right; padding-right: 15px" class="valeurs_fixe">
                     Ar <?php echo number_format($cout_centre['fixe'], 0, ' ', ' '); ?>
                 </td>
-                <td style="text-align: right" class="valeurs_variable">
+                <td style="text-align: right; padding-right: 15px" class="valeurs_variable">
                     Ar <?php echo number_format($cout_centre['variable'], 0, ' ', ' '); ?>
                 </td>
             </tr>
@@ -102,8 +102,8 @@
             variables.push("<?php echo $cout_centre['variable']; ?>");
         <?php } ?>
 
-        const yFixes = fixes.map(fix => parseFloat(fix.replace(/\D/g, '')));
-        const yVariables = variables.map(variable => parseFloat(variable.replace(/\D/g, '')));
+        const yFixes = fixes.map(fix => parseFloat(fix.replace(/\s/g, '')));
+        const yVariables = variables.map(variable => parseFloat(variable.replace(/\s/g, '')));
 
         const chartHeight = "200px";
 
