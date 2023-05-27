@@ -34,6 +34,13 @@
         $produit = $_POST['produit'];
         $couts = cout_par_produit($produit, $date_debut, $date_fin_exercice);
         $couts_centre = cout_par_centre_produit($produit, $date_debut, $date_fin_exercice);
+
+
+        $centres = array();
+        foreach ($couts_centre as $cout_centre) {
+            $centres[] = $cout_centre['centre'];
+        }
+        $centres_json = json_encode($centres);
 ?>
     <h2> Total : <?php echo $couts['produit']; ?> </h2>
     <table class="ecriture_table">
@@ -61,18 +68,102 @@
         </tr>
         <?php foreach($couts_centre as $cout_centre) { ?>
             <tr style="height: 50px">
-                <th>
+                <th class="centre_designation">
                     <?php echo $cout_centre['centre']; ?>
                 </th>
-                <td style="text-align: right">
+                <td style="text-align: right" class="valeurs_fixe">
                     Ar <?php echo number_format($cout_centre['fixe'], 0, ' ', ' '); ?>
                 </td>
-                <td style="text-align: right">
+                <td style="text-align: right" class="valeurs_variable">
                     Ar <?php echo number_format($cout_centre['variable'], 0, ' ', ' '); ?>
                 </td>
             </tr>
         <?php } ?>
     </table>
+
+    <div class="case_chart" style="margin-top: 25px">
+        <div class="chart-container">
+            <canvas id="chart-cout-fixe" style="width:100%;max-width:600px; margin-top: 25px"> </canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="chart-cout-variable" style="width:100%;max-width:600px; margin-top: 25px"> </canvas>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"> </script>
+    <script>
+        const centres = [];
+        const fixes = [];
+        const variables = [];
+
+        <?php foreach ($couts_centre as $cout_centre) { ?>
+            centres.push("<?php echo $cout_centre['centre']; ?>");
+            fixes.push("<?php echo $cout_centre['fixe']; ?>");
+            variables.push("<?php echo $cout_centre['variable']; ?>");
+        <?php } ?>
+
+        const yFixes = fixes.map(fix => parseFloat(fix.replace(/\D/g, '')));
+        const yVariables = variables.map(variable => parseFloat(variable.replace(/\D/g, '')));
+
+        const chartHeight = "400px";
+
+        const chartFixes = document.getElementById("chart-cout-fixe");
+        chartFixes.style.height = chartHeight;
+        chartFixes.style.float = "left";
+
+        const chartVariables = document.getElementById("chart-cout-variable");
+        chartVariables.style.height = chartHeight;
+
+        new Chart("chart-cout-fixe", {
+            type: "pie",
+            data: {
+                labels: centres,
+                datasets: [{
+                    data: yFixes,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ]
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Statistiques Coûts Fixes"
+                }
+            }
+        });
+
+        new Chart("chart-cout-variable", {
+            type: "doughnut",
+            data: {
+                labels: centres,
+                datasets: [{
+                    data: yVariables,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ]
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Statistiques Coûts Variables"
+                }
+            }
+        });
+    </script>
+
+
 <?php } else { ?>
     <center>
         <p> Veuillez choisir un produit </p>
@@ -81,7 +172,6 @@
 
 <script src="../../assets/js/jquery.js"> </script>
 <script src="../../assets/js/parsley.js"> </script>
-<script src="./ecritures/js/script.js"> </script>
 
 <script type="text/javascript">
     $(document).ready(function() {

@@ -30,4 +30,11 @@
 
 .case_chart {
   height: 150px;
+}
+
+.chart-container {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 10px;
+  float: left;
 }/*# sourceMappingURL=couts.css.map */

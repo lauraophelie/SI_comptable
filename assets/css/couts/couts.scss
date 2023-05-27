@@ -40,3 +40,10 @@ $box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);
 .case_chart {
     height: 150px;
 }
+
+.chart-container {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+    float: left;
+}
