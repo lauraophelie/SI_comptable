@@ -34,12 +34,16 @@
             <h2> Par Produits </h2>
         </div>
     </a>
-    <div class="compta-menu-element-one">
-        <i class="fas fa-map-pin"> </i>
-        <h2> Par Centres </h2>
-    </div>
-    <div class="compta-menu-element-one">
-        <i class="fas fa-map-pin"> </i>
-        <h2> Par Nature </h2>
-    </div>
+    <a href="./page.php?page=cout/couts_centre">
+        <div class="compta-menu-element-one">
+            <i class="fas fa-map-pin"> </i>
+            <h2> Par Centres </h2>
+        </div>
+    </a>
+    <a href="./page.php?page=cout/couts_nature">
+        <div class="compta-menu-element-one">
+            <i class="fas fa-info-circle"> </i>
+            <h2> Par Nature </h2>
+        </div>
+    </a>
 </div>

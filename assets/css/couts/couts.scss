@@ -1,0 +1,38 @@
+$border-min: 1px solid black;
+$height-couts: 150px;
+$width-couts: 25%;
+$margin-couts: 15%;
+$background-color-couts: white;
+$box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);
+
+.case_couts {
+    height: $height-couts;
+    width: $width-couts;
+    margin-left: $margin-couts;
+    float: left;
+    background-color: $background-color-couts;
+    box-shadow: $box-shadow; 
+    line-height: 10px;
+    transition: 0.5s;
+
+    p, h2 {
+        padding-left: 50px;
+    }
+    p {
+        padding-top: 35px;
+    }
+    h2 {
+        padding-top: -15px;
+    }
+}
+
+.case_couts:hover {
+    background-color: #00134c;
+    color: white;
+    box-shadow: $box-shadow;
+    transform: scale(1.05);
+
+    p {
+        color: whitesmoke;
+    }
+}

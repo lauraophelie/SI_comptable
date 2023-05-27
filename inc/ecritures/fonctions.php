@@ -260,33 +260,76 @@
 
 /// coûts par produits, par centres, par centres et par produits, coûts de revient
 
-    function cout_par_produit($produit) {
+    function cout_par_produit($produit, $date_exercice, $date_fin) {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM v_couts_produits WHERE produit_id = :produit_id";
+        $sql = "SELECT DISTINCT produit, produit_id, SUM(fixe) as fixe, SUM(variable) as variable
+                FROM v_couts_produits 
+                WHERE (produit_id = :produit_id AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin)
+                GROUP BY produit, produit_id";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':produit_id', $produit);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    function cout_par_centre_produit($produit) {
+    function cout_par_centre_produit($produit, $date_exercice, $date_fin) {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM v_couts_produits_centres WHERE produit_id = :produit_id";
+        $sql = "SELECT DISTINCT produit, produit_id, id_centre, centre, SUM(fixe) as fixe, SUM(variable) as variable 
+                FROM v_couts_produits_centres 
+                WHERE (produit_id = :produit_id AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin) 
+                GROUP BY produit, produit_id, id_centre, centre";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':produit_id', $produit);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    function cout_par_centre($centre) {
+    function cout_par_centre($centre, $date_exercice, $date_fin) {
         $connexion = dbconnect();
-        $sql = "SELECT * FROM v_couts_centres WHERE id_centre = :centre_id";
+        $sql = "SELECT DISTINCT centre, id_centre, SUM(fixe) as fixe, SUM(variable) as variable
+                FROM v_couts_centre
+                WHERE (id_centre = :centre_id AND date_ecriture >= :date_exercice AND date_ecriture <= :date_fin)
+                GROUP BY centre, id_centre";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':centre_id', $centre);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function all_couts_centre($date_exercice, $date_fin) {
+        $connexion = dbconnect();
+        $sql = "SELECT DISTINCT centre, id_centre, SUM(fixe) as fixe, SUM(variable) as variable
+                FROM v_couts_centre
+                WHERE (date_ecriture >= :date_exercice AND date_ecriture <= :date_fin)
+                GROUP BY centre, id_centre";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':centre_id', $centre);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function cout_par_nature($date_exercice, $date_fin) {
+        $connexion = dbconnect();
+        $sql = "SELECT SUM(fixe) as fixe, SUM(variable) as variable
+                FROM v_couts_nature
+                WHERE (date_ecriture >= :date_exercice AND date_ecriture <= :date_fin)";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':date_exercice', $date_exercice);
+        $stmt->bindParam(':date_fin', $date_fin);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
