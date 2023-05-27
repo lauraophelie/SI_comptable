@@ -73,6 +73,22 @@
                 </p>
             </a>
         </div>
+        <div class="main-menu-element">
+            <a href="./page.php?page=dashboard/menu_general">
+                <p> 
+                    <i class="fas fa-weight-hanging"> </i>
+                    <label for=""> Charges supplétives </label>
+                </p>
+            </a>
+        </div>
+        <div class="main-menu-element">
+            <a href="./deconnexion.php">
+                <p> 
+                    <i class="fas fa-door-open"> </i>
+                    <label for=""> Déconnecter </label>
+                </p>
+            </a>
+        </div>
     </div>
     <div class="page-content">
         <?php

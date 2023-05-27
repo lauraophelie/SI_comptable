@@ -105,7 +105,7 @@
         const yFixes = fixes.map(fix => parseFloat(fix.replace(/\D/g, '')));
         const yVariables = variables.map(variable => parseFloat(variable.replace(/\D/g, '')));
 
-        const chartHeight = "400px";
+        const chartHeight = "200px";
 
         const chartFixes = document.getElementById("chart-cout-fixe");
         chartFixes.style.height = chartHeight;
@@ -121,12 +121,12 @@
                 datasets: [{
                     data: yFixes,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)'
+                        '#242F40',
+                        '#CCA43B',
+                        '#3A506B',
+                        '#5BC0BE',
+                        '#363636',
+                        '#1C2541'
                     ]
                 }]
             },
@@ -145,12 +145,12 @@
                 datasets: [{
                     data: yVariables,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)'
+                        '#242F40',
+                        '#CCA43B',
+                        '#3A506B',
+                        '#5BC0BE',
+                        '#363636',
+                        '#1C2541'
                     ]
                 }]
             },
