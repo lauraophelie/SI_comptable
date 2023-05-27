@@ -233,3 +233,11 @@ SELECT DISTINCT centre, id_centre, SUM(centre_fixe) as fixe, SUM(centre_variable
 CREATE OR REPLACE VIEW v_couts_centres AS(
     SELECT DISTINCT centre, id_centre, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY centre, id_centre
 );
+
+----------------------------------------------------------- 27-05-2023 -----------------------------------------------------------
+
+SELECT DISTINCT centre, id_centre, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY id_centre, centre;
+
+CREATE OR REPLACE VIEW v_couts_centre AS(
+    SELECT DISTINCT centre, id_centre, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY id_centre, centre
+);
