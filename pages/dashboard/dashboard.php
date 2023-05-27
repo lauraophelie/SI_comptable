@@ -47,7 +47,7 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"> </script>
 <script>
     const xValues = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 

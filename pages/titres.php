@@ -41,4 +41,8 @@
     $titre["dashboard/menu_analytique.php"]             = "Comptabilité analytique";
     $titre["dashboard/menu_general.php"]                = "Comptabilité générale";
     $titre["societe/info.php"]                          = "Informations sur la société";
+
+    $titre["cout/couts_centre.php"]                     = "Coûts par centre";
+    $titre["cout/couts_nature.php"]                     = "Coûts par nature";
+    $titre["cout/couts_produits.php"]                   = "Coûts par produits";
 ?>
