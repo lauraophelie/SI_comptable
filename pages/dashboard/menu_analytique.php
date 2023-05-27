@@ -38,4 +38,8 @@
         <i class="fas fa-map-pin"> </i>
         <h2> Par Centres </h2>
     </div>
+    <div class="compta-menu-element-one">
+        <i class="fas fa-map-pin"> </i>
+        <h2> Par Nature </h2>
+    </div>
 </div>
