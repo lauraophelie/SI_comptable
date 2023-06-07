@@ -46,7 +46,7 @@
 
     function findAll(){
         $connexion = db_connect();
-        $sql="SELECT * from produit";
+        $sql="SELECT * from produit ORDER BY id ASC";
         $stmt=$connexion->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

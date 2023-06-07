@@ -1,26 +1,28 @@
-insert into pcg2005(numero,designation) values ('60120',' Semences & plants'),
-('60111','engrais & assimiles'),
-('60260','emballages'),
-('60680','Achats d autres matières et fournitures'),
-('60610','Fournitures non stockables'),
-('60620','carburants lubrifiants '),
-('61320','locations mobilières et immobilières'),
-('61500','Entretien et réparations'),
-('61600','Primes d assurance'),
-('60640','Fournitures administratives'),
-('62600','Frais postaux et de télécommunications'),
-('62260','Honoraires');
+INSERT INTO pcg2005(numero,designation)
+VALUES ('60120', 'SEMENCES & PLANTS'),
+('60111', 'ENGRAIS & ASSIMILES'),
+('60260', 'EMBALLAGES'),
+('60680', 'ACHATS D AUTRES MATIERES ET FOURNITURES'),
+('60610', 'FOURNITURES NON STOCKABLES'),
+('60620', 'CARBURANTS LUBRIFIANTS'),
+('61320', 'LOCATIONS MOBILIERES ET IMMOBILIERES'),
+('61500', 'ENTRETIEN ET REPARATIONS'),
+('61600', 'PRIMES D ASSURANCE'),
+('60640', 'FOURNITURES ADMINISTRATIVES'),
+('62600', 'FRAIS POSTAUX ET DE TELECOMMUNICATIONS'),
+('62260', 'HONORAIRES');
 
-insert into pcg2005(numero,designation) values ('62410','Transports sur achat'),
-('62510','Voyages et déplacements'),
-('62560','missions'),
-('62700','Services bancaires et assimilés'),
-('62000','Les autres charges externes'),
-('63000','Les impôts et taxes'),
-('64110','Salaires et appointements'),
-('64800','Autres charges de personnel'),
-('68000','Dotations aux amortissements'),
-('65000','Autres charges de gestion courante');
+INSERT INTO pcg2005(numero,designation)
+VALUES ('62410', 'TRANSPORTS SUR ACHAT'),
+('62560', 'MISSIONS'),
+('62700', 'SERVICES BANCAIRES ET ASSIMILES'),
+('62000', 'AUTRES CHARGES EXTERNES'),
+('63000', 'IMPOTS ET TAXES'),
+('64110', 'SALAIRES ET APPOINTEMENTS'),
+('64800', 'AUTRES CHARGES DE PERSONNEL'),
+('68000', 'DOTATIONS AUX AMORTISSEMENTS'),
+('65000', 'AUTRES CHARGES DE GESTION COURANTE');
+
 
 create table unite(
     unite VARCHAR(40) primary key

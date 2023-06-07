@@ -36,8 +36,8 @@
             <tr id="input-line">
                 <td> <input type="text" name="date_ecriture" id=""/> </td>
                 <td> <input type="text" name="numero_piece"/> </td>
-                <td> <input type="text" name="cg" id="compte-input"/> </td>
-                <td> <input type="text" name="ct" id="compte-input"/> </td>
+                <td> <input type="text" name="cg" id="compte-input" oninput="prefillPopupInputs()"/> </td>
+                <td> <input type="text" name="ct" id="compte-input-2"/> </td>
                 <td> <input type="text" name="libelle" id=""/></td>
             </tr>
             <tr id="input-title">
@@ -68,20 +68,30 @@
             <?php if($code === 'AC') { ?>
                 <tr id="input-title">
                     <th style="padding-top: 25px"> </th>
-                    <th style="padding-top: 25px"> Fixe </th>
-                    <th style="padding-top: 25px"> Variable </th>
-                    <th> </th>
+                    <th style="padding-top: 25px"> Nature </th>
+                    <th style="padding-top: 25px"> Unité d'oeuvre </th>
+                    <th style="padding-top: 25px"> Quantité </th>
+                    <th style="padding-top: 25px"> Montant </th>
                     <th> </th>
                 </tr>
                 <tr id="input-line">
                     <td> <input type="text" name="cg" id="compte-input-1" placeholder="N° de compte" readonly/> </td>
-                    <td> <input type="text" name="fixe" id="fixe" placeholder="%"> </td>
-                    <td> <input type="text" name="variable" id="variable" placeholder="%"> </td>
                     <td>
                         <select name="inc" id="inc_n_inc">
                             <option value="inc"> Incorporable </option>
                             <option value="ninc"> Non incorporable </option>
                         </select>
+                    </td>
+                    <td>
+                        <select name="uo" id="">
+                            <option value=""> UO </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="nuo" id="" placeholder="Nombre">
+                    </td>
+                    <td>
+                        <input type="text" name="nuo" id="" value="0">
                     </td>
                     <td> 
                         <button id="pop-up-produit">
@@ -94,7 +104,7 @@
                 <div id="pop-up">
                     <div style="height: 15px"> </div>
                     <h2> Produit(s) </h2>
-                    <table id="produit-table">
+                    <table id="produit-table" class="produit-table">
                         <?php 
                             $produits = get_all_produit();
                             foreach($produits as $produit) {
@@ -102,7 +112,7 @@
                             <tr> 
                                 <td> <?php echo $produit['designation']; ?> </td>
                                 <td>
-                                    <input type="text" name="<?php echo $produit['id']; ?>" id="<?php echo "produit".$produit['id']; ?>" placeholder="%">
+                                    <input type="text" name="<?php echo 'produit'.$produit['id']; ?>" id="<?php echo "produit".$produit['id']; ?>" placeholder="%">
                                 </td>
                                 <td> 
                                     <input type="text" name="<?php echo 'fixe'.$produit['id']; ?>" placeholder="% fixe">
@@ -110,6 +120,7 @@
                                 <td> 
                                     <input type="text" name="<?php echo 'variable'.$produit['id']; ?>" placeholder="% variable">
                                 </td>
+                                <td> </td>
                             </tr>
                         <?php } ?>
                     </table>

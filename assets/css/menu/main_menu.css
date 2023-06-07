@@ -13,12 +13,13 @@
 }
 .main-menu-element a p i {
   font-size: 20px;
+  color: rgb(27, 59, 108);
 }
 .main-menu-element a p label {
   display: inline;
   padding-left: 20px;
   font-weight: lighter;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 i {
