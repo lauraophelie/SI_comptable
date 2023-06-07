@@ -1,5 +1,5 @@
 <?php
-    function dbconnect() {
+    function db_connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
         $PARAM_utilisateur = 'gestion_compta';
@@ -17,7 +17,7 @@
 
     function getDebutCompta($id_societe){
         try {
-            $connexion = dbconnect();
+            $connexion = db_connect();
             $sql = "select date_debut_exercice from comptabilite where societe = :societe order by date_debut_exercice desc limit 1";
             $stmt = $connexion->prepare($sql);
             $stmt->bindParam(':societe', $id_societe);
@@ -33,11 +33,12 @@
     function getSum($societe, $id_produit){
         try {
             $date_debut = getDebutCompta($societe);
-            $connexion = dbconnect();
+            $connexion = db_connect();
             $sql1 = "SELECT sum(valeur*fixe) as cout_fixe, sum(valeur*variable) as cout_variable from v_prix_suppletive
                         where date_ecriture < date_debut_exercice
                         AND societe = :societe
                         AND id_produit = :produit";
+                        
             $sql2 = "SELECT sum(valeur*fixe) as cout_fixe, sum(valeur*variable) as cout_variable from v_prix
                         where date_ecriture < date_debut_exercice
                         AND societe = :societe
@@ -70,7 +71,7 @@
 
     function getAllChargeSuppl($societe, $idproduit){
         try {
-            $connexion = dbconnect();
+            $connexion = db_connect();
             $sql = "SELECT nom_charge, valeur*fixe as cout_fixe, valeur*variable as cout_variable from v_prix_suppletive
                         where date_ecriture < date_debut_exercice
                         AND societe = :societe

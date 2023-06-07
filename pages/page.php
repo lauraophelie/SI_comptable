@@ -84,7 +84,7 @@
         <div class="main-menu-element">
             <a href="./deconnexion.php">
                 <p> 
-                    <i class="fas fa-door-open"> </i>
+                    <i class="fas fa-sign-out-alt"> </i>
                     <label for=""> Déconnecter </label>
                 </p>
             </a>

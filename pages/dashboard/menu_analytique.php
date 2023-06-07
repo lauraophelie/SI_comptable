@@ -47,3 +47,16 @@
         </div>
     </a>
 </div>
+
+<h2 id="main-title"> Seuil </h2>
+
+<div style="height: 100px"> </div>
+
+<div class="compta-menu-line-one">
+    <a href="./page.php?page=seuil/seuil_rentabilite">
+        <div class="compta-menu-element-one">
+            <i class="fas fa-sliders-h"> </i>
+            <h2> Rentabilité </h2>
+        </div>
+    </a>
+</div>

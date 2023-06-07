@@ -34,13 +34,6 @@
         $produit = $_POST['produit'];
         $couts = cout_par_produit($produit, $date_debut, $date_fin_exercice);
         $couts_centre = cout_par_centre_produit($produit, $date_debut, $date_fin_exercice);
-
-
-        $centres = array();
-        foreach ($couts_centre as $cout_centre) {
-            $centres[] = $cout_centre['centre'];
-        }
-        $centres_json = json_encode($centres);
 ?>
     <h2> Total : <?php echo $couts['produit']; ?> </h2>
     <table class="ecriture_table">
