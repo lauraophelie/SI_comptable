@@ -103,4 +103,6 @@
         $result =  $sum['fixe']/($prix-($sum['variavle']/$produit['nombre']));
         return $result;
     }
+
+    
 ?>
