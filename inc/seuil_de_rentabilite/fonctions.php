@@ -30,14 +30,13 @@
         }
     }
 
-    function getSum($societe, $id_produit){
+    function getSum($societe, $id_produit) {
         try {
             $date_debut = getDebutCompta($societe);
             $connexion = db_connect();
             $sql1 = "SELECT sum(valeur*fixe) as cout_fixe, sum(valeur*variable) as cout_variable from v_prix_suppletive
                         where date_ecriture < date_debut_exercice
-                        AND societe = :societe
-                        AND id_produit = :produit";
+                        AND societe = :societe";
                         
             $sql2 = "SELECT sum(valeur*fixe) as cout_fixe, sum(valeur*variable) as cout_variable from v_prix
                         where date_ecriture < date_debut_exercice
@@ -104,4 +103,6 @@
         $result =  $sum['fixe']/($prix-($sum['variavle']/$produit['nombre']));
         return $result;
     }
+
+
 ?>
