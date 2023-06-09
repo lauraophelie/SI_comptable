@@ -6,9 +6,9 @@
     $dossier = '../../assets/images/logo';
     $fichier = basename($_FILES['nrcs']['name']);
     $taille_maxi = 1000000;
-    $taille = filesize($_FILES['nrcs']['tmp_name']);
+    $taille = filesize($_FILES['logo']['tmp_name']);
     $extensions = array('.png', '.gif', '.jpg', '.jpeg');
-    $extension = strrchr($_FILES['nrcs']['name'], '.');
+    $extension = strrchr($_FILES['logo']['name'], '.');
     //Début des vérifications de sécurité...
     if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
     {

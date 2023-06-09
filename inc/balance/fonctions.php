@@ -45,6 +45,22 @@
         }
     }
 
+    function getSomme($debut, $societe){
+        try {
+            $connexion = dbconnect();
+            $sql = "select sum(debit) as deb, sum(credit) as cred from v_balance where date_ecriture > :debut and societe = :societe";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':debut', $debut);
+            $stmt->bindParam(':societe', $societe);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e){
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
     function treatmentSolde($listes){
         //liste [numero,desognation,deb,cred]
         $debit = 0;
