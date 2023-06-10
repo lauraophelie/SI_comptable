@@ -1,6 +1,7 @@
 -------------------------------------------------------- 10-06-2023 -----------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS ecriture_charges(
+    id SERIAL,
     societe INTEGER REFERENCES societe(id),
     date_ecriture DATE,
     numero_piece VARCHAR(50) NOT NULL,
@@ -18,14 +19,14 @@ JOIN pcg2005 AS p ON e.compte_general = p.numero
 JOIN unite_oeuvre u ON e.unite_oeuvre = u.id;
 
 SELECT 
-    e.societe, e.date_ecriture, e.numero_piece, e.compte_general as numero_compte, p.designation as compte, e.libelle, u.designation as unite_oeuvre, e.quantite, e.montant
+    e.id as num, e.id, e.societe, e.date_ecriture, e.numero_piece, e.compte_general as numero_compte, p.designation as compte, e.libelle, u.designation as unite_oeuvre, e.quantite, e.montant
 FROM ecriture_charges e
 JOIN pcg2005 AS p ON e.compte_general = p.numero
 JOIN unite_oeuvre u ON e.unite_oeuvre = u.id;
 
 CREATE OR REPLACE VIEW v_ecritures_charges AS(
     SELECT 
-        e.societe, e.date_ecriture, e.numero_piece, e.compte_general as numero_compte, 
+        e.id as num, e.societe, e.date_ecriture, e.numero_piece, e.compte_general as numero_compte, 
         p.designation as compte, e.libelle, u.designation as unite_oeuvre, e.quantite, e.montant
     FROM ecriture_charges e
     JOIN pcg2005 AS p ON e.compte_general = p.numero

@@ -6,6 +6,7 @@ console.log(compte0);
 compte0.addEventListener("input", function() {
     const valeur0 = compte0.value;
     compte1.value = valeur0;
+    console.log(compte1.value)
 });
 
 const v1 = document.getElementById("debit-case");

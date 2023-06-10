@@ -37,7 +37,7 @@
         }
     }
     if($success) {
-        $insert_2 = save_ecritures_charges($societe, $date_ecriture, $numero_piece, $compte_6, " ", $unite_oeuvre, $nombre, $montant);
+        $insert_2 = save_ecritures_charges($id_societe['id'], $date_ecriture, $numero_piece, $compte_6, " ", $unite_oeuvre, $nombre, $montant);
         if($insert_2) {
             echo "Les écritures ont été insérées avec succès dans la base de données.";
         }

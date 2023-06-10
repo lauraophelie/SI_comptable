@@ -47,13 +47,14 @@
         try {
             $connexion = dbconnect();
             $connexion->beginTransaction();
-    
-            $sql = sprintf(
-                "INSERT INTO ecriture_charges(societe, date_ecriture, numero_piece, compte_general, libelle, unite_oeuvre, quantite, montant) 
-                VALUES(%d, '%s', '%s', '%s', '%s', %d, %d, %d)",
+            
+            $sql = "INSERT INTO ecriture_charges(societe, date_ecriture, numero_piece, compte_general, libelle, unite_oeuvre, quantite, montant) 
+            VALUES(%d, '%s', '%s', '%s', '%s', %d, %d, %d)";
+            $sql = sprintf($sql
+                ,
                 $societe, $date_ecriture, $numero_piece, $compte_general, $libelle, $unite_oeuvre, $quantite, $montant
             );
-    
+            echo $sql;
             $stmt = $connexion->prepare($sql);
             $stmt->execute();
             $connexion->commit();
