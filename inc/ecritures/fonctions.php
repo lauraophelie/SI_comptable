@@ -54,7 +54,6 @@
                 ,
                 $societe, $date_ecriture, $numero_piece, $compte_general, $libelle, $unite_oeuvre, $quantite, $montant
             );
-            echo $sql;
             $stmt = $connexion->prepare($sql);
             $stmt->execute();
             $connexion->commit();
@@ -71,7 +70,7 @@
         $connexion = dbconnect();
         $sql = "SELECT * FROM v_ecritures_charges 
                 WHERE (societe = :societe AND numero_compte = :num_compte) 
-                ORDER BY date_ecriture DESC LIMIT 1";
+                ORDER BY num DESC LIMIT 1";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(":societe", $societe);
         $stmt->bindParam(":numero_compte" ,$numero_compte);
