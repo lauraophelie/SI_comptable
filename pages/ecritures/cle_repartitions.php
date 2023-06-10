@@ -1,6 +1,7 @@
 <?php 
     require_once("../inc/ecritures/fonctions.php");
-    $cles_repartitions = get_cle_rep_produit_centre("60100");
+    $compte_6 = $_GET['compte'];
+    $cles_repartitions = get_cle_rep_produit_centre($compte_6);
     $produits = get_all_produit();
 ?>
 <h1 id="main-title"> Répartitions </h1>

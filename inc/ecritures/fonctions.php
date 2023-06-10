@@ -285,6 +285,25 @@ function insert_nature_compte_6($compte_6, $inc, $n_inc) {
         return $result;
     }
 
+    function reset_clets_rep_produit($compte_6) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+        
+            $sql = "DELETE FROM compte_6_produit WHERE id_compte_6 = :id_compte_6";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':id_compte_6', $compte_6);
+            $stmt->execute();
+            
+            $connexion->commit();
+            return true;
+        } catch(Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
     function reset_cles_rep_produit_centre() {
         try {
             $connexion = dbconnect();

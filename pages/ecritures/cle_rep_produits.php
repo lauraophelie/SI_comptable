@@ -24,26 +24,45 @@
 <div style="height:25px"> </div>
 
 <table width="800px" id="table_cle">
-    <?php foreach($cle_repartition as $cle) { ?>
-        <tr>
-            <th>
-                <?php echo $cle['produit']; ?>
-            </th>
-            <td>
-                <input type="text" name="<?php echo "produit".$cle["produit_id"]; ?>" id="<?php echo "produit".$cle["produit_id"]; ?> " class="in produits"
-                    value="<?php if($cle['cle']) echo $cle['cle']; ?>">
-            </td>
-            <td>
-                <input type="text" name="<?php echo "fixe".$cle["produit_id"]; ?>" id="<?php echo "fixe".$cle["produit_id"]; ?> " placeholder="Fixe %"
-                    value="<?php if($cle['fixe']) echo $cle['fixe']; ?>" class="in fixes">
-            </td>
-            <td>
-                <input type="text" name="<?php echo "variable".$cle["produit_id"]; ?>" id="<?php echo "variable".$cle["produit_id"]; ?> " placeholder="Variable %"
-                    value="<?php if($cle['variable']) echo $cle['variable']; ?>" class="in variables">
-            </td>
-        </tr>
-    <?php } ?>
+    <?php if($cle_repartition) {
+        foreach($cle_repartition as $cle) { ?>
+            <tr>
+                <th>
+                    <?php echo $cle['produit']; ?>
+                </th>
+                <td>
+                    <input type="text" name="<?php echo "produit".$cle["produit_id"]; ?>" id="<?php echo "produit".$cle["produit_id"]; ?> " class="in produits"
+                        value="<?php if($cle['cle']) echo $cle['cle']; ?>">
+                </td>
+                <td>
+                    <input type="text" name="<?php echo "fixe".$cle["produit_id"]; ?>" id="<?php echo "fixe".$cle["produit_id"]; ?> " placeholder="Fixe %"
+                        value="<?php if($cle['fixe']) echo $cle['fixe']; ?>" class="in fixes">
+                </td>
+                <td>
+                    <input type="text" name="<?php echo "variable".$cle["produit_id"]; ?>" id="<?php echo "variable".$cle["produit_id"]; ?> " placeholder="Variable %"
+                        value="<?php if($cle['variable']) echo $cle['variable']; ?>" class="in variables">
+                </td>
+            </tr>
+    <?php } } else { 
+        foreach($produits as $produit) { ?>
+            <tr>
+                <th>
+                    <?php echo $produit['designation']; ?>
+                </th>
+                <td>
+                    <input type="text" class="in produits">
+                </td>
+                <td>
+                    <input type="text" placeholder="Fixe %" class="in fixes">
+                </td>
+                <td>
+                    <input type="text" placeholder="Variable %" class="in variables">
+                </td>
+            </tr>
+    <?php } } ?>
 </table>
+
+<button id="valider_ecriture" style="margin-left: 25%" type=button onclick="envoyerCleProduit()"> Valider </button>
 
 <script>
     const inputs = document.getElementsByClassName("in");
@@ -63,18 +82,15 @@
 
         const ids_produit   = [];
 
-        <?php foreach($produits as $produit) { ?>
-            ids_produit.push($produit['id']);
-        <?php } ?> 
-
         const produits      = document.getElementsByClassName("produits");
         const fixes         = document.getElementsByClassName("fixes");
         const variables     = document.getElementsByClassName("variables");
 
         const rows = [];
+        var j = 1;
 
         for(let i = 0; i < produits.length; i++) {
-            let id_produit  = ids_produit[i];
+            let id_produit  = j;
             let produit     = produits[i].value;
             let fixe        = fixes[i].value;
             let variable    = variables[i].value;
@@ -86,6 +102,7 @@
                 variable:       variable
             }
             rows.push(row);
+            j++;
         }
         console.log(rows);
 
@@ -96,11 +113,12 @@
         console.log(data);
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "../inc/ecritures/traitement_cles_produits.php",
             data: data,
             success: function(response) {
-                alert(reponse);
+                alert(response);
+                window.location.href = "./page.php?page=ecriture/cle_repartitions&compte=" + compte_6;
             },
             error: function(xhr, status, error) {
                 alert("Une erreur s'est produite lors de l'envoi des données : " + error);
