@@ -118,7 +118,7 @@
             data: data,
             success: function(response) {
                 alert(response);
-                window.location.href = "./page.php?page=ecriture/cle_repartitions&compte=" + compte_6;
+                window.location.href = "./page.php?page=ecritures/cle_repartitions&compte=" + compte_6;
             },
             error: function(xhr, status, error) {
                 alert("Une erreur s'est produite lors de l'envoi des données : " + error);

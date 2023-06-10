@@ -50,5 +50,6 @@
     }
 
     const table = document.getElementById("pivot-table");
-    table.style.width = "100%";
+    table.style.width = "800px";
+    table.style.marginLeft = "45px";
 </script>
