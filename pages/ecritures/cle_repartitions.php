@@ -42,7 +42,6 @@
 <button type="button" id="valider_ecriture" class="valider_cle" style="margin-left: 35%"> Valider </button>
 
 <script>
-
     var cleInput = document.getElementsByClassName("input-cle");
     for(let i = 0; i < cleInput.length; i++) {
         cleInput[i].style.border = "1px solid transparent";
