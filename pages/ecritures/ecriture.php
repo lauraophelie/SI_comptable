@@ -1,7 +1,10 @@
 <?php
     require_once("../inc/devise/fonctions.php");
     require_once("../inc/ecritures/fonctions.php");
+    require_once("../inc/unite_oeuvre/fonctions.php");
+
     $devises = find_all();
+    $unite_oeuvre = find_all_uo();
 
     $code = $_GET['journal'];
     $designation = $_GET['designation'];
@@ -83,8 +86,12 @@
                         </select>
                     </td>
                     <td>
-                        <select name="uo" id="">
-                            <option value=""> UO </option>
+                        <select name="uo" id="" style="border: none">
+                            <?php foreach($unite_oeuvre as $uo) { ?>
+                                <option value="<?php echo $uo['id']; ?>"> 
+                                    <?php echo $uo['designation']; ?>
+                                </option>
+                            <?php } ?>
                         </select>
                     </td>
                     <td>

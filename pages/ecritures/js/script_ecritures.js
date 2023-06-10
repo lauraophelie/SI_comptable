@@ -4,6 +4,13 @@ function envoyerEcritures() {
     var code_journal    = document.getElementById("code_journal").value;
     var rows            = [];
 
+    /*var unite_oeuvre = null;
+    var*/ 
+
+    if (code_journal == 'AC') {
+
+    }
+
     $("#table-ecriture tr").each(function(){
         
         var date            = $(this).find("td:eq(0)").text();
@@ -16,6 +23,7 @@ function envoyerEcritures() {
         var taux            = $(this).find("td:eq(7)").text();
         var debit           = $(this).find("td:eq(8)").text();
         var credit          = $(this).find("td:eq(9)").text();
+
         var row = {
             date:           date,
             numero_piece:   numero_piece,
