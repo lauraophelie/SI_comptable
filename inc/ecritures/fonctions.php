@@ -42,6 +42,42 @@
             return false;
         }
     }
+
+    function save_ecritures_charges($societe, $date_ecriture, $numero_piece, $compte_general, $libelle, $unite_oeuvre, $quantite, $montant) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+    
+            $sql = sprintf(
+                "INSERT INTO ecriture_charges(societe, date_ecriture, numero_piece, compte_general, libelle, unite_oeuvre, quantite, montant) 
+                VALUES(%d, '%s', '%s', '%s', '%s', %d, %d, %d)",
+                $societe, $date_ecriture, $numero_piece, $compte_general, $libelle, $unite_oeuvre, $quantite, $montant
+            );
+    
+            $stmt = $connexion->prepare($sql);
+            $stmt->execute();
+            $connexion->commit();
+    
+            return true;
+        } catch (Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function get_last_charge($societe, $compte_6) {
+        $connexion = dbconnect();
+        $sql = "SELECT * FROM v_ecritures_charges 
+                WHERE (societe = :societe AND numero_compte = :num_compte) 
+                ORDER BY date_ecriture DESC LIMIT 1";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(":societe", $societe);
+        $stmt->bindParam(":numero_compte" ,$numero_compte);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
     
     function find($devise) {
         $connexion = dbconnect();
