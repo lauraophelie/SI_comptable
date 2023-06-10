@@ -18,8 +18,8 @@
 
     <div id="info-box">
         <p> 
-            Date :  <input type="date" name="date_ecriture"/>
-            <input type="text" name="numero_piece" placeholder="N° de pièce"/>
+            Date :  <input type="date" name="date_ecriture" id="date_ecriture"/>
+            <input type="text" name="numero_piece" placeholder="N° de pièce" id="n_piece"/>
         </p>
     </div>
     <?php
@@ -86,7 +86,7 @@
                         </select>
                     </td>
                     <td>
-                        <select name="uo" id="" style="border: none">
+                        <select name="uo" id="uo" style="border: none">
                             <?php foreach($unite_oeuvre as $uo) { ?>
                                 <option value="<?php echo $uo['id']; ?>"> 
                                     <?php echo $uo['designation']; ?>
@@ -95,7 +95,7 @@
                         </select>
                     </td>
                     <td>
-                        <input type="text" name="nuo" id="" placeholder="Nombre">
+                        <input type="text" name="nuo" id="nuo" placeholder="Nombre">
                     </td>
                     <td>
                         <input type="text" name="mont_uo" id="mont_uo" value="0">
