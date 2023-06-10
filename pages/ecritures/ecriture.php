@@ -64,7 +64,7 @@
                 </td>
                 <td> <input type="text" name="montant_devise" id=""/> </td>
                 <td> <input type="text" name="taux" id=""/> </td>
-                <td> <input type="text" name="debit" id="" value="0"/> </td>
+                <td> <input type="text" name="debit" id="debit-case" value="0"/> </td>
                 <td> <input type="text" name="credit" id="" value="0"/> </td>
                 <td> <button type="submit" id="add-ecriture-button"> Ajouter </button> </td>
             </tr>
@@ -98,7 +98,7 @@
                         <input type="text" name="nuo" id="" placeholder="Nombre">
                     </td>
                     <td>
-                        <input type="text" name="nuo" id="" value="0">
+                        <input type="text" name="mont_uo" id="mont_uo" value="0">
                     </td>
                 </tr>
                 </table>
