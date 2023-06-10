@@ -38,6 +38,22 @@
     }
     if($success) {
         $insert_2 = save_ecritures_charges($id_societe['id'], $date_ecriture, $numero_piece, $compte_6, " ", $unite_oeuvre, $nombre, $montant);
+        
+        $n1 = false;
+        $n2 = false;
+        
+        if($nature == "inc") {
+            $n1 = true;
+            $n2 = false;
+        } else if($nature == "ninc")  {
+            $n2 = true;
+            $n1 = false;
+        }
+        $nat = get_nature_compte_6($compte_6);
+        if($nat == false) {
+            $n = insert_nature_compte_6($compte_6, $n1, $n2);
+        }
+
         if($insert_2) {
             echo "Les écritures ont été insérées avec succès dans la base de données.";
         }

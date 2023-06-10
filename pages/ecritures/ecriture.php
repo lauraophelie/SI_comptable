@@ -3,12 +3,12 @@
     require_once("../inc/ecritures/fonctions.php");
     require_once("../inc/unite_oeuvre/fonctions.php");
 
-    $devises = find_all();
-    $unite_oeuvre = find_all_uo();
+    $devises        = find_all();
+    $unite_oeuvre   = find_all_uo();
 
-    $code = $_GET['journal'];
-    $designation = $_GET['designation'];
-    $societe = $_GET['societe'];
+    $code           = $_GET['journal'];
+    $designation    = $_GET['designation'];
+    $societe        = $_GET['societe'];
 ?>
     <h1 id="main-title">
         Journal : <?php echo $designation; ?>

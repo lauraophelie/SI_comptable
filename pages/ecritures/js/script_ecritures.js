@@ -75,8 +75,11 @@ function envoyerEcritures() {
         data: data,
         success: function(response) {
             alert(response);
-            var nom_societe = societe_nom;
-            window.location.href = "./page.php?page=ecritures/listes_ecritures";
+            if(code_journal === 'AC') {
+                window.location.href = "./page.php?page=ecritures/cle_rep_produits&compte=" + compte_6;
+            } else {
+                window.location.href = "./page.php?page=ecritures/listes_ecritures";
+            }
         },
         error: function(xhr, status, error) {
             alert("Une erreur s'est produite lors de l'envoi des données : " + error);
