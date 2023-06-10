@@ -1,5 +1,5 @@
 <?php
-    include("./fonctions.php");
+    include_once("./fonctions.php");
 
     $societe_nom    = $_GET['societe_nom'];
     $code_journal   = $_GET['code_journal'];

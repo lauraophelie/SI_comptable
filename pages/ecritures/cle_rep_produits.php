@@ -30,16 +30,16 @@
                 <?php echo $cle['produit']; ?>
             </th>
             <td>
-                <input type="text" name="<?php echo "produit".$cle["produit_id"]; ?>" id="" class="<?php echo "produit".$cle["produit_id"]; ?> in"
+                <input type="text" name="<?php echo "produit".$cle["produit_id"]; ?>" id="<?php echo "produit".$cle["produit_id"]; ?> " class="in produits"
                     value="<?php if($cle['cle']) echo $cle['cle']; ?>">
             </td>
             <td>
-                <input type="text" name="<?php echo "fixe".$cle["produit_id"]; ?>" id="" placeholder="Fixe %"
-                    value="<?php if($cle['fixe']) echo $cle['fixe']; ?>" class="<?php echo "fixe".$cle["produit_id"]; ?> in">
+                <input type="text" name="<?php echo "fixe".$cle["produit_id"]; ?>" id="<?php echo "fixe".$cle["produit_id"]; ?> " placeholder="Fixe %"
+                    value="<?php if($cle['fixe']) echo $cle['fixe']; ?>" class="in fixes">
             </td>
             <td>
-                <input type="text" name="<?php echo "variable".$cle["produit_id"]; ?>" id="" placeholder="Variable %"
-                    value="<?php if($cle['variable']) echo $cle['variable']; ?>" class="<?php echo "variable".$cle["produit_id"]; ?> in">
+                <input type="text" name="<?php echo "variable".$cle["produit_id"]; ?>" id="<?php echo "variable".$cle["produit_id"]; ?> " placeholder="Variable %"
+                    value="<?php if($cle['variable']) echo $cle['variable']; ?>" class="in variables">
             </td>
         </tr>
     <?php } ?>
@@ -57,4 +57,54 @@
     const table = document.getElementById("table_cle");
     table.style.marginLeft = "45px";
 
+    function envoyerCleProduit() {
+
+        const compte_6      = <?php echo $charge['numero_compte']; ?>;
+
+        const ids_produit   = [];
+
+        <?php foreach($produits as $produit) { ?>
+            ids_produit.push($produit['id']);
+        <?php } ?> 
+
+        const produits      = document.getElementsByClassName("produits");
+        const fixes         = document.getElementsByClassName("fixes");
+        const variables     = document.getElementsByClassName("variables");
+
+        const rows = [];
+
+        for(let i = 0; i < produits.length; i++) {
+            let id_produit  = ids_produit[i];
+            let produit     = produits[i].value;
+            let fixe        = fixes[i].value;
+            let variable    = variables[i].value;
+
+            let row         = {
+                id_produit:     id_produit,
+                produit:        produit,
+                fixe:           fixe,
+                variable:       variable
+            }
+            rows.push(row);
+        }
+        console.log(rows);
+
+        const data = {
+            compte_6:   compte_6,
+            cles:       rows
+        };
+        console.log(data);
+
+        $.ajax({
+            type: "POST",
+            url: "../inc/ecritures/traitement_cles_produits.php",
+            data: data,
+            success: function(response) {
+                alert(reponse);
+            },
+            error: function(xhr, status, error) {
+                alert("Une erreur s'est produite lors de l'envoi des données : " + error);
+            }
+        });
+    }
 </script>
