@@ -2,31 +2,31 @@
     session_start();
     include("./fonctions.php");
     if(!isset($_SESSION['societe'])){
-        $_SESSION['societe'] = array();
+        header("Location: ../../pages/societe/inscription_step1.php?error=Session expire, remplir de nouveau");
     }
-    if(isset( $_POST['nom_societe'])){
-        $_SESSION['societe']['nom_societe']=$_POST['nom_societe'];
+    if(isset( $_POST['mot_de_passe'])){
+        $_SESSION['societe']['mot_de_passe']=$_POST['mot_de_passe'];
     }
-    if(isset($_POST['objet'])){
-        $_SESSION['societe']['objet']=$_POST['objet'];
-    }
-    if(isset($_POST['date_creation'])){
-        $_SESSION['societe']['date_creation']=$_POST['date_creation'];
-    }
-    if(isset($_POST['adresse'])){
-        $_SESSION['societe']['adresse']=$_POST['adresse'];
-    }
-    if(isset( $_POST['nom_societe']) && isset($_POST['objet'])&& isset($_POST['date_creation'])&& isset($_POST['adresse'])) {
-        $nom_societe = validate($_POST['nom_societe']);
-        $objet = validate($_POST['objet']);
-        $adresse = validate($_POST['adresse']);
-        $date_creation = validate($_POST['date_creation']);
+    if(isset( $_POST['re_mot_de_passe']) && isset($_SESSION['societe']['mot_de_passe'])) {
+        $mdp = validate($_SESSION['societe']['mot_de_passe']);
+        $mdp1 = validate($_POST['re_mot_de_passe']);
 
-        if(!isset($nom_societe) || empty($nom_societe) || !isset($objet) || empty($objet)|| !isset($date_creation) || empty($date_creation)|| !isset($adresse) || empty($adresse)) {
-            header("Location: ../../pages/societe/inscription_step3.php?error=Veuillez remplir tous les champs");
+        if(empty($mdp) || empty($mdp1)|| $mdp != $mdp1) {
+            header("Location: ../../pages/societe/inscription_step3.php?error=Vérifier les mots de passe");
             exit();
         } else {
-
+            $nom = $_SESSION['societe']['nom_societe'];
+            $objet = $_SESSION['societe']['objet'];
+            $date_creation = $_SESSION['societe']['date_creation'];
+            save($nom, $objet, $date_creation, $mdp);
+            $id_soc = lastID();
+            $capital = $_SESSION['societe']['capital'];
+            $date_debut = $_SESSION['societe']['date_debut'];
+            $tenu = $_SESSION['societe']['devise_tenu'];
+            saveCompta($id_soc,$capital,$date_debut,$tenu);
+            setAdresse($id_soc);
+            setIdent($id_soc);
+            header("Location: ../../pages/page.php?page=dashboard/dashboard");
             exit();
         }
 

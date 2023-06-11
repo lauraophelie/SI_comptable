@@ -148,7 +148,6 @@ CREATE OR REPLACE VIEW v_repartition_produits_centre AS(
 INSERT INTO unite_oeuvre(designation) VALUES('KG'), ('NB'), ('Cons Périodiques'), ('KW'), ('Litres'), ('Loyer Mensuel'),
                                             ('Heure de travail'), ('Salaire mensuel');
 
-
 -------------------------------------------------------- 17-05-2023 -------------------------------------------------
 
 SELECT
