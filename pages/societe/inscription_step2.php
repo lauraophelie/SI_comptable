@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../assets/css/parsley.css">
 </head>
 <body>
-    <form action="../../inc/societe/traitement_step1.php" method="post" data-parsley-validate="">
+    <form action="../../inc/societe/traitement_step2.php" method="post" data-parsley-validate="">
         <h1> S'inscrire : </h1>
             <p> Capital : <br/>
                 <input type="number" name="capital" placeholder="Ecrivez ici" required=""<?php
