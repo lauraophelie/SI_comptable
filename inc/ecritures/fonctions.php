@@ -42,6 +42,51 @@
             return false;
         }
     }
+
+    function save_ecritures_charges($societe, $date_ecriture, $numero_piece, $compte_general, $libelle, $unite_oeuvre, $quantite, $montant) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+            
+            $sql = "INSERT INTO ecriture_charges(societe, date_ecriture, numero_piece, compte_general, libelle, unite_oeuvre, quantite, montant) 
+            VALUES(%d, '%s', '%s', '%s', '%s', %d, %d, %d)";
+            $sql = sprintf($sql
+                ,
+                $societe, $date_ecriture, $numero_piece, $compte_general, $libelle, $unite_oeuvre, $quantite, $montant
+            );
+            $stmt = $connexion->prepare($sql);
+            $stmt->execute();
+            $connexion->commit();
+    
+            return true;
+        } catch (Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function get_last_charge($societe, $compte_6) {
+        $connexion = dbconnect();
+
+        $sql = "SELECT * FROM v_ecritures_charges 
+                WHERE (societe = :societe AND numero_compte = :numero_compte) 
+                ORDER BY num DESC LIMIT 1";
+
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(":societe", $societe);
+        $stmt->bindParam(":numero_compte", $compte_6);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($result == false) {
+            $errorInfo = $stmt->errorInfo();
+            print_r($errorInfo);
+        } else {
+            return $result;
+        }
+    }
     
     function find($devise) {
         $connexion = dbconnect();
@@ -131,24 +176,28 @@
 
 /// comptes 6, clé de répartition
 
-    function insert_nature_compte_6($compte_6, $inc, $n_inc) {
-        try {
-            $connexion = dbconnect();
-            $connexion->beginTransaction();
-            $sql = "INSERT INTO nature_compte_6(id_compte_6, inc, n_inc) VALUES('%s', %d, %d)";
-            $sql = sprintf($sql, $compte_6, $inc, $n_inc);
+function insert_nature_compte_6($compte_6, $inc, $n_inc) {
+    try {
+        $connexion = dbconnect();
+        $connexion->beginTransaction();
+        
+        $sql = "INSERT INTO nature_compte_6(id_compte_6, inc, n_inc) VALUES(:compte_6, :inc, :n_inc)";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindValue(':compte_6', $compte_6);
+        $stmt->bindValue(':inc', $inc);
+        $stmt->bindValue(':n_inc', $n_inc);
+        
+        $stmt->execute();
+        $connexion->commit();
 
-            $stmt = $connexion->prepare($sql);
-            $stmt->execute();
-            $connexion->commit();
-
-            return true;
-        } catch(Exception $e) {
-            $connexion->rollback();
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
+        return true;
+    } catch(Exception $e) {
+        $connexion->rollback();
+        echo "Error: " . $e->getMessage();
+        return false;
     }
+}
+
 
     function get_nature_compte_6($compte_6) {
         $connexion = dbconnect();
@@ -156,7 +205,7 @@
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':compte_6', $compte_6);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -234,6 +283,25 @@
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    function reset_clets_rep_produit($compte_6) {
+        try {
+            $connexion = dbconnect();
+            $connexion->beginTransaction();
+        
+            $sql = "DELETE FROM compte_6_produit WHERE id_compte_6 = :id_compte_6";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':id_compte_6', $compte_6);
+            $stmt->execute();
+            
+            $connexion->commit();
+            return true;
+        } catch(Exception $e) {
+            $connexion->rollback();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
     }
 
     function reset_cles_rep_produit_centre() {

@@ -1,4 +1,4 @@
-function displayFenetreProduit() {
+/*function displayFenetreProduit() {
     var open = document.getElementById("pop-up");
     var popupOverlay = document.getElementById("popup-overlay");
     open.style.display = "block";
@@ -24,6 +24,6 @@ const closePopup = document.getElementById("pop-up-close");
 closePopup.onclick = function(event) {
     event.preventDefault();
     closeFenetreProduit();
-}
+}*/
 
 
