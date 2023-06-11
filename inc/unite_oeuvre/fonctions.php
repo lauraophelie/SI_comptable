@@ -26,4 +26,57 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    function find_uo_by_id($id) {
+        $connexion = db__connect();
+        $sql = "SELECT * FROM unite_oeuvre WHERE id = :id";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function insert_uo($designation) {
+        try {
+            $connexion = db__connect();
+            $sql = "INSERT INTO unite_oeuvre(designation) VALUES(:designation)";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':designation', $designation);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'insertion : " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function delete_uo($id) {
+        try {
+            $connexion = db__connect();
+            $sql = "DELETE FROM unite_oeuvre WHERE id = :id";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la suppression : " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function update_uo($id, $designation) {
+        try {
+            $connexion = db__connect();
+            $sql = "UPDATE unite_oeuvre SET designation = :designation WHERE id = :id";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':designation', $designation);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur lors de la modification : " . $e->getMessage();
+            return false;
+        }
+    }
 ?>

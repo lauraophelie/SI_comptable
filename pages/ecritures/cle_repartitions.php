@@ -20,23 +20,43 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($produits as $produit) { ?>
-            <tr>
-                <th> 
-                    <?php echo $produit['designation']; ?>
-                </th>
-                <?php foreach($cles_repartitions as $cle) { ?>
+        <?php if($cles_repartitions) { 
+            foreach($produits as $produit) { ?>
+                <tr>
                     <th> 
-                        <p>
-                            <input type="text" name="<?php echo "centre".$cle['id_centre']."fixe"; ?>" class="input-cle" placeholder="% fixe">
-                        </p>
-                        <p>
-                            <input type="text" name="<?php echo "centre".$cle['id_centre']."variable"; ?>" class="input-cle" placeholder="% variable">
-                        </p>
+                        <?php echo $produit['designation']; ?>
                     </th>
-                <?php } ?>
-            </tr>
-        <?php } ?>
+                    <?php foreach($cles_repartitions as $cle) { ?>
+                        <th> 
+                            <p>
+                                <input type="text" name="<?php echo "centre".$cle['id_centre']."fixe"; ?>" class="input-cle" placeholder="% fixe"
+                                    value="<?php echo $cle['c_fixe']; ?>">
+                            </p>
+                            <p>
+                                <input type="text" name="<?php echo "centre".$cle['id_centre']."variable"; ?>" class="input-cle" placeholder="% variable"
+                                    value="<?php echo $cle['c_variable']; ?>">
+                            </p>
+                        </th>
+                    <?php } ?>
+                </tr>
+        <?php } } else {
+            foreach($produits as $produit) { ?>
+                <tr>
+                    <th> 
+                        <?php echo $produit['designation']; ?>
+                    </th>
+                    <?php foreach($produits as $p) { ?>
+                        <th> 
+                            <p>
+                                <input type="text" name="<?php echo "centre".$p['id']."fixe"; ?>" class="input-cle" placeholder="% fixe">
+                            </p>
+                            <p>
+                                <input type="text" name="<?php echo "centre".$p['id']."variable"; ?>" class="input-cle" placeholder="% variable">
+                            </p>
+                        </th>
+                    <?php } ?>
+                </tr>
+        <?php } } ?>
     </tbody>
 </table>
 
