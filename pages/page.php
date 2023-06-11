@@ -74,6 +74,14 @@
             </a>
         </div>
         <div class="main-menu-element">
+            <a href="#">
+                <p> 
+                    <i class="fas fa-receipt"> </i>
+                    <label for=""> Facture </label>
+                </p>
+            </a>
+        </div>
+        <div class="main-menu-element">
             <a href="./page.php?page=dashboard/menu_general">
                 <p> 
                     <i class="fas fa-weight-hanging"> </i>
@@ -95,6 +103,7 @@
             include($page);
         ?>
     </div>
+    <div class="footer" style="height: 200px"> </div>
     <script src="../assets/js/jquery.js"> </script>
     <script src="../assets/js/parsley.js"> </script>
 </body>

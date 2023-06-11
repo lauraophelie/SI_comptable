@@ -35,10 +35,12 @@
         <h2> Devise </h2>
     </div>
     <div class="compta-menu-element-one">
-        <i class="fas fa-newspaper"> </i>
+        <i class="fas fa-user-friends"> </i>
         <h2> Tiers </h2>
     </div>
 </div>
+
+
 
 <script>
     const allBoxes = document.querySelectorAll(".compta-menu-element-one");

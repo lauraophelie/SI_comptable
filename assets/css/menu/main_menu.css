@@ -1,6 +1,6 @@
 .main-menu-element {
   border: 1px solid transparent;
-  margin-top: 45px;
+  margin-top: 35px;
   margin-left: 25px;
   height: 50px;
   width: 150px;
@@ -19,7 +19,7 @@
   display: inline;
   padding-left: 20px;
   font-weight: lighter;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 i {
