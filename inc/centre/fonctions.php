@@ -46,7 +46,7 @@
 
     function findAll(){
         $connexion = db_connect();
-        $sql="SELECT * from centre";
+        $sql="SELECT * from centre ORDER BY id ASC";
         $stmt=$connexion->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

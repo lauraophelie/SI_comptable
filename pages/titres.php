@@ -10,6 +10,7 @@
     
     $titre["ecritures/listes_ecritures.php"]            = "Ecriture - Liste des écritures";
     $titre["ecritures/ecriture.php"]                    = "Nouvelle écriture";
+    $titre["ecritures/cle_repartitions.php"]            = "Répartition par centre";
     $titre["ecritures/import_ecritures.php"]            = "Ecriture - Import";
     $titre["ecritures/liste_ecritures_journal.php"]     = "Ecriture - Liste des écritures";
     
@@ -40,4 +41,8 @@
     $titre["dashboard/menu_analytique.php"]             = "Comptabilité analytique";
     $titre["dashboard/menu_general.php"]                = "Comptabilité générale";
     $titre["societe/info.php"]                          = "Informations sur la société";
+
+    $titre["cout/couts_centre.php"]                     = "Coûts par centre";
+    $titre["cout/couts_nature.php"]                     = "Coûts par nature";
+    $titre["cout/couts_produits.php"]                   = "Coûts par produits";
 ?>

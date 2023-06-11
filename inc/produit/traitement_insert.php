@@ -1,23 +1,26 @@
 <?php
-    include("fonctions.php");
+    include("./fonctions.php");
+    include("../ecritures/fonctions.php");
+
     $designation = $_POST['designation'];
 
     if(!isset($designation) || empty($designation)) {
-        header('Location: ../../pages/produit/form_insert.php?error=Les champs ne peuvent pas être vides');
+        header('Location: ../../pages/page.php?page=produit/form_insert&error=Les champs ne peuvent pas être vides');
         exit();
     }  
     
     $produit = verifProduit($designation);
     if($produit== true){
-        header('Location: ../../pages/produit/form_insert.php?error=Ce produit existe deja');
+        header('Location: ../../pages/page.php?page=produit/form_insert&error=Ce produit existe déjà');
         exit();
     }else{
         $insert = save($designation);
         if($insert == true) {
-            header('Location: ../../pages/produit/affichage_produit.php?message=Insertion terminee avec succes !');
+            reset_cles_rep_produit_centre();
+            header('Location: ../../pages/page.php?page=produit/affichage_produit&message=Insertion terminée avec succès !');
             exit();
         } else {
-            header('Location: ../../pages/produit/affichage_produit.php?error=Une erreur s\'est produite lors de l\'insertion !');
+            header('Location: ../../pages/page.php?page=produit/affichage_produit&error=Une erreur s\'est produite lors de l\'insertion !');
             exit();
         }
     }

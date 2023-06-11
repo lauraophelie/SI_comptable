@@ -148,3 +148,107 @@ CREATE OR REPLACE VIEW v_repartition_produits_centre AS(
 INSERT INTO unite_oeuvre(designation) VALUES('KG'), ('NB'), ('Cons Périodiques'), ('KW'), ('Litres'), ('Loyer Mensuel'),
                                             ('Heure de travail'), ('Salaire mensuel');
 
+-------------------------------------------------------- 17-05-2023 -------------------------------------------------
+
+SELECT
+	DISTINCT(produit_id),
+	produit,
+	numero_compte,
+	pourcentage AS cle,
+	fixe,
+	variable
+FROM
+	v_repartition_produit_compte_6
+ORDER BY numero_compte ASC;
+
+INSERT INTO compte_6_produit(id_compte_6, id_produit, pourcentage, fixe, variable) VALUES('60200', 2, 85, 80, 20);
+
+INSERT INTO repartition_produit_centre(id_compte_6, id_produit, id_centre, fixe, variable) VALUES('60200', 1, 1, 10, 20),
+                                                                                                ('60200', 1, 2, 20, 30),
+                                                                                                ('60200', 1, 3, 70, 50);
+
+CREATE OR REPLACE VIEW v_cle_rep_produit_compte_6 AS(
+    SELECT
+        DISTINCT(produit_id),
+        produit,
+        numero_compte,
+        pourcentage AS cle,
+        fixe,
+        variable
+    FROM
+	    v_repartition_produit_compte_6
+);
+
+SELECT * FROM v_cle_rep_produit_compte_6 ORDER BY numero_compte ASC;
+
+SELECT 
+    DISTINCT(produit_id),
+    produit, 
+    numero_compte,
+    id_centre,
+    centre,
+    c_fixe, 
+    c_variable
+FROM
+    v_repartition_produits_centre
+ORDER BY numero_compte ASC;
+
+CREATE OR REPLACE VIEW v_cle_rep_produit_centre AS(
+    SELECT 
+        DISTINCT(produit_id),
+        produit, 
+        numero_compte,
+        id_centre,
+        centre,
+        c_fixe, 
+        c_variable
+    FROM
+        v_repartition_produits_centre
+);
+
+SELECT * FROM v_cle_rep_produit_centre ORDER BY numero_compte ASC;
+
+
+--------------------------------------------------------- 24-05-2023 -----------------------------------------------------------
+
+CREATE OR REPLACE VIEW v_charges AS(
+    SELECT * from ecriture_journal where compte_general like '6%' and compte_general not like '68%'
+);
+
+--------- coûts par produits 
+
+SELECT DISTINCT produit, produit_id, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY produit, produit_id;
+
+CREATE OR REPLACE VIEW v_couts_produits AS(
+    SELECT DISTINCT produit, produit_id, date_ecriture, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY produit, produit_id, date_ecriture
+);
+
+--------- coûts par produits et par centre
+
+SELECT DISTINCT produit, produit_id, date_ecriture, id_centre, centre, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY produit, produit_id, id_centre, centre, date_ecriture;
+
+CREATE OR REPLACE VIEW v_couts_produits_centres AS(   
+    SELECT DISTINCT produit, produit_id, date_ecriture, id_centre, centre, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY produit, produit_id, id_centre, centre, date_ecriture
+);
+
+SELECT DISTINCT produit, produit_id, date_ecriture, id_centre, centre, SUM(fixe) as fixe, SUM(variable) as variable FROM v_couts_produits_centres GROUP BY produit, produit_id, id_centre, centre, date_ecriture;
+
+----------------------------------------------------------- 27-05-2023 -----------------------------------------------------------
+
+--------- coûts par centre
+
+SELECT DISTINCT centre, id_centre, date_ecriture, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY id_centre, centre, date_ecriture;
+
+CREATE OR REPLACE VIEW v_couts_centre AS(
+    SELECT DISTINCT centre, id_centre, date_ecriture, SUM(centre_fixe) as fixe, SUM(centre_variable) as variable FROM v_repartition_produits_centre GROUP BY id_centre, centre, date_ecriture
+);
+
+SELECT DISTINCT centre, id_centre, date_ecriture, SUM(fixe) as fixe, SUM(variable) as variable FROM v_couts_centre GROUP BY id_centre, centre;
+
+--------- coûts par nature 
+
+SELECT DISTINCT date_ecriture, SUM(valeur_fixe) AS fixe, SUM(valeur_variable) AS variable FROM v_repartition_produit_compte_6 GROUP BY date_ecriture;
+
+CREATE OR REPLACE VIEW v_couts_nature AS(
+    SELECT DISTINCT date_ecriture, SUM(valeur_fixe) AS fixe, SUM(valeur_variable) AS variable FROM v_repartition_produit_compte_6 GROUP BY date_ecriture
+);

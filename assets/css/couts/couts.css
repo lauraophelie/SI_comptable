@@ -1,0 +1,40 @@
+.case_couts {
+  height: 150px;
+  width: 25%;
+  margin-left: 15%;
+  float: left;
+  background-color: white;
+  box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);
+  line-height: 10px;
+  transition: 0.5s;
+}
+.case_couts p, .case_couts h2 {
+  padding-left: 50px;
+}
+.case_couts p {
+  padding-top: 35px;
+}
+.case_couts h2 {
+  padding-top: -15px;
+}
+
+.case_couts:hover {
+  background-color: #00134c;
+  color: white;
+  box-shadow: 10px 10px 10px rgba(118, 118, 118, 0.055);
+  transform: scale(1.05);
+}
+.case_couts:hover p {
+  color: whitesmoke;
+}
+
+.case_chart {
+  height: 150px;
+}
+
+.chart-container {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 10px;
+  float: left;
+}/*# sourceMappingURL=couts.css.map */

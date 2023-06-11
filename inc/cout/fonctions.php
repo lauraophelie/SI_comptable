@@ -1,5 +1,5 @@
 <?php
-function db_connect() {
+    function db_connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
         $PARAM_utilisateur = 'gestion_compta';

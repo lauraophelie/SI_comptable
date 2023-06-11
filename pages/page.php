@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="../assets/dashboard/dashboard.css">
     <link rel="stylesheet" href="../assets/css/menu/main_menu.css">
     <link rel="stylesheet" href="../assets/css/menu/menu_compta.css">
+    <link rel="stylesheet" href="../assets/css/couts/couts.css">
 
     <title> <?php echo $titre[$page]; ?> </title>
 </head>
@@ -72,12 +73,37 @@
                 </p>
             </a>
         </div>
+        <div class="main-menu-element">
+            <a href="./page.php?page=factures/liste_factures">
+                <p> 
+                    <i class="fas fa-receipt"> </i>
+                    <label for=""> Facture </label>
+                </p>
+            </a>
+        </div>
+        <div class="main-menu-element">
+            <a href="./page.php?page=dashboard/menu_general">
+                <p> 
+                    <i class="fas fa-weight-hanging"> </i>
+                    <label for=""> Charges supplétives </label>
+                </p>
+            </a>
+        </div>
+        <div class="main-menu-element">
+            <a href="./deconnexion.php">
+                <p> 
+                    <i class="fas fa-sign-out-alt"> </i>
+                    <label for=""> Déconnecter </label>
+                </p>
+            </a>
+        </div>
     </div>
     <div class="page-content">
         <?php
             include($page);
         ?>
     </div>
+    <div class="footer" style="height: 200px"> </div>
     <script src="../assets/js/jquery.js"> </script>
     <script src="../assets/js/parsley.js"> </script>
 </body>

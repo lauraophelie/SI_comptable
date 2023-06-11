@@ -46,19 +46,21 @@
 
     function findAll(){
         $connexion = db_connect();
-        $sql="SELECT * from produit";
+        $sql="SELECT * from v_produits ORDER BY id ASC";
         $stmt=$connexion->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    function update($id,$designation){
+    function update($id, $designation, $prix_unitaire, $unite_oeuvre){
         try{
             $connecion = db_connect();
-            $sql = "UPDATE produit SET designation = :designation where id=:id";
+            $sql = "UPDATE produit SET designation = :designation, prix_unitaire = :prix_unitaire, unite_oeuvre = :unite_oeuvre where id=:id";
             $stmt = $connecion->prepare($sql);
-            $stmt->bindParam(':designation',$designation);
+            $stmt->bindParam(':designation', $designation);
+            $stmt->bindParam(':prix_unitaire', $prix_unitaire);
+            $stmt->bindParam(':unite_oeuvre', $unite_oeuvre);
             $stmt->bindParam(':id',$id);
             $stmt->execute();
             return true;

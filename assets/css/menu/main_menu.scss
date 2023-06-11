@@ -10,16 +10,17 @@ $icon-size : 20px;
             color: rgb(47, 47, 47);
             i {
                 font-size: $icon-size;
+                color: rgb(27, 59, 108);
             }
             label {
                 display: inline;
                 padding-left: 20px;
                 font-weight: lighter;
-                font-size: 16px;
+                font-size: 15px;
             }
         }
     }
-    margin-top: 45px;
+    margin-top: 35px;
     margin-left: 25px;
     height: 50px;
     width: 150px;

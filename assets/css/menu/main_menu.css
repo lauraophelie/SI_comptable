@@ -1,6 +1,6 @@
 .main-menu-element {
   border: 1px solid transparent;
-  margin-top: 45px;
+  margin-top: 35px;
   margin-left: 25px;
   height: 50px;
   width: 150px;
@@ -13,12 +13,13 @@
 }
 .main-menu-element a p i {
   font-size: 20px;
+  color: rgb(27, 59, 108);
 }
 .main-menu-element a p label {
   display: inline;
   padding-left: 20px;
   font-weight: lighter;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 i {

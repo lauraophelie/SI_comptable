@@ -1,5 +1,5 @@
 <?php
-    require("../inc/produit/fonctions.php");
+    require_once("../inc/produit/fonctions.php");
     $produits = findAll();
 ?>
     <h1 id="main-title"> Liste des produits </h1>
@@ -23,12 +23,16 @@
             <tr id="data-title">
                 <th> ID </th>
                 <th> Désignation </th>
+                <th> Prix Unitaire </th>
+                <th> Unité d'oeuvre </th>
                 <th> </th>
             </tr>
             <?php foreach($produits as $produit) { ?>
                 <tr id="data-line">
                     <td> <?php echo $produit['id']; ?> </td>
                     <td> <?php echo $produit['designation']; ?> </td>
+                    <td> <?php echo $produit['prix_unitaire']; ?> Ar </td>
+                    <td> <?php echo $produit['unite']; ?> </td>
                     <td>
                         <a href="modif_produit.php?id=<?php echo $produit['id']; ?>">
                             <i class="fas fa-pen"> </i>
