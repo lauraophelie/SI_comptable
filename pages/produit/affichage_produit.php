@@ -31,8 +31,8 @@
                 <tr id="data-line">
                     <td> <?php echo $produit['id']; ?> </td>
                     <td> <?php echo $produit['designation']; ?> </td>
-                    <td> </td>
-                    <td> </td>
+                    <td> <?php echo $produit['prix_unitaire']; ?> Ar </td>
+                    <td> <?php echo $produit['unite']; ?> </td>
                     <td>
                         <a href="modif_produit.php?id=<?php echo $produit['id']; ?>">
                             <i class="fas fa-pen"> </i>

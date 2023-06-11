@@ -74,7 +74,7 @@
             </a>
         </div>
         <div class="main-menu-element">
-            <a href="#">
+            <a href="./page.php?page=factures/liste_factures">
                 <p> 
                     <i class="fas fa-receipt"> </i>
                     <label for=""> Facture </label>
