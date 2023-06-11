@@ -46,6 +46,21 @@
         }
     }
 
+    function ecrireChargeSuppletif($idSociete,$designation) {
+        try{
+            $connexion = dbConnect();
+            $sql="INSERT INTO charge_suppletif(societe, designation) VALUES(:id, :designation) ";
+            $stmt = $connexion ->prepare($sql);
+            $stmt->bindParam(':id',$idSociete);
+            $stmt->bindParam(':designation',$designation);
+            $stmt->execute();
+            return true;
+        }catch(PDOException $e){
+            echo "Erreur lors de l'insertion :".$e->getMessage();
+            return false;
+        }
+    }
+
     function findAllChargeSuppletif($id_societe){
         $connexion = dbConnect();
         $sql="SELECT  charge_suppletive.id as id, charge_suppletive.designation as designation, societe, unite_oeuvre.designation as unite

@@ -15,44 +15,17 @@
 <body>
     <form action="../../inc/societe/traitement_step3.php" method="post" data-parsley-validate="">
         <h1> S'inscrire : </h1>
-            <p> Numéro d'identification fiscale : (NIF) <br/>
-                <input type="text" name="nif" placeholder="Ecrivez ici" required="" maxlength="15" <?php
+            <p> Mot de passe <br/>
+                <input type="password" name="mot_de_passe" placeholder="Ecrivez ici" required="" maxlength="15" <?php
                     if(isset($_SESSION['societe'])){
-                        if(isset($_SESSION['societe']['nif'])){
-                            echo("value='"+$_SESSION['societe']['nif']+"'");
+                        if(isset($_SESSION['societe']['mot_de_passe'])){
+                            echo("value='"+$_SESSION['societe']['mot_de_passe']+"'");
                         }
                     }
                 ?>>
-                <input type="file" name="scan_nif" class="scan">
             </p>
-            <p> Numéro statistique : (NS) <br/>
-                <input type="text" name="stat" placeholder="Ecrivez ici" required="" maxlength="15" <?php
-                    if(isset($_SESSION['societe'])){
-                        if(isset($_SESSION['societe']['stat'])){
-                            echo("value='"+$_SESSION['societe']['stat']+"'");
-                        }
-                    }
-                ?>>
-                <input type="file" name="scan_ns" class="scan">
-            </p>
-            <p> Numéro du Registe de Commerce de la Société: (NRCS) <br/>
-                <input type="date" name="date_creation" required="" <?php
-                    if(isset($_SESSION['societe'])){
-                        if(isset($_SESSION['societe']['date_creation'])){
-                            echo("value='"+$_SESSION['societe']['date_creation']+"'");
-                        }
-                    }
-                ?>>
-                <input type="file" name="scan_nrcs" class="scan">
-            </p>
-            <p> Adresse de la société : 
-                <input type="texte" name="adresse" placeholder="Ecrivez ici" required="" <?php
-                    if(isset($_SESSION['societe'])){
-                        if(isset($_SESSION['societe']['nom_societe'])){
-                            echo("value='"+$_SESSION['societe']['nom_societe']+"'");
-                        }
-                    }
-                ?>>
+            <p> Confirmer le mot de passe <br/>
+                <input type="password" name="re_mot_de_passe" placeholder="Ecrivez ici" required="" maxlength="15" >
             </p>
             <p>
                 <button type="submit"> S'inscrire </button>

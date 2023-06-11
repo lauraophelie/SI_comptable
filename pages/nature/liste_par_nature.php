@@ -25,6 +25,7 @@
                 <th> Variable </th>
                 <th> </th>
             </tr>
+            
             <?php foreach($charges_suppletives as $charge) { ?>
                 <tr id="data-line">
                     <td> <?php echo $charge['id']; ?> </td>

@@ -2,7 +2,8 @@
     session_start();
     include("./fonctions.php");
     if(!isset($_SESSION['societe'])){
-        $_SESSION['societe'] = array();
+        header("Location: ../../pages/societe/inscription_step1.php?error=Session expire, remplir de nouveau");
+        exit();
     }
     if(isset( $_POST['capital'])){
         $_SESSION['societe']['capital']=$_POST['capital'];
@@ -25,7 +26,6 @@
             header("Location: ../../pages/societe/inscription_step3.php");
             exit();
         }
-
     } else {
         header("Location: ../../pages/login/login.php");
         exit();
