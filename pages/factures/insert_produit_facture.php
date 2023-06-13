@@ -13,8 +13,10 @@
     </tr>
 </table>
 
-<button type="button" id="retour-facture" class="fac"> Précédent </button>
-<button type="button" id="add-facture" class="fac"> Valider </button>
+<div class="button-container" style="margin-left: 35%; margin-top: 50px">
+    <button type="button" id="retour-facture" class="fac"> Précédent </button>
+    <button type="button" id="add-facture" class="fac"> Valider </button>
+</div>
 
 <script>
     var urlParams = new URLSearchParams(window.location.search);
@@ -61,6 +63,9 @@
         fac[i].style.transition = "0.5s";
     }
     addButton.style.background = "#CCA43B";
+
     retourButton.style.background = "#242F40";
     retourButton.style.color = "#FFFFFF";
+
+    
 </script>
