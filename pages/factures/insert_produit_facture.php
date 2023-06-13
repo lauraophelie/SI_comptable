@@ -24,8 +24,6 @@
     var formData = JSON.parse(jsonData);
 
     var choixProduits = formData.produits;
-    console.log(choixProduits);
-
     var tableProduits = document.getElementById("produitsChoix");
 
     for(let i = 0; i < choixProduits.length; i++) {
@@ -43,6 +41,7 @@
         var input = document.createElement("input");
         input.type = "text";
         input.name = "produit" + choixProduits[i].id_produit;
+        input.id = "produit" + choixProduits[i].id_produit;
         input.placeholder = "Quantité";
         input.style.border = "1px solid transparent";
         input.style.height = "30px";
@@ -67,5 +66,28 @@
     retourButton.style.background = "#242F40";
     retourButton.style.color = "#FFFFFF";
 
-    
+    addButton.addEventListener("click", function(e) {
+        e.preventDefault();  
+        
+        var produits = [];
+        for(let i = 0; i < choixProduits.length; i++) {
+            var name = "produit" + choixProduits[i].id_produit;
+            var valueQuantite = document.getElementById(name).value;
+            var objet = {
+                id_produit: choixProduits[i].id_produit,
+                designation: choixProduits[i].designation,
+                quantite: valueQuantite
+            }
+            produits.push(objet);
+        }
+        var data = {
+            client: formData.client,
+            reference: formData.reference,
+            objet: formData.objet,
+            avance: formData.avance,
+            produits: produits
+        }
+        var jsonData = JSON.stringify(data);
+        window.location.href = "./page.php?page=factures/affichage_facture&data=" + encodeURIComponent(jsonData);
+    });
 </script>

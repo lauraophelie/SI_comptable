@@ -39,9 +39,6 @@
 <script>
     document.getElementById("factureForm").addEventListener("submit", function(e) {
         e.preventDefault();
-
-        console.log("submitting");
-
         var client = document.getElementById("client").value;
         var ref = document.getElementById("ref").value;
         var objet = document.getElementById("objet").value;
