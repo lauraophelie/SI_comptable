@@ -25,9 +25,11 @@
         <input type="text" name="objet" id="objet" placeholder="Ecrivez ici" required="">
     <label for="produit"> Produit : </label>
         <?php foreach($produits as $produit) { ?>
-            <input type="checkbox" name="<?php echo 'produit'.$produit['id']; ?>" value="<?php echo $produit['id']; ?>" id="" style="margin-top: 25px"
-            class="produitsFacture"> 
-                <?php echo $produit['designation']; ?>
+            <p class="paraProduit">
+                <input type="checkbox" name="<?php echo 'produit'.$produit['id']; ?>" value="<?php echo $produit['id']; ?>" id="" style="margin-top: 25px"
+                class="produitsFacture"> 
+                    <?php echo $produit['designation']; ?>
+            </p>
         <?php } ?>
     <label for="avance"> Avance : </label>
         <input type="text" name="avance" id="avance" placeholder="Ecrivez ici">
@@ -46,9 +48,17 @@
         var avance = document.getElementById("avance").value;
 
         var produits = document.getElementsByClassName("produitsFacture");
+        var designations = document.getElementsByClassName("paraProduit");
+
         var choixProduits = [];
+        var designationsProduit = []; 
+
         for(let i = 0; i < produits.length; i++) {
-            choixProduits.push(produits[i].value);
+            var object = {
+                designation: designations[i].textContent.trim(),
+                id_produit: parseInt(produits[i].value)
+            }
+            choixProduits.push(object);
         }
 
         var facture = {
