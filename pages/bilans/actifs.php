@@ -40,7 +40,7 @@
         <tr class="passif-line">
             <td>IMMOBILISATIONS INCORPORELLES</td>
             <td>20</td>
-            <td>Ar <?php
+            <td><?php
                 $val1 = getInfo("20",$_SESSION['id_societe']);
                 $immoInco = 0;
                 if($val1 != null)
@@ -49,7 +49,7 @@
                 }
                 echo $immoInco;
             ?></td>
-            <td>Ar <?php
+            <td><?php
                 $val2 = getInfo("280",$_SESSION['id_societe']);
                 $amortInco = 0;
                 if($val2 != null)
@@ -58,13 +58,13 @@
                 }
                 echo $amortInco;
             ?></td>
-            <td>Ar <?php $netInco = $immoInco - $amortInco;
+            <td><?php $netInco = $immoInco - $amortInco;
             echo $netInco; ?></td>
         </tr>
         <tr class="passif-line">
             <td>IMMOBILISATIONS CORPORELLES</td>
             <td>21</td>
-            <td>Ar <?php
+            <td><?php
                 $val1 = getInfo("21",$_SESSION['id_societe']);
                 $immoCo = 0;
                 if($val1 != null)
@@ -73,7 +73,7 @@
                 }
                 echo $immoCo;
             ?></td>
-            <td>Ar <?php
+            <td><?php
                 $val2 = getInfo("281",$_SESSION['id_societe']);
                 $amortCo = 0;
                 if($val2 != null)
@@ -82,13 +82,13 @@
                 }
                 echo $amortCo;
             ?></td>
-            <td>Ar <?php $netCo = $immoCo - $amortCo;
+            <td><?php $netCo = $immoCo - $amortCo;
             echo $netCo; ?></td>
         </tr>
         <tr class="passif-line">
             <td>IMMOBILISATIONS BIOLOGIQUES</td>
             <td>22</td>
-            <td>Ar <?php
+            <td><?php
                 $val1 = getInfo("22",$_SESSION['id_societe']);
                 $immoBio = 0;
                 if($val1 != null)
@@ -97,13 +97,13 @@
                 }
                 echo $immoBio;
             ?></td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line">
             <td>IMMOBILISATIONS EN COURS</td>
             <td>23</td>
-            <td>Ar <?php
+            <td><?php
                 $val1 = getInfo("23",$_SESSION['id_societe']);
                 $immoCours = 0;
                 if($val1 != null)
@@ -112,13 +112,13 @@
                 }
                 echo $immoCours;
             ?></td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line">
             <td>IMMOBILISATIONS FINANCIERES</td>
             <td>25</td>
-            <td>Ar <?php
+            <td><?php
                 $val1 = getInfo("25",$_SESSION['id_societe']);
                 $immoFin = 0;
                 if($val1 != null)
@@ -127,13 +127,13 @@
                 }
                 echo $immoFin;
             ?></td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line">
             <td>IMPOTS DIFFERES</td>
             <td>13</td>
-            <td>Ar <?php
+            <td><?php
                 $val1 = getInfo("21",$_SESSION['id_societe']);
                 $impotDiff = 0;
                 if($val1 != null)
@@ -142,23 +142,23 @@
                 }
                 echo $impotDiff;
             ?></td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line total-line">
             <th> 
                 <h4 style="text-align:center"> TOTAL DES ACTIFS NON COURANTS </h4>
             </th>
             <th> </th>
-            <td>Ar <?php
+            <td><?php
                 $brutNonCourant = $immoInco + $immoCo + $immoBio + $immoCours + $immoFin + $impotDiff;
                 echo $brutNonCourant;
             ?></td>
-            <td>Ar <?php
+            <td><?php
                 $amortNonCourant = $amortInco + $amortCo;
                 echo $amortNonCourant;
             ?></td>
-            <td>Ar <?php $netNonCourant = $brutNonCourant - $amortNonCourant;
+            <td><?php $netNonCourant = $brutNonCourant - $amortNonCourant;
             echo $netNonCourant; ?></td>
         </tr>
         <tr class="passif-line">
@@ -169,7 +169,7 @@
         <tr class="passif-line">
             <td>STOCKS ET EN-COURS</td>
             <td>3</td>
-            <td>Ar <?php
+            <td><?php
                 $val1 = getInfo("3",$_SESSION['id_societe']);
                 $stockBrut = 0;
                 if($val1 != null)
@@ -178,7 +178,7 @@
                 }
                 echo $stockBrut;
             ?></td>
-            <td>Ar <?php
+            <td><?php
                 $val2 = getInfo("397",$_SESSION['id_societe']);
                 $provisionStock = 0;
                 if($val2 != null)
@@ -187,21 +187,21 @@
                 }
                 echo $provisionStock;
             ?></td>
-            <td>Ar <?php $netStock = $stockBrut - $provisionStock;
+            <td><?php $netStock = $stockBrut - $provisionStock;
             echo $netStock; ?></td>
         </tr>
 
         <tr class="passif-line">
             <td>CREANCES ET EMPLOIS ASSIMILES</td>
             <td>4...</td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line">
             <td>Clients et autres débiteurs</td>
             <td>4...</td>
-            <td>Ar <?php
+            <td> <?php
                 $val1 = getInfo("4",$_SESSION['id_societe']);
                 $client = 0;
                 if($val1 != null)
@@ -210,28 +210,28 @@
                 }
                 echo $client;
             ?>
-            ?></td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            </td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line">
             <td>Impôts /bénéfice</td>
             <td>...</td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line">
             <td>Autres créances et actifs assimilés</td>
             <td>4...</td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line">
             <td>TRESORERIE ET EQUIVALENTS DE TRESORERIE</td>
             <td>5...</td>
-            <td>Ar <?php
+            <td><?php
                 $val1 = getInfo("5",$_SESSION['id_societe']);
                 $tresor = 0;
                 if($val1 != null)
@@ -240,23 +240,23 @@
                 }
                 echo $tresor;
             ?></td>
-            <td>Ar 0</td>
-            <td>Ar 0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         <tr class="passif-line total-line">
             <th> 
                 <h4 style="text-align:center"> TOTAL DES ACTIFS COURANTS </h4>
             </th>
             <th> </th>
-            <td>Ar <?php
+            <td> <?php
                 $brutCourant = $stockBrut + $client + $tresor;
                 echo $brutCourant;
             ?></td>
-            <td>Ar <?php
+            <td> <?php
                 $amortCourant = $provisionStock;
                 echo $amortCourant;
             ?></td>
-            <td>Ar <?php $netCourant = $brutCourant - $amortCourant;
+            <td> <?php $netCourant = $brutCourant - $amortCourant;
             echo $netCourant; ?>
         </tr>
         <br/>
@@ -265,15 +265,15 @@
                 <h4 style="text-align:center"> TOTAL DES ACTIFS </h4>
             </th>
             <th> </th>
-            <td>Ar <?php
+            <td> <?php
                 $brutTot = $brutCourant + $brutNonCourant;
                 echo $brutTot;
             ?></td>
-            <td>Ar <?php
+            <td> <?php
                 $amortTot = $amortCourant + $amortNonCourant;
                 echo $amortTot;
             ?></td>
-            <td>Ar <?php $netTot = $brutTot - $amortTot;
+            <td> <?php $netTot = $brutTot - $amortTot;
             echo $netTot; ?>
         </tr>
     </table>

@@ -4,6 +4,7 @@
         $debut = getDebutCompta($societe);
         $result_grandlivre = getAllSolde($debut,$societe);
         $balance = treatmentSolde($result_grandlivre);
+        $somme = getSomme($debut,$societe);
     ?>
     <h1 id="main-title"> Balance </h1>
 
@@ -27,5 +28,11 @@
                 <td class="case-montant"> <?php echo number_format($ecriture['cred'], 0, ' ', ' '); ?> </td>
             </tr>
         <?php } ?>
+            <tr id="ecriture_line">
+                <td></td>
+                <td> TOTAL </td>
+                <td class="case-montant"> <?php echo number_format($somme['deb'], 0, ' ', ' '); ?> </td>
+                <td class="case-montant"> <?php echo number_format($somme['cred'], 0, ' ', ' '); ?> </td>
+            </tr>
     </table>
     <?php } ?>

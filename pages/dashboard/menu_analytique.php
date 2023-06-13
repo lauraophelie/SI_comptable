@@ -15,10 +15,12 @@
             <h2> Centres </h2>
         </div>
     </a>
-    <div class="compta-menu-element-one">
-        <i class="fas fa-divide"> </i>
-        <h2> Unité d'oeuvre </h2>
-    </div>
+    <a href="./page.php?page=unite_oeuvre/affichage_unite_oeuvre">
+        <div class="compta-menu-element-one">
+            <i class="fas fa-divide"> </i>
+            <h2> Unité d'oeuvre </h2>
+        </div>
+    </a>
 </div>
 
 <div style="height: 25px"> </div>
