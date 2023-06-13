@@ -94,6 +94,75 @@
         }
     }
 
+    function updateInfo($id, $nom, $objet, $date_creation, $dirigeant, $employe){
+        try {
+            $connexion = db_connect();
+            $sql = "UPDATE societe SET nom = :nom, objet = :objet, date_creation = :date_creation, dirigeant = :dirigeant, employe = :employe WHERE id = :id";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':objet', $objet);
+            $stmt->bindParam(':date_creation', $date_creation);
+            $stmt->bindParam(':dirigeant', $dirigeant);
+            $stmt->bindParam(':employe', $employe);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Une erreur s'est produite lors de la modification : " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function updateAdresses($id,$siege, $adresse, $telephone, $telecopie,$mail) {
+        try {
+            $connexion = db_connect();
+            $sql = "UPDATE adresses_societe SET siege = :siege, adresse =:adresse, telephone = :telephone, telecopie = :telecopie, mail = :mail WHERE societe = :id";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':siege', $siege);
+            $stmt->bindParam(':adresse', $adresse);
+            $stmt->bindParam(':telephone', $telephone);
+            $stmt->bindParam(':telecopie', $telecopie);
+            $stmt->bindParam(':mail', $mail);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Une erreur s'est produite lors de la modification : " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function updateId($id,$nif,$nrcs,$ns) {
+        try {
+            $connexion = db_connect();
+            $sql = "UPDATE identification_societe SET nif = :nif, ns = :ns, nrcs = :nrcs WHERE societe = :id";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':nif', $nif);
+            $stmt->bindParam(':ns', $ns);
+            $stmt->bindParam(':nrcs', $nrcs);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Une erreur s'est produite lors de la modification : " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function updateCompta($id,$capital, $devise, $date_debut, $date_fin, $devise_equi) {
+        try {
+            $connexion = db_connect();
+            $sql = "UPDATE comptabilite SET capital = :cap, date_debut =:debut, date_fin = :fin, devise_equivalence = :equi  WHERE societe = :id";
+            $stmt = $connexion->prepare($sql);
+            $stmt->bindParam(':cap', $capital);
+            $stmt->bindParam(':debut', $date_debut);
+            $stmt->bindParam(':fin', $date_fin);
+            $stmt->bindParam(':devise_equi', $devise_equi);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Une erreur s'est produite lors de la modification : " . $e->getMessage();
+            return false;
+        }
+    }
     function getDevise(){
         $connexion = db_connect();
         $sql = "SELECT * FROM devise ORDER BY id ASC";

@@ -74,13 +74,15 @@ INSERT INTO devise_equivalence(devise) VALUES('Ariary'), ('Euro'), ('Dollar'), (
 
 -- v_infos_societe
 
-CREATE VIEW v_infos_societe AS 
+
+CREATE OR REPLACE VIEW v_infos_societe AS 
 SELECT nom, adresse, telephone, mail FROM societe 
 JOIN adresses_societe ON societe.id = adresses_societe.societe; 
 
 -- info générale société
 
-CREATE VIEW v_infos_general AS
+
+CREATE OR REPLACE VIEW v_infos_general AS
 SELECT adresses_societe.*, nif,scan_nif,ns,scan_ns,nrcs,scan_nrcs, capital, date_debut_exercice as date_debut, devise.devise as nom_devise, comptabilite.devise as id_devise, nom, logo, objet, date_creation, dirigeant, employe, mot_de_passe as mdp  FROM societe
 JOIN adresses_societe ON societe.id = adresses_societe.societe
 JOIN identification_societe ON societe.id = identification_societe.societe
