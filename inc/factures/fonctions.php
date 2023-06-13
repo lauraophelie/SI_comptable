@@ -17,7 +17,7 @@
 
     function liste_factures() {
         $result = array();
-
+        
         return $result;
     }
 

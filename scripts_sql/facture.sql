@@ -53,7 +53,6 @@ CREATE TABLE details_facture(
 CREATE OR REPLACE VIEW v_infos_tiers AS
 SELECT tiers_id as id_tiers, nom_societe as nom_tiers, adresse as adresse_tiers, mail as mail_tiers, telephone as telephone_tiers FROM v_tiers; 
 
-SELECT * from facture
-join societe on societe.id = facture.societe
-join v_infos_societe on 
-join v_infos_tiers
+SELECT facture.*,nom,adresse,telephone,nom_tiers, adresse_tiers, mail_tiers from facture
+join v_infos_societe on v_infos_societe.id = facture.societe
+join v_infos_tiers on v_infos_tiers.id_tiers = facture.tiers;
