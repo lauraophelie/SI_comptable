@@ -1,8 +1,8 @@
 CREATE TABLE facture(
     id VARCHAR(15) NOT NULL,
     date_fact DATE NOT NULL,
-    societe REFERENCES societe(id),
-    tiers REFERENCES tiers(id),
+    societe INT REFERENCES societe(id),
+    tiers INT REFERENCES tiers(id),
     total_ttc DOUBLE PRECISION NOT NULL,
     tva DOUBLE PRECISION NOT NULL,
     reference VARCHAR(20),
@@ -24,7 +24,7 @@ ALTER TABLE facture VALIDATE CONSTRAINT facture_positif;
 
 
 CREATE TABLE gen_id_facture(
-    societe INT REFERENCES societe.id,
+    societe INT REFERENCES societe(id),
     abreviation VARCHAR(3),
     date_fact DATE,
     last_index INT
@@ -32,7 +32,7 @@ CREATE TABLE gen_id_facture(
 
 CREATE TABLE details_facture(
     id SERIAL PRIMARY KEY,
-    produit REFERENCES produit(id),
+    produit INT REFERENCES produit(id),
     quantite INT NOT NULL,
     prix_unitaire DOUBLE PRECISION NOT NULL,
     montant_ht INT NOT NULL,
