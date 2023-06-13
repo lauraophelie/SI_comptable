@@ -76,7 +76,7 @@ INSERT INTO devise_equivalence(devise) VALUES('Ariary'), ('Euro'), ('Dollar'), (
 
 
 CREATE OR REPLACE VIEW v_infos_societe AS 
-SELECT nom, adresse, telephone, mail FROM societe 
+SELECT societe.id, nom, adresse, telephone, mail FROM societe 
 JOIN adresses_societe ON societe.id = adresses_societe.societe; 
 
 -- info générale société
