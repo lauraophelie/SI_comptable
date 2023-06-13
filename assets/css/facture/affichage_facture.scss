@@ -14,15 +14,14 @@ $width-content: 100%;
     }
 
     .facture_info_societe {
-        height: 130px;
+        height: 185px;
         border: $border-min;
         width: $width-content;
 
         p {
-            float: left;
+            /*float: left;*/
             margin-top: -9px;
-            margin-left: 100px;
-            text-align: center;
+            padding-left: 125px;
         }
     }
 

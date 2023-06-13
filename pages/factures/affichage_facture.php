@@ -1,5 +1,10 @@
 <?php 
+    require_once("../inc/ecritures/fonctions.php");
+    require_once("../inc/societe/fonctions.php");
+
     $nom_societe = $_SESSION['nom'];
+    $societe = find_societe($nom_societe);
+    $infos_societe = findById($societe['id']);
 ?>
 
 <h1 id="main-title"> Facture </h1>
@@ -11,9 +16,15 @@
         <h3 class="main_title">
             <?php echo  $nom_societe; ?>
         </h3>
-        <p style="margin-left: 125px"> Adresse </p>
-        <p style="margin-left: 250px"> Téléphone </p>
-        <p style="margin-left: 225px"> Email </p>
+        <p>
+            <?php echo $infos_societe['adresse']; ?>
+        </p>
+        <p>
+            <?php echo $infos_societe['telephone']; ?>
+        </p>
+        <p>
+            <?php echo $infos_societe['mail']; ?>
+        </p>
     </div>
     <div class="facture_info_debut">
         <h3 class="main_title">

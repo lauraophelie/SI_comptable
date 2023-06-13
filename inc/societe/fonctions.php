@@ -213,7 +213,7 @@
         $stmt = $connexion->prepare($sql);
         $stmt -> bindParam(':id', $id);
         $stmt -> execute();
-        $result = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt -> fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 

@@ -11,15 +11,14 @@
   text-align: center;
 }
 .container_facture .facture_info_societe {
-  height: 130px;
+  height: 185px;
   border: 1px solid black;
   width: 100%;
 }
 .container_facture .facture_info_societe p {
-  float: left;
+  /*float: left;*/
   margin-top: -9px;
-  margin-left: 100px;
-  text-align: center;
+  padding-left: 125px;
 }
 .container_facture .facture_info_debut {
   border: 1px solid black;
