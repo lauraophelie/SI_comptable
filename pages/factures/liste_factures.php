@@ -13,7 +13,7 @@
         if(empty($factures)) {
     ?>
         <p class="empty-pan" style="margin-top: 15%"> 
-            Aucune n'est disponible pour le moment 
+            Aucune facture n'est disponible pour le moment 
         </p>
     <?php } else { ?>
         <table id="pcg_table">ç
@@ -40,6 +40,6 @@
                     <td> </td>
                     <td> </td>
                 </tr>
-    <?php } } ?>
+            <?php } } ?>
     </table>
     
