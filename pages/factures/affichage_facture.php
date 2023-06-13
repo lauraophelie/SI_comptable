@@ -2,9 +2,12 @@
     require_once("../inc/ecritures/fonctions.php");
     require_once("../inc/societe/fonctions.php");
 
+    date_default_timezone_set('Indian/Antananarivo');
+
     $nom_societe = $_SESSION['nom'];
     $societe = find_societe($nom_societe);
     $infos_societe = findById($societe['id']);
+    $date_actuelle = date("Y-m-d");
 ?>
 
 <h1 id="main-title"> Facture </h1>
@@ -31,7 +34,9 @@
             Facture
         </h3>
         <p style="margin-left: 125px"> ID Facture </p>
-        <p style="margin-left: 475px"> Date : </p>
+        <p style="margin-left: 475px"> 
+            Date : <?php echo $date_actuelle; ?>
+        </p>
     </div>
     <div class="facture_info_tiers">
         <div class="info_tiers_box">
@@ -136,4 +141,10 @@
     var jsonData = urlParams.get("data");
     var factureData = JSON.parse(jsonData);
     console.log(factureData);
+
+    const data = {
+        client: parseInt(factureData.client),
+        produits: factureData.produits
+    }
+    
 </script>
