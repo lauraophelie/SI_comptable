@@ -3,7 +3,7 @@
     $id = $_POST['id'];
     $designation = $_POST['designation'];
 
-    $produit = update($id,$designation);
+    $produit = update_produit($id, $designation);
     if($produit == true) {
         header('Location: ../../pages/produit/affichage_produit.php');
         exit();

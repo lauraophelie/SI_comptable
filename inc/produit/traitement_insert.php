@@ -14,7 +14,7 @@
         header('Location: ../../pages/page.php?page=produit/form_insert&error=Ce produit existe déjà');
         exit();
     }else{
-        $insert = save($designation);
+        $insert = save_produit($designation);
         if($insert == true) {
             reset_cles_rep_produit_centre();
             header('Location: ../../pages/page.php?page=produit/affichage_produit&message=Insertion terminée avec succès !');

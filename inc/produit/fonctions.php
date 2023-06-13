@@ -1,5 +1,5 @@
 <?php
-    function db_connect() {
+    function db__connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
         $PARAM_utilisateur = 'gestion_compta';
@@ -16,9 +16,9 @@
             }
     }
 
-    function save($designation) {
+    function save_produit($designation) {
         try{
-            $connexion = db_connect();
+            $connexion = db__connect();
             $sql="INSERT INTO produit(designation) values (:designation)";
             $stmt = $connexion ->prepare($sql);
             $stmt->bindParam(':designation',$designation);
@@ -31,7 +31,7 @@
     }
 
     function verifProduit($designation){
-        $connexion = db_connect();
+        $connexion = db__connect();
         $sql="SELECT designation from produit where designation = :designation";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':designation',$designation);
@@ -45,7 +45,7 @@
     }
 
     function findAll(){
-        $connexion = db_connect();
+        $connexion = db__connect();
         $sql="SELECT * from v_produits ORDER BY id ASC";
         $stmt=$connexion->prepare($sql);
         $stmt->execute();
@@ -53,9 +53,9 @@
         return $result;
     }
 
-    function update($id, $designation, $prix_unitaire, $unite_oeuvre){
+    function update_produit($id, $designation, $prix_unitaire, $unite_oeuvre){
         try{
-            $connecion = db_connect();
+            $connecion = db__connect();
             $sql = "UPDATE produit SET designation = :designation, prix_unitaire = :prix_unitaire, unite_oeuvre = :unite_oeuvre where id=:id";
             $stmt = $connecion->prepare($sql);
             $stmt->bindParam(':designation', $designation);
@@ -70,9 +70,9 @@
         }
     }
 
-    function delete($id) {
+    function delete_produit($id) {
         try{
-            $connexion = db_connect();
+            $connexion = db__connect();
             $sql = "DELETE from produit where id= :id";
             $stmt = $connexion -> prepare($sql);
             $stmt->bindParam(':id',$id);
@@ -84,8 +84,8 @@
         }
     }
 
-    function findByNum($id) {
-        $connexion = db_connect();
+    function findProduitByNum($id) {
+        $connexion = db__connect();
         $sql = "SELECT * from produit where id= :id";
         $stmt = $connexion -> prepare($sql);
         $stmt->bindParam(':id', $id);
