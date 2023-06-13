@@ -184,7 +184,7 @@
     function saveCompta($id_societe,$capital,$date_debut_exercice,$devise_tenu){
         try {
             $connexion = db_connect();
-            $sql = "INSERT INTO comptabilite(societe,capital, date_debut_exercice, devise) VALUES(:societe,:capital,:date_debut, :devise)";
+            $sql = "INSERT INTO comptabilite(societe, capital, date_debut_exercice, devise) VALUES(:societe,:capital,:date_debut, :devise)";
             $stmt = $connexion->prepare($sql);
             $stmt->bindParam(':societe', $id_societe);
             $stmt->bindParam(':capital', $capital);
