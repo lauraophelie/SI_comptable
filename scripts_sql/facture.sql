@@ -50,6 +50,9 @@ CREATE TABLE details_facture(
     montant_ttc INT NOT NULL
 );
 
+INSERT INTO details_facture (produit, quantite, prix_unitaire, montant_ht, montant_ttc)
+VALUES(1, 20, 2000, 40000, 48000),(2, 40, 1000, 40000, 48000);
+
 CREATE OR REPLACE VIEW v_infos_tiers AS
 SELECT tiers_id as id_tiers, nom_societe as nom_tiers, adresse as adresse_tiers, mail as mail_tiers, telephone as telephone_tiers FROM v_tiers; 
 
