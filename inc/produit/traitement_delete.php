@@ -4,10 +4,10 @@
     $delete = delete($id);
    
         if($delete == true) {
-            header('Location: ../../pages/produit/affichage_produit.php?message=Le compte a ete supprime avec succes !');
+            header('Location: ../../pages/page.php?page=produit/affichage_produit&message=Le compte a ete supprime avec succes !');
             exit();
         } else {
-            header("Location: ../../pages/produit/affichage_produit.php?erreur=Une erreur s'est produite lors de la suppression du compte !");
+            header("Location: ../../pages/page.php?page=produit/affichage_produit&erreur=Une erreur s'est produite lors de la suppression du compte !");
             exit();
         }
     

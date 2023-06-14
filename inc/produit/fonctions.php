@@ -46,21 +46,19 @@
 
     function findAll(){
         $connexion = db_connect();
-        $sql="SELECT * from v_produits ORDER BY id ASC";
+        $sql="SELECT * from produit ORDER BY id ASC";
         $stmt=$connexion->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    function update($id, $designation, $prix_unitaire, $unite_oeuvre){
+    function update($id,$designation){
         try{
             $connecion = db_connect();
-            $sql = "UPDATE produit SET designation = :designation, prix_unitaire = :prix_unitaire, unite_oeuvre = :unite_oeuvre where id=:id";
+            $sql = "UPDATE produit SET designation = :designation where id=:id";
             $stmt = $connecion->prepare($sql);
-            $stmt->bindParam(':designation', $designation);
-            $stmt->bindParam(':prix_unitaire', $prix_unitaire);
-            $stmt->bindParam(':unite_oeuvre', $unite_oeuvre);
+            $stmt->bindParam(':designation',$designation);
             $stmt->bindParam(':id',$id);
             $stmt->execute();
             return true;
@@ -93,5 +91,61 @@
         $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
         return $resultat;
     }
+
+    // ----------------------------------------------------------------------------------------------------------------------------------
+
+    function save_product($designation,$prix_unitaire,$unite_oeuvre) {
+        try{
+            $connexion = db_connect();
+            $sql="INSERT INTO produit(designation,prix_unitaire,unite_oeuvre) values (:designation,:prix,:unite)";
+            $stmt = $connexion ->prepare($sql);
+            $stmt->bindParam(':designation',$designation);
+            $stmt->bindParam(':prix',$prix_unitaire);
+            $stmt->bindParam(':unite',$unite_oeuvre);
+            $stmt->execute();
+            return true;
+        }catch(PDOException $e){
+            echo "Erreur lors de l'insertion :".$e->getMessage();
+            return false;
+        }
+    }
+
+    function update_product($id,$designation,$prix_unitaire,$unite_oeuvre){
+        try{
+            $connecion = db_connect();
+            $sql = "UPDATE produit SET designation= :designation , prix_unitaire= :prix, unite_oeuvre= :unite where id=:id";
+            $stmt = $connecion->prepare($sql);
+            $stmt->bindParam(':designation',$designation);
+            $stmt->bindParam(':id',$id);
+            $stmt->bindParam(':prix',$prix_unitaire);
+            $stmt->bindParam(':unite',$unite_oeuvre);
+            $stmt->execute();
+            return true;
+        }catch(PDOException $e){
+            echo "Erreur lors de la modification :".$e->getMessage();
+            return false;
+        }
+    }
+
+    function getAllUnite(){
+        $connexion = db_connect();
+        $sql="SELECT * from unite_oeuvre";
+        $stmt=$connexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function getID_unite($unite) {
+        $connexion = db_connect();
+        $sql = "SELECT id from unite_oeuvre where designation= :unite";
+        $stmt = $connexion -> prepare($sql);
+        $stmt->bindParam(':unite', $unite);
+        $stmt->execute();
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
+
+
 
 ?>
