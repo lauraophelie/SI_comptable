@@ -54,7 +54,7 @@ INSERT INTO details_facture (produit, quantite, prix_unitaire, montant_ht, monta
 VALUES(1, 20, 2000, 40000, 48000),(2, 40, 1000, 40000, 48000);
 
 CREATE OR REPLACE VIEW v_infos_tiers AS
-SELECT tiers_id as id_tiers, nom_societe as nom_tiers, adresse as adresse_tiers, mail as mail_tiers, telephone as telephone_tiers FROM v_tiers; 
+SELECT tiers_id as id_tiers, societe as nom_tiers, adresse as adresse_tiers, mail as mail_tiers, telephone as telephone_tiers FROM v_tiers; 
 
 CREATE OR REPLACE VIEW v_facture AS
 SELECT facture.*,nom,adresse,telephone,nom_tiers, adresse_tiers, mail_tiers from facture
@@ -66,8 +66,8 @@ ALTER TABLE facture ADD CONSTRAINT set_id PRIMARY KEY(id) ;
 ALTER TABLE details_facture ADD COLUMN idfacture VARCHAR REFERENCES facture(id);
 
 CREATE OR REPLACE VIEW v_details AS
-SELECT details_facture.id, idfacture, produit as idproduit, quantite, montant_ht,montant_ttc, designation as nom_produit, details_facture.prix_unitaire, unite_oeuvre
- FROM details_facture join produit on produit.id= details_facture.produit;
+SELECT details_facture.id, idfacture, produit as idproduit, quantite, montant_ht, montant_ttc, designation as nom_produit, details_facture.prix_unitaire, unite_oeuvre
+FROM details_facture join produit on produit.id = details_facture.produit;
 
 CREATE OR REPLACE VIEW v_details_facture AS
-SELECT * FROM v_details JOIN unite_oeuvre on v_details.unite_oeuvre = unite_oeuvre.designation
+SELECT * FROM v_details JOIN(select id as uo, designation from unite_oeuvre) as unite_oeuvre on v_details.unite_oeuvre = unite_oeuvre.uo;
