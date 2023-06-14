@@ -7,7 +7,6 @@ CREATE TABLE facture(
     tva DOUBLE PRECISION NOT NULL,
     reference VARCHAR(20),
     objet VARCHAR(20) NOT NULL,
-    facture DOUBLE PRECISION NOT NULL,
     avance DOUBLE PRECISION DEFAULT 0,
     net_a_payer DOUBLE PRECISION NOT NULL
 );

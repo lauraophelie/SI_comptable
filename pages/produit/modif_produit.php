@@ -1,7 +1,7 @@
 <?php
     require("../../inc/produit/fonctions.php");
     $id = $_GET['id'];
-    $produit = findByNum($id);
+    $produit = findProduitByNum($id);
 ?>
     <form action="../../inc/produit/traitement_modif.php" method="post" data-parsley-validate="" id="form1">
         <h1> Modifier le produit : </h1>

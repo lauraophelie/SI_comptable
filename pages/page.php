@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="../assets/css/menu/main_menu.css">
     <link rel="stylesheet" href="../assets/css/menu/menu_compta.css">
     <link rel="stylesheet" href="../assets/css/couts/couts.css">
+    <link rel="stylesheet" href="../assets/css/facture/affichage_facture.css">
 
     <title> <?php echo $titre[$page]; ?> </title>
 </head>
