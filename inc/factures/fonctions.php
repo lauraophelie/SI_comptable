@@ -72,4 +72,56 @@
             return $last['abreviation']."/".$thisMois."/".$thisYear."/".$nombreFormatte;
         }
     }
+
+    function insert_facture($id, $date_fact, $societe, $tiers, $total_ttc, $tva, $reference, $objet, $avance, $net_a_payer) {
+        $conn = dbconnect();
+        $query = sprintf("INSERT INTO factures (id, date_fact, societe, tiers, total_ttc, tva, reference, objet, avance, net_a_payer) VALUES (%d, '%s', %d, %d, %f, %f, '%s', '%s', %f, %f)",
+            $id,
+            $conn->real_escape_string($date_fact),
+            $societe,
+            $tiers,
+            $total_ttc,
+            $tva,
+            $conn->real_escape_string($reference),
+            $conn->real_escape_string($objet),
+            $avance,
+            $net_a_payer
+        );
+        $result = $conn->query($query);
+        if (!$result) {
+            $conn->close();
+    
+            return false;
+        }
+        $conn->close();
+        return true;
+    }
+    function ecriture($journal, $societe, $date_ecriture, $numero_piece, $cg, $ct, $libelle, $debit, $credit) {
+        $conn = dbconnect();
+        $query = sprintf("INSERT INTO ecriture_journal (journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit) 
+                            VALUES ('%s', %d, '%s', '%s', '%s', '%s', '%s', %f, %f)",
+            $journal,
+            $societe,
+            $conn->real_escape_string($date_ecriture),
+            $conn->real_escape_string($numero_piece),
+            $conn->real_escape_string($cg),
+            $conn->real_escape_string($ct),
+            $conn->real_escape_string($libelle),
+            $debit,
+            $credit
+        );
+        $result = $conn->query($query);
+        if (!$result) {
+            $conn->close();
+    
+            return false;
+        }
+        $conn->close();
+        return true;
+    }    
+    function generer_ecriture($societe, $date_ecriture, $numero_piece, $libelle, $tiers, $total_ht, $total_tva, $total_ttc) {
+        $e1 = ecriture('VL', $societe, $date_ecriture, $numero_piece, '70700', null, $libelle, 0, $total_ht);
+        $e2 = ecriture('VL', $societe, $date_ecriture, $numero_piece, '44570', null, $libelle, 0, $total_tva);
+        $e3 = ecriture('VL', $societe, $date_ecriture, $numero_piece, '41100', $tiers, $libelle, $total_ttc, 0);
+    }
 ?>

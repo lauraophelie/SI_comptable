@@ -86,7 +86,7 @@
 
     function findProduitByNum($id) {
         $connexion = db__connect();
-        $sql = "SELECT * from produit where id= :id";
+        $sql = "SELECT * from v_produits where id= :id";
         $stmt = $connexion -> prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();

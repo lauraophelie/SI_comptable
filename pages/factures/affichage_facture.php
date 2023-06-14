@@ -34,26 +34,26 @@
             Facture
         </h3>
         <p style="margin-left: 125px"> ID Facture </p>
-        <p style="margin-left: 475px"> 
-            Date : <?php echo $date_actuelle; ?>
+        <p style="margin-left: 475px" id="date_facture"> 
+            
         </p>
     </div>
     <div class="facture_info_tiers">
         <div class="info_tiers_box">
-            <h3 class="main_title">
+            <h3 class="main_title" id="soc_client">
                 Client : Nom Société 
             </h3>
-            <p> Adresse </p>
-            <p> Téléphone </p>
-            <p> Email </p>
-            <p> Responsable </p>
+            <p id="ad_client"> Adresse </p>
+            <p id="tel_client"> Téléphone </p>
+            <p id="mail_client"> Email </p>
+            <p id="res_client"> Responsable </p>
         </div>
     </div>
     <div class="facture_info_ref">
-        <p>
+        <p id="ref_facture">
             Référence : 
         </p>
-        <p>
+        <p id="objet_facture">
             Objet : 
         </p>
     </div>
@@ -75,7 +75,7 @@
                 <td>
                     TVA
                 </td>
-                <td>
+                <td id="ht">
                     Total HT
                 </td>
             </tr>
@@ -83,10 +83,10 @@
                 <td> </td>
                 <td> </td>
                 <td> </td>
-                <td>
+                <td id="pourcentage_tva">
                     TVA %
                 </td>
-                <td>
+                <td id="tva">
                     Valeur TVA
                 </td>
             </tr>
@@ -95,7 +95,7 @@
                 <td> </td>
                 <td> </td>
                 <td> Total TTC </td>
-                <td>
+                <td id="ttc">
                     TTC
                 </td>
             </tr>
@@ -104,7 +104,7 @@
                 <td> </td>
                 <td> </td>
                 <td> Avance </td>
-                <td>
+                <td id="avance">
                     Avance 
                 </td>
             </tr>
@@ -113,14 +113,14 @@
                 <td> </td>
                 <td> </td>
                 <td> Net à payer </td>
-                <td>
+                <td id="nap">
                     Net à payer 
                 </td>
             </tr>
         </table>
     </div>
     <div class="facture_end">
-        <p>
+        <p id="fac_end">
             Arrêté la présente facture à la somme de TTC Ar
         </p>
         <h3 style="margin-left: 125px">
@@ -136,15 +136,77 @@
     <button id="valider_facture"> Valider </button>
 </div>
 
+<script src="../assets/js/jquery.js"> </script>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
     var jsonData = urlParams.get("data");
     var factureData = JSON.parse(jsonData);
     console.log(factureData);
 
+    var avance = 0;
+    if(factureData.avance === '') {
+        avance = 0;
+    } else {
+        avance = parseInt(factureData.avance);
+    }
+
     const data = {
         client: parseInt(factureData.client),
+        avance: avance,
+        reference: factureData.reference,
+        objet: factureData.objet,
         produits: factureData.produits
     }
-    
+    $(document).ready(function() {
+        var donnees = data;
+        $.ajax({
+            url: "../inc/factures/traitement_affichage_facture.php",
+            method: "POST",
+            data: { data: JSON.stringify(donnees) },
+            success: function(response) {
+                var facture = JSON.parse(response);
+                var client = facture.client;
+                var produits = facture.produits;
+                var total_tva = facture.total_tva;
+                var total_ht = facture.total_ht;
+                var total_ttc = facture.total_ttc;
+                var avance = facture.avance;
+                var net_payer = facture.net_payer;
+                var tva = facture.tva;
+                var date_facture = facture.date_facture;
+                var ref_facture = facture.reference;
+                var objet_facture = facture.objet;
+
+                console.log(facture);
+                localStorage.setItem('factureData', JSON.stringify(response));
+
+                document.getElementById('tva').innerHTML = total_tva + ' Ar';
+                document.getElementById('ttc').innerHTML = total_ttc + ' Ar';
+                document.getElementById('ht').innerHTML = total_ht + ' Ar';
+                document.getElementById('avance').innerHTML = avance + ' Ar';
+                document.getElementById('nap').innerHTML = net_payer + ' Ar';
+                document.getElementById('pourcentage_tva').innerHTML = tva + ' %';
+                document.getElementById('date_facture').innerHTML = 'Date : ' + date_facture;
+                document.getElementById('ref_facture').innerHTML = 'Référence : ' + ref_facture;
+                document.getElementById('objet_facture').innerHTML = 'Objet : ' + objet_facture;
+                document.getElementById('fac_end').innerHTML = 'Arrêté la présente facture à la somme de ' + total_ttc + ' Ar';
+
+
+                document.getElementById('tva').style.textAlign = "right";
+                document.getElementById('ttc').style.textAlign = "right";
+                document.getElementById('ht').style.textAlign = "right";
+                document.getElementById('avance').style.textAlign = "right";
+                document.getElementById('nap').style.textAlign = "right";
+
+                document.getElementById('soc_client').innerHTML = "Client : " + client.societe;
+                document.getElementById('ad_client').innerHTML = "Adresse : " + client.adresse;
+                document.getElementById('tel_client').innerHTML = "Téléphone : " + client.telephone;
+                document.getElementById('mail_client').innerHTML = "Email : " + client.mail;
+                document.getElementById('res_client').innerHTML = "Responsable : " + client.responsable;
+            },
+            error: function(xhr, status, error) {
+                alert(error);
+            }
+        });
+    });
 </script>

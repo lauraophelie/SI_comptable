@@ -1,6 +1,6 @@
 <?php 
 
-    function dbconnect() {
+    function dbconnect__() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
         $PARAM_utilisateur = 'gestion_compta';
@@ -28,7 +28,7 @@
     // insert into test(produit,quantite,prix_unitaire) values('manioc',20,4000);
     
     function getAll() {
-        $connexion = dbconnect();
+        $connexion = dbconnect__();
         $sql = "SELECT * FROM test";
         $stmt = $connexion->prepare($sql);
         $stmt->execute();
@@ -36,12 +36,12 @@
         return $result;
     }
 
-    function montant_HT($quantite,$prix_unitaire) {
+    function montant_HT($quantite, $prix_unitaire) {
         return $quantite*$prix_unitaire;
     }
 
     function getTVA() {
-        $connexion = dbconnect();
+        $connexion = dbconnect__();
         $sql = "SELECT tva FROM TVA";
         $stmt = $connexion->prepare($sql);
         $stmt->execute();
@@ -49,8 +49,8 @@
         return $result;
     } 
 
-    function calcul_TVA($total,$tva){
-        $TVA = $total*($tva/100);
+    function calcul_TVA($total, $tva){
+        $TVA = $total* ($tva/100);
         if($TVA < 0) {
             return "il y a une erreur";
         }else {
