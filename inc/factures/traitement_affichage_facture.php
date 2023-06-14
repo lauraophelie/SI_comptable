@@ -3,8 +3,10 @@
     require_once("../produit/fonctions.php");
     require_once("../montant/fonctions.php");
     require_once("../tiers/Fonction.php");
+    require_once("./fonctions.php");
     date_default_timezone_set('Indian/Antananarivo');
     $date_actuelle = date("Y-m-d");
+    $id_facture = generate(1);
 
     if(isset($_POST['data'])) {
 
@@ -57,6 +59,7 @@
         );
 
         $facture = array(
+            'id' => $id_facture,
             'client' => $infos_client,
             'reference' => $reference,
             'objet' => $objet,

@@ -1,5 +1,5 @@
 <?php
-    function dbconnect() {
+    function dbconnect_base() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
         $PARAM_utilisateur = 'gestion_compta';
@@ -22,7 +22,7 @@
     }
 
     function getLast($id_societe){
-        $connexion = dbconnect();
+        $connexion = dbconnect_base();
         $sql = "SELECT * FROM gen_id_facture WHERE societe = :id";
         $statmn = $connexion -> prepare($sql);
         $statmn -> bindParam(":id",$id_societe);
@@ -33,7 +33,7 @@
 
     // générer nouvel ID pas mm mois/année
     function newGen($id_societe){
-        $connexion = dbconnect();
+        $connexion = dbconnect_base();
         $sql = "UPDATE gen_id_facture SET date_fact = NOW(), last_index = 1 WHERE societe = :id";
         $statmn = $connexion -> prepare($sql);
         $statmn -> bindParam(":id",$id_societe);
@@ -43,7 +43,7 @@
 
     // générer nouvel ID mm mois/année
     function updateGen($id_societe){
-        $connexion = dbconnect();
+        $connexion = dbconnect_base();
         $sql = "UPDATE gen_id_facture SET last_index = last_index+1 WHERE societe = :id";
         $statmn = $connexion -> prepare($sql);
         $statmn -> bindParam(":id",$id_societe);
@@ -74,7 +74,7 @@
     }
 
     function insert_facture($id, $date_fact, $societe, $tiers, $total_ttc, $tva, $reference, $objet, $avance, $net_a_payer) {
-        $conn = dbconnect();
+        $conn = dbconnect_base();
         $query = sprintf("INSERT INTO factures (id, date_fact, societe, tiers, total_ttc, tva, reference, objet, avance, net_a_payer) VALUES (%d, '%s', %d, %d, %f, %f, '%s', '%s', %f, %f)",
             $id,
             $conn->real_escape_string($date_fact),
@@ -97,7 +97,7 @@
         return true;
     }
     function ecriture($journal, $societe, $date_ecriture, $numero_piece, $cg, $ct, $libelle, $debit, $credit) {
-        $conn = dbconnect();
+        $conn = dbconnect_base();
         $query = sprintf("INSERT INTO ecriture_journal (journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit) 
                             VALUES ('%s', %d, '%s', '%s', '%s', '%s', '%s', %f, %f)",
             $journal,

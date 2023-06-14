@@ -33,7 +33,7 @@
         <h3 class="main_title">
             Facture
         </h3>
-        <p style="margin-left: 125px"> ID Facture </p>
+        <p style="margin-left: 125px" id="id_facture"> ID Facture </p>
         <p style="margin-left: 475px" id="date_facture"> 
             
         </p>
@@ -58,7 +58,7 @@
         </p>
     </div>
     <div class="facture_content">
-        <table>
+        <table id="table_fac_affichage">
             <tr>
                 <th> Désignation </th>
                 <th> Unité </th>
@@ -73,7 +73,7 @@
                     Total
                 </td>
                 <td>
-                    TVA
+                    Total HT
                 </td>
                 <td id="ht">
                     Total HT
@@ -82,7 +82,7 @@
             <tr>
                 <td> </td>
                 <td> </td>
-                <td> </td>
+                <td> TVA </td>
                 <td id="pourcentage_tva">
                     TVA %
                 </td>
@@ -178,13 +178,17 @@
                 var objet_facture = facture.objet;
 
                 console.log(facture);
-                localStorage.setItem('factureData', JSON.stringify(response));
+                sessionStorage.setItem('factureData', JSON.stringify(response));
 
-                document.getElementById('tva').innerHTML = total_tva + ' Ar';
-                document.getElementById('ttc').innerHTML = total_ttc + ' Ar';
-                document.getElementById('ht').innerHTML = total_ht + ' Ar';
-                document.getElementById('avance').innerHTML = avance + ' Ar';
-                document.getElementById('nap').innerHTML = net_payer + ' Ar';
+                var sessionData = sessionStorage.getItem('factureData');
+                console.log(sessionData);
+
+                document.getElementById('tva').innerHTML = 'Ar ' + total_tva.toLocaleString('fr-FR', { useGrouping: true, minimumFractionDigits: 0 });
+                document.getElementById('ttc').innerHTML = 'Ar ' + total_ttc. toLocaleString('fr-FR', { useGrouping: true, minimumFractionDigits: 0 });
+                document.getElementById('ht').innerHTML = 'Ar ' + total_ht.toLocaleString('fr-FR', { useGrouping: true, minimumFractionDigits: 0 });
+                document.getElementById('avance').innerHTML = 'Ar ' + avance.toLocaleString('fr-FR', { useGrouping: true, minimumFractionDigits: 0 });
+                document.getElementById('nap').innerHTML = 'Ar ' + net_payer.toLocaleString('fr-FR', { useGrouping: true, minimumFractionDigits: 0 });
+
                 document.getElementById('pourcentage_tva').innerHTML = tva + ' %';
                 document.getElementById('date_facture').innerHTML = 'Date : ' + date_facture;
                 document.getElementById('ref_facture').innerHTML = 'Référence : ' + ref_facture;
@@ -203,9 +207,54 @@
                 document.getElementById('tel_client').innerHTML = "Téléphone : " + client.telephone;
                 document.getElementById('mail_client').innerHTML = "Email : " + client.mail;
                 document.getElementById('res_client').innerHTML = "Responsable : " + client.responsable;
+
+                document.getElementById('id_facture').innerHTML = facture.id;
+
+                const table = document.getElementById('table_fac_affichage');
+                for(let i = 0; i < produits.length; i++) {
+                    var newRow = table.insertRow(1);
+
+                    var designationCell = newRow.insertCell(0);
+                    designationCell.textContent = produits[i].designation;
+                    designationCell.style.textAlign = "center";
+
+                    var uo = newRow.insertCell(1);
+                    uo.textContent = produits[i].unite_oeuvre;
+                    uo.style.textAlign = "center";
+
+                    var quantityCell = newRow.insertCell(2);
+                    quantityCell.style.textAlign = "center";
+                    quantityCell.textContent = produits[i].quantite;
+
+                    var prix = newRow.insertCell(3);
+                    prix.style.textAlign = "center";
+                    prix.textContent = produits[i].prix_unitaire;
+
+                    var ht = newRow.insertCell(4);
+                    ht.style.textAlign = "right";
+                    ht.textContent = 'Ar ' + produits[i].montant_ht;
+                }
             },
             error: function(xhr, status, error) {
                 alert(error);
+            }
+        });
+    });
+    const valider = document.getElementById('valider_facture');
+    valider.addEventListener('click', function() {
+        let sessionData = sessionStorage.getItem('factureData');
+
+        console.log(sessionData);
+
+        $.ajax({
+            url: '../inc/factures/traitement_insert_facture.php',
+            method: 'POST',
+            data: { data: sessionData },
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Erreur lors de l\'envoi des données de session');
             }
         });
     });
