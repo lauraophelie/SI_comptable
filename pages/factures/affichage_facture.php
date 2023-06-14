@@ -252,6 +252,7 @@
             data: { data: sessionData },
             success: function(response) {
                 console.log(response);
+                window.location.href = "./page.php?page=factures/liste_factures";
             },
             error: function(xhr, status, error) {
                 console.error('Erreur lors de l\'envoi des données de session');
