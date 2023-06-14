@@ -1,7 +1,7 @@
 <?php
     include("./fonctions.php");
     $id = $_GET['id'];
-    $delete = delete_produit($id);
+    $delete = delete($id);
    
         if($delete == true) {
             header('Location: ../../pages/page.php?page=produit/affichage_produit&message=Le compte a ete supprime avec succes !');

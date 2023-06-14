@@ -1,5 +1,5 @@
 <?php
-    function db__connect() {
+    function db_connect() {
         $PARAM_hote = 'localhost';
         $PARAM_nom_bd = 'gestion_compta';
         $PARAM_utilisateur = 'gestion_compta';
@@ -16,9 +16,9 @@
             }
     }
 
-    function save_produit($designation) {
+    function save($designation) {
         try{
-            $connexion = db__connect();
+            $connexion = db_connect();
             $sql="INSERT INTO produit(designation) values (:designation)";
             $stmt = $connexion ->prepare($sql);
             $stmt->bindParam(':designation',$designation);
@@ -31,7 +31,7 @@
     }
 
     function verifProduit($designation){
-        $connexion = db__connect();
+        $connexion = db_connect();
         $sql="SELECT designation from produit where designation = :designation";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':designation',$designation);
@@ -53,7 +53,6 @@
         return $result;
     }
 
-
     function update($id,$designation){
         try{
             $connecion = db_connect();
@@ -69,9 +68,9 @@
         }
     }
 
-    function delete_produit($id) {
+    function delete($id) {
         try{
-            $connexion = db__connect();
+            $connexion = db_connect();
             $sql = "DELETE from produit where id= :id";
             $stmt = $connexion -> prepare($sql);
             $stmt->bindParam(':id',$id);
@@ -83,9 +82,9 @@
         }
     }
 
-    function findProduitByNum($id) {
-        $connexion = db__connect();
-        $sql = "SELECT * from v_produits where id= :id";
+    function findByNum($id) {
+        $connexion = db_connect();
+        $sql = "SELECT * from produit where id= :id";
         $stmt = $connexion -> prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
