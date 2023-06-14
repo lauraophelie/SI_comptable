@@ -34,3 +34,4 @@ CREATE OR REPLACE VIEW v_infos_societe AS(
 SELECT DISTINCT(societe), SUM(credit) AS capital FROM ecriture_journal WHERE compte_general = '10100' GROUP BY societe;
 
 SELECT societe, date_ecriture, credit AS capital FROM ecriture_journal WHERE compte_general = '10100' ORDER BY societe, date_ecriture;
+

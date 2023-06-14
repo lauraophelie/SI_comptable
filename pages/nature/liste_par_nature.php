@@ -25,7 +25,15 @@
                 <th> Variable </th>
                 <th> </th>
             </tr>
-            
+            <?php foreach($charges as $charge) { ?>
+                <tr id="data-line">
+                    <td> <?php echo $charge['id']; ?> </td>
+                    <td> <?php echo $charge['designation']; ?> </td>
+                    <td> <?php echo $charge['unite']; ?> </td>
+                    <td> <?php echo $charge['fixe']; ?> </td>
+                    <td> <?php echo $charge['variable']; ?> </td>
+                </tr>         
+            <?php } ?>
             <?php foreach($charges_suppletives as $charge) { ?>
                 <tr id="data-line">
                     <td> <?php echo $charge['id']; ?> </td>
