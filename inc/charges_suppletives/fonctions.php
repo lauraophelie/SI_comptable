@@ -121,6 +121,18 @@
         return $result;
     }
 
+    function getVariableSuppletive($id_societe){
+        $connexion = dbConnect();
+        $debut = getDebutCompta($id_societe);
+        $sql="SELECT sum(valeur*variable) as prix_variable, from v_prix where date_ecriture > :date_debut_exercice AND societe = :societe";
+        $stmt=$connexion->prepare($sql);
+        $stmt->bindParam(':societe',$id_societe);
+        $stmt->bindParam(':date_debut_exercice',$debut);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     function getSumVariableSuppletive($id_societe){
         $connexion = dbConnect();
         $debut = getDebutCompta($id_societe);
@@ -129,7 +141,7 @@
         $stmt->bindParam(':societe',$id_societe);
         $stmt->bindParam(':date_debut_exercice',$debut);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -144,4 +156,6 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+
 ?>

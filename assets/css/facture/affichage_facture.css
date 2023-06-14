@@ -1,0 +1,109 @@
+.container_facture {
+  border: 1px solid black;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 85%;
+  margin-left: 50px;
+  font-size: 18px;
+  background-color: white;
+}
+.container_facture .main_title {
+  text-align: center;
+}
+.container_facture .facture_info_societe {
+  height: 185px;
+  border: 1px solid black;
+  width: 100%;
+}
+.container_facture .facture_info_societe p {
+  /*float: left;*/
+  margin-top: -9px;
+  padding-left: 125px;
+}
+.container_facture .facture_info_debut {
+  border: 1px solid black;
+  height: 130px;
+  width: 100%;
+}
+.container_facture .facture_info_debut p {
+  float: left;
+  margin-top: -10px;
+}
+.container_facture .facture_info_tiers {
+  border: 1px solid black;
+  height: 275px;
+  width: 100%;
+}
+.container_facture .facture_info_tiers .info_tiers_box {
+  height: 100%;
+  width: 40%;
+  margin-left: 60%;
+}
+.container_facture .facture_info_tiers .info_tiers_box p {
+  padding-left: 25px;
+}
+.container_facture .facture_info_ref {
+  border: 1px solid black;
+  height: 110px;
+  width: 100%;
+}
+.container_facture .facture_info_ref p {
+  padding-left: 125px;
+}
+.container_facture .facture_content {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.container_facture .facture_content table {
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.container_facture .facture_content table tr {
+  height: 40px;
+}
+.container_facture .facture_content table tr td {
+  font-size: 17px;
+}
+.container_facture .facture_content table tr td, .container_facture .facture_content table tr th {
+  border: 1px solid black;
+}
+.container_facture .facture_end {
+  border: 1px solid black;
+  height: 250px;
+  width: 100%;
+}
+.container_facture .facture_end p {
+  text-align: center;
+  padding-top: 25px;
+}
+.container_facture .facture_end h3 {
+  float: left;
+}
+
+.facture_button {
+  margin-top: 75px;
+  margin-left: 50px;
+}
+.facture_button button {
+  height: 35px;
+  width: 175px;
+  border: none;
+  transition: 0.5s;
+}
+.facture_button button:hover {
+  transform: scale(1.05);
+}
+.facture_button #annuler_facture {
+  color: white;
+  background-color: #363636;
+}
+.facture_button #modif_facture {
+  color: white;
+  background-color: #00255d;
+  margin-left: 250px;
+}
+.facture_button #valider_facture {
+  background-color: #CCA43B;
+  margin-left: 200px;
+}/*# sourceMappingURL=affichage_facture.css.map */

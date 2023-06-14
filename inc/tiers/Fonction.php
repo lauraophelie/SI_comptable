@@ -15,7 +15,7 @@
         }   
     }
 
-    function findAll() {
+    function findAllTiers() {
         $connexion = db_connect();
         $sql = "SELECT * from v_tiers ORDER BY numero ASC";
         $stmt = $connexion->prepare($sql);
@@ -24,7 +24,7 @@
         return $result;
     }
 
-    function fintById($id) {
+    function findTiersById($id) {
         $connexion = db_connect();
         $sql = "SELECT * from v_tiers where tiers_id= :id";
         $stmt = $connexion -> prepare($sql);
