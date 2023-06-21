@@ -1,7 +1,8 @@
 .ecriture_table {
-    width: 97%;
+    width: 90%;
     border-collapse: collapse;
     box-sizing: border-box;
+    margin-left: 50px;
 }
 
 .ecriture_table td, .ecriture_table th {
@@ -20,7 +21,7 @@
 }
 
 #ecriture_line {
-    height: 45px;
+    height: 60px;
     text-align: left;
     background-color: white;
     border-bottom: 1px solid #1C2541;
@@ -32,15 +33,15 @@
 }
 
 #ecriture_line:nth-child(odd) {
-    background-color: rgb(227, 227, 227);
+    background-color: rgb(242, 242, 242);
 }
 
 #ecriture_line:nth-child(odd) td {
-    border: 1px solid rgb(227, 227, 227);;
+    border: 1px solid rgb(246, 246, 246);;
 }
 
 #ecriture-title {
-    height: 35px;
+    height: 45px;
     text-align: left;
     font-size: 14px;
     background-color: #1C2541;
@@ -58,6 +59,7 @@
 
 #journal-title {
     padding-top: 25px;
+    padding-left: 50px;
 }
 
 .libelle {
@@ -105,10 +107,11 @@
     background-color: #1C2541;
     color: white;
     font-weight: bold;
+    margin-left: 50px;
 }
 
 #see-ecritures {
-    margin-left: 56%;
+    margin-left: 51%;
     font-weight: bold;
     margin-top: 5px;
     background-color: #CCA438;

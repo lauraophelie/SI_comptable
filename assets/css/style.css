@@ -33,8 +33,13 @@ a {
 }
 
 .bilan-box {
-    border: 1px solid black;
+    border: 1px solid transparent;
     height: fit-content;
+    width: 90%;
+    margin-left: 55px;
+    margin-top: 25px;
+    background-color: #1C2541;
+    color: white;
 }
 
 .bilan-box h3 {
@@ -43,8 +48,11 @@ a {
 }
 
 .bilan-box-content {
-    border: 1px solid black;
+    border: 1px solid transparent;
     height: fit-content;
+    width: 90%;
+    margin-left: 55px;
+    background-color: white;
 }
 
 .bilan-box-content table .passif-line th:first-child, .bilan-box-content table .passif-line td:first-child {
@@ -59,13 +67,15 @@ a {
     text-align: center;
 }
 
-.bilan-box-content table .passif-line td:nth-child(3), .bilan-box-content table .passif-line th:nth-child(3){
+.bilan-box-content table .passif-line td:nth-child(3), .bilan-box-content table .passif-line th:nth-child(3),
+.bilan-box-content table .passif-line td:nth-child(4), .bilan-box-content table .passif-line th:nth-child(4),
+.bilan-box-content table .passif-line td:nth-child(5), .bilan-box-content table .passif-line th:nth-child(5) {
     text-align: right;
     padding-right: 25px;
 }
 
 .passif-line {
-    height: 30px;
+    height: 45px;
 }
 
 .passif-line th, .passif-line td {
@@ -85,4 +95,19 @@ a {
 .passif-line .case {
     padding-top: 15px;
     width: 175px;
+}
+
+
+/*-----------------------*/
+
+.bilan-box-content table .actif-line th:first-child, .bilan-box-content table .actif-line td:first-child {
+    width: 25%;
+}
+
+.bilan-box-content table .actif-line th:nth-child(2), .bilan-box-content table .actif-line td:nth-child(2) {
+    width: 75px;
+}
+
+.bilan-box-content table .actif-line td {
+    height: 65px;
 }

@@ -48,16 +48,6 @@ INSERT INTO ecriture_journal(journal, societe, date_ecriture, numero_piece, comp
 
 
 
+----------------------------------- 18-06-2023 ----------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO pcg2005(numero, designation) VALUES('41910', 'CLIENTS - AVANCES&ACOMPTES RECUS');

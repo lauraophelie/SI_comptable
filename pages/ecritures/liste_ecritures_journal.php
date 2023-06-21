@@ -16,7 +16,7 @@
         Journal : <?php echo $designation; ?>
     </h1>
 
-    <div style="height:85px"> </div>
+    <div style="height:125px"> </div>
 
     <?php if(empty($ecritures)) { ?>
         <p> Aucune disponible écriture pour le moment </p>

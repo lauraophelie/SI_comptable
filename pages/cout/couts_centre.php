@@ -35,7 +35,9 @@
         $couts = cout_par_centre($centre, $date_debut, $date_fin_exercice);
 ?>
 
-<h2> Total : Centre <?php echo $couts['centre']; ?> </h2>
+<h2 id="journal-title"> 
+    Total : Centre <?php echo $couts['centre']; ?> 
+</h2>
 
     <table class="ecriture_table">
         <tr id = "ecriture-title">

@@ -8,7 +8,7 @@
     ?>
     <h1 id="main-title"> Balance </h1>
 
-    <div style="height:175px"> </div>
+    <div style="height:100px"> </div>
 
     <?php if(empty($result_grandlivre)) { ?>
         <p class="empty-pan"> Il n'y a pas de solde du grand livre à inscrire dans la balance </p>

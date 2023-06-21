@@ -24,7 +24,7 @@
         $total = getTotal($compte, $debut, $societe);
         $pcg = find_by_compte($compte);
 ?>  
-        <h2>
+        <h2 id="journal-title">
             <?php  echo $pcg['numero']." ".$pcg['designation']; ?>
         </h2>
 

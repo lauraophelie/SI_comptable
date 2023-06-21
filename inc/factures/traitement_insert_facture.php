@@ -3,11 +3,7 @@
     header('Content-Type: text/html; charset=utf-8');
 
     $sessionData = json_decode($_POST['data'], true);
-    
-    var_dump(json_encode($sessionData));
-
     $dataArray = json_decode($sessionData, true);
-    echo $dataArray;
 
     $id_facture = $dataArray['id'];
     $client = $dataArray['client']['id_client'];

@@ -35,7 +35,9 @@
         $couts = cout_par_produit($produit, $date_debut, $date_fin_exercice);
         $couts_centre = cout_par_centre_produit($produit, $date_debut, $date_fin_exercice);
 ?>
-    <h2> Total : <?php echo $couts['produit']; ?> </h2>
+    <h2 id="journal-title"> 
+        Total : <?php echo $couts['produit']; ?> 
+    </h2>
     <table class="ecriture_table">
         <tr id = "ecriture-title">
             <th class="titre-montant"> Fixe </th>
@@ -51,7 +53,7 @@
         </tr>
     </table>
 
-    <h2> Par Centre : </h2>
+    <h2 id="journal-title"> Par Centre : </h2>
 
     <table class="ecriture_table">
         <tr id = "ecriture-title">
@@ -60,14 +62,14 @@
             <th class="titre-montant"> Variable </th>
         </tr>
         <?php foreach($couts_centre as $cout_centre) { ?>
-            <tr style="height: 50px" class="cases">
-                <th class="centre_designation">
+            <tr style="height: 50px" class="cases" id="ecriture_line">
+                <th class="centre_designation case-compte">
                     <?php echo $cout_centre['centre']; ?>
                 </th>
-                <td style="text-align: right; padding-right: 15px" class="valeurs_fixe">
+                <td class="valeurs_fixe case-montant">
                     Ar <?php echo number_format($cout_centre['fixe'], 0, ' ', ' '); ?>
                 </td>
-                <td style="text-align: right; padding-right: 15px" class="valeurs_variable">
+                <td class="valeurs_variable case-montant">
                     Ar <?php echo number_format($cout_centre['variable'], 0, ' ', ' '); ?>
                 </td>
             </tr>

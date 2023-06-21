@@ -2,7 +2,7 @@
     require_once("../inc/tiers/fonctions.php");
     require_once("../inc/produit/fonctions.php");
 
-    $tiers = find_all();
+    $tiers = find_clients();
     $produits = findAll();
 ?>
 
@@ -14,7 +14,7 @@
     <label for="client"> Client : </label>
         <select name="client" id="client">
             <?php foreach($tiers as $tier) { ?>
-                <option value="<?php echo $tier['id']; ?>">
+                <option value="<?php echo $tier['tiers_id']; ?>">
                     <?php echo $tier['numero']; ?> 
                 </option>
             <?php } ?>

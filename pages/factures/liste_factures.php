@@ -11,18 +11,6 @@
         <button id="button-add"> Créer une facture </button>
     </a>
 
-    <div style="height: 75"> </div>
-
-    <form action="" method="post" id="recherche_facture">
-        <select name="client" id="client" style="width: 100px">
-            <?php foreach($tiers as $tier) { ?>
-                <option value="<?php echo $tier['id']; ?>">
-                    <?php echo $tier['numero']; ?> 
-                </option>
-            <?php } ?>
-        </select>
-    </form>
-
     <?php 
         if(empty($factures)) {
     ?>
@@ -57,16 +45,16 @@
                         <?php echo $facture['nom_tiers']; ?>
                     </td>
                     <td> 
-                        <?php echo $facture['tva']; ?>
+                        <?php echo $facture['tva'].' %'; ?>
                     </td>
-                    <td> 
-                        <?php echo $facture['total_ttc']; ?>
+                    <td class="case-montant"> 
+                        <?php echo number_format($facture['total_ttc'], 0, ' ', ' '); ?>
                     </td>
-                    <td> 
-                        <?php echo $facture['avance']; ?>
+                    <td class="case-montant"> 
+                        <?php echo number_format($facture['avance'], 0, ' ', ' '); ?>
                     </td>
-                    <td> 
-                        <?php echo $facture['net_a_payer']; ?>
+                    <td class="case-montant"> 
+                        <?php echo number_format($facture['net_a_payer'], 0, ' ', ' '); ?>
                     </td>
                     <td> </td>
                 </tr>

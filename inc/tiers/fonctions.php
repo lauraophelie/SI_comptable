@@ -140,4 +140,21 @@
         return $result;
     }
     
+    function find_clients() {
+        $connexion = db_connect();
+        $sql = "SELECT * from v_tiers WHERE type_tiers='CL' ORDER BY numero ASC";
+        $stmt = $connexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function find_fournisseurs() {
+        $connexion = db_connect();
+        $sql = "SELECT * from v_tiers WHERE type_tiers='FO' ORDER BY numero ASC";
+        $stmt = $connexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 ?>

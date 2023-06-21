@@ -56,9 +56,6 @@
     function generate($id){
         $last = getLast($id);
         $lastDate = new DateTime($last['date_fact'],new DateTimeZone('Indian/Antananarivo'));
-        //echo $lastDate ->format('Y-m-d H:i:s');
-        //echo $last['abreviation'];
-        
         $today = new DateTime('now',new DateTimeZone('Indian/Antananarivo'));
         $lastMois = $lastDate -> format('m');
         $thisMois = $today -> format('m');
@@ -98,6 +95,7 @@
         }
         return true;
     }
+
     function ecriture($journal, $societe, $date_ecriture, $numero_piece, $cg, $ct, $libelle, $debit, $credit) {
         $conn = dbconnect_base();
         $sql = "INSERT INTO ecriture_journal (journal, societe, date_ecriture, numero_piece, compte_general, compte_tiers, libelle, debit, credit) 
@@ -119,7 +117,8 @@
             return false;
         }
         return true;
-    }    
+    }  
+
     function generer_ecriture($societe, $date_ecriture, $numero_piece, $libelle, $tiers, $total_ht, $total_tva, $total_ttc) {
         $e1 = ecriture('VL', $societe, 'now()', $numero_piece, '70700', null, $libelle, 0, $total_ht);
         echo $e1;
@@ -128,6 +127,11 @@
         $e3 = ecriture('VL', $societe, 'now()', $numero_piece, '41100', $tiers, $libelle, $total_ttc, 0);
         echo $e3;
     }
+
+    function insert_details_facture($produit, $quantite, $prix_unitaire, $montant_ht, $montant_ttc, $id_facture) {
+        
+    }
+
     function FindByNom($nom) {
         $connexion = dbconnect_base();
         $sql = "SELECT * from v_facture where nom_tiers=:nom";
